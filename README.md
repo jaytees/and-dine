@@ -1,4 +1,4 @@
-# Banner Generator
+# &Dine
 
 ## Build Setup
 
