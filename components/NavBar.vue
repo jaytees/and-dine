@@ -1,0 +1,110 @@
+<template>
+  <div class="navbar">
+    <img class="navbar__logo" src="~/assets/images/logo.png" />
+    <ul class="navbar__items">
+      <li
+        v-for="(item, index) in navItems"
+        :key="`tab_${index}`"
+        class="navbar__items--tab"
+      >
+        <a
+          v-if="item.external"
+          class="link"
+          :href="item.external"
+          :class="item.name === currentPage && 'selected-link'"
+        >
+          {{ item.value }}
+        </a>
+        <nuxt-link
+          v-else
+          class="link"
+          :to="item.link"
+          :class="item.name === currentPage && 'selected-link'"
+        >
+          {{ item.value }}
+        </nuxt-link>
+      </li>
+      <li class="navbar__items--icon">
+        <fa :icon="['fas', 'shopping-cart']" />
+        <fa :icon="['fas', 'user']" />
+      </li>
+    </ul>
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'NavBar',
+  props: {
+    navigation: {
+      type: Array,
+      require: true,
+      default: () => [],
+    },
+  },
+  data() {
+    return {
+      navItems: [],
+    }
+  },
+  computed: {
+    currentPage() {
+      return this.$route.name
+    },
+  },
+
+  mounted() {
+    this.navItems = this.navigation
+  },
+}
+</script>
+
+<style lang="scss">
+$desktop: 1024px;
+$tablet: 768px;
+$mobile: 600px;
+
+.navbar {
+  padding: 0 32px;
+  background-color: transparent;
+  &__logo {
+    width: 150px;
+  }
+  &__items {
+    float: right;
+    display: flex;
+    list-style-type: none;
+    &--tab {
+      cursor: pointer;
+      margin: 0 20px;
+
+      .link {
+        text-decoration: none;
+        color: var(--colour-black-1);
+        font-size: 18px;
+        font-weight: 600;
+
+        &:hover {
+          color: var(--colour-yellow-1);
+        }
+        cursor: pointer;
+      }
+      .selected-link {
+        border-bottom: 3px solid var(--colour-yellow-1);
+        color: var(--colour-yellow-1);
+      }
+    }
+    &--icon {
+      width: 100px;
+      cursor: pointer;
+      text-align: right;
+      svg {
+        margin: 0 5px;
+      }
+      svg:hover {
+        color: var(--colour-yellow-1);
+      }
+    }
+  }
+}
+</style>

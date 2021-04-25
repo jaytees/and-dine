@@ -1,0 +1,1 @@
+__NUXT_JSONP__("/sizes", {data:[{}],fetch:[],mutations:[]});

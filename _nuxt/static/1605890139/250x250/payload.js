@@ -1,0 +1,1 @@
+__NUXT_JSONP__("/250x250", {data:[{}],fetch:[],mutations:[]});
