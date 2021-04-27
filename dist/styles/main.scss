@@ -1,0 +1,54 @@
+$desktop: 1024px;
+$tablet: 768px;
+$mobile: 600px;
+
+@font-face {
+  font-family: 'Circular';
+  src: local('Circular'),
+    url(~assets/fonts/CircularStd-Medium.otf) format('otf');
+}
+
+html {
+  --colour-white-1: #ffffff;
+  --colour-black-1: #3b444b;
+  --colour-yellow-1: #fecb02;
+  --colour-yellow-2: #fbfae0;
+  --colour-pink-1: #ff1e5f;
+  --colour-pink-2: #f9adff;
+  --colour-purple-1: #6543fe;
+  --colour-orange-1: #fa480e;
+  --colour-grey-1: #e4ddf6;
+
+  font-family: 'Circular', sans-serif;
+  font-weight: 600;
+  color: var(--colour-black-1);
+  background-color: var(--colour-yellow-2);
+  position: initial;
+  word-spacing: 1px;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  box-sizing: border-box;
+  overflow-x: hidden;
+  width: 100%;
+}
+
+body {
+  margin: 0;
+}
+
+.container {
+  padding: 50px 100px;
+  font-size: 16px;
+  font-weight: 300;
+  @media (max-width: $desktop) {
+    width: 80%;
+  }
+
+  @media (max-width: $mobile) {
+    width: 100%;
+  }
+  margin: 0 auto;
+  transition: all 0.5s cubic-bezier(0.55, 0, 0.1, 1);
+}
