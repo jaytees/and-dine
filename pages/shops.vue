@@ -1,6 +1,6 @@
 <template>
   <section class="container">
-    <div>{{ products }}</div>
+    <div>{{ sellers }}</div>
     <button
       @click="
         buyItem('Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0VmFyaWFudC8zOTY5NjYxNDAzMTUyNQ==')
@@ -22,10 +22,10 @@ export default {
     }
   },
   computed: {
-    ...mapState(['products']),
+    ...mapState(['sellers']),
   },
   mounted() {
-    this.getProducts()
+    this.getSellers()
     this.$shopify.checkout.create().then((checkout) => {
       this.checkoutId = checkout.id
       this.checkoutUrl = checkout.webUrl
@@ -37,7 +37,7 @@ export default {
     })
   },
   methods: {
-    ...mapActions(['getProducts']),
+    ...mapActions(['getSellers']),
     buyItem(variantId) {
       const lineItemsToAdd = [
         {
