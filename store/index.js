@@ -25,16 +25,26 @@ export const mutations = {
 
 export const actions = {
   async getProducts({ commit }) {
-    const products = await this.$axios.$get(
-      `${process.env.STOREFRONT_URL}products.json?access_token=${process.env.STOREFRONT_ACCESS_TOKEN}&refresh_token=${process.env.STOREFRONT_REFRESH_TOKEN}`
-    )
-    await commit('SET_PRODUCTS', products)
+    await this.$axios
+      .$get(
+        `${process.env.STOREFRONT_URL}/products.json?access_token=${process.env.STOREFRONT_ACCESS_TOKEN}&refresh_token=${process.env.STOREFRONT_REFRESH_TOKEN}`
+      )
+      .then((resp) => {
+        commit('SET_PRODUCTS', resp.products)
+      })
   },
   async getSellers({ commit }) {
-    const products = await this.$axios.$get(
-      `${process.env.STOREFRONT_URL}sellers.json?access_token=${process.env.STOREFRONT_ACCESS_TOKEN}&refresh_token=${process.env.STOREFRONT_REFRESH_TOKEN}`
-    )
-    await commit('SET_SELLERS', products)
+    await this.$axios
+      .$get(`${process.env.STOREFRONT_URL}/sellers.json`, {
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+          'Content-Type': 'application/json',
+          Authorization: process.env.STOREFRONT_BEARER,
+        },
+      })
+      .then((resp) => {
+        commit('SET_SELLERS', resp.sellers)
+      })
   },
 }
 

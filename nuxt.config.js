@@ -49,11 +49,15 @@ export default {
   },
 
   env: {
-    STOREFRONT_URL: 'https://mvmapi.webkul.com/api/v2/',
+    STOREFRONT_URL: 'https://mvmapi.webkul.com/api/v2',
     STOREFRONT_REFRESH_TOKEN:
       'ZDgyMmE2NTk5NzNlZDgyMDk4MmNlMTZjNGUxODg2ZWU3ZGQzZjg1ODgyNTZiM2JjMGEyMGYzNWUzYjVkNDQ3MA',
     STOREFRONT_ACCESS_TOKEN:
       'YjZiNmRlZjE1ZGJiZWRlMTFmZGRmYzc0Njg0ZDIyMjYwYjcxMDQxZjEyNzA3ZGRhMzlhOTgzODAzNDE0NzYzYQ',
+    STOREFRONT_BEARER:
+      'Bearer YjZiNmRlZjE1ZGJiZWRlMTFmZGRmYzc0Njg0ZDIyMjYwYjcxMDQxZjEyNzA3ZGRhMzlhOTgzODAzNDE0NzYzYQ',
+    SHOPIFY_DOMAIN: 'anddine.myshopify.com', // your shopify domain
+    SHOPIFY_ACCESS_TOKEN: 'd4ba832cfe834593d2b1e99447a4c3f4', // your shopify storefront access token
   },
 
   generate: {
@@ -64,9 +68,11 @@ export default {
   // Modules (https://go.nuxtjs.dev/config-modules)
   modules: [
     '@nuxtjs/axios',
+    '@nuxtjs/proxy',
     '@nuxt/http',
     '@nuxtjs/pwa',
     '@nuxt/content',
+    'nuxt-shopify',
     [
       'nuxt-fontawesome',
       {
@@ -80,10 +86,4 @@ export default {
       },
     ],
   ],
-
-  publicRuntimeConfig: {
-    axios: {
-      baseURL: '/',
-    },
-  },
 }

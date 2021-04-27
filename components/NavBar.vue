@@ -25,7 +25,10 @@
         </nuxt-link>
       </li>
       <li class="navbar__items--icon">
-        <fa :icon="['fas', 'shopping-cart']" />
+        <a href="https://anddine.myshopify.com/cart">
+          <fa :icon="['fas', 'shopping-cart']" />
+        </a>
+
         <fa :icon="['fas', 'user']" />
       </li>
     </ul>

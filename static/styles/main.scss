@@ -10,7 +10,7 @@ $mobile: 600px;
 
 html {
   --colour-white-1: #ffffff;
-  --colour-black-1: #000000;
+  --colour-black-1: #3b444b;
   --colour-yellow-1: #fecb02;
   --colour-yellow-2: #fbfae0;
   --colour-pink-1: #ff1e5f;
@@ -20,7 +20,7 @@ html {
   --colour-grey-1: #e4ddf6;
 
   font-family: 'Circular', sans-serif;
-  font-weight: 700;
+  font-weight: 600;
   color: var(--colour-black-1);
   background-color: var(--colour-yellow-2);
   position: initial;
@@ -32,6 +32,10 @@ html {
   box-sizing: border-box;
   overflow-x: hidden;
   width: 100%;
+}
+
+body {
+  margin: 0;
 }
 
 .container {
