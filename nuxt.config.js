@@ -86,6 +86,8 @@ export default {
     '@nuxtjs/pwa',
     '@nuxt/content',
     'nuxt-shopify',
+    '@nuxt/http',
+    'cookie-universal-nuxt',
     [
       'nuxt-fontawesome',
       {
@@ -93,7 +95,7 @@ export default {
         imports: [
           {
             set: '@fortawesome/free-solid-svg-icons',
-            icons: ['faShoppingBasket', 'faShoppingCart', 'faUser'],
+            icons: ['faShoppingBasket', 'faShoppingCart', 'faUser', 'faSearch'],
           },
         ],
       },

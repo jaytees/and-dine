@@ -1,6 +1,5 @@
 <template>
   <section class="container">
-    <div>{{ sellers }}</div>
     <button
       @click="
         buyItem('Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0VmFyaWFudC8zOTY5NjYxNDAzMTUyNQ==')
@@ -12,8 +11,6 @@
 </template>
 
 <script>
-import { mapState, mapActions } from 'vuex'
-
 export default {
   name: 'Shops',
   data() {
@@ -21,11 +18,7 @@ export default {
       checkoutId: '',
     }
   },
-  computed: {
-    ...mapState(['sellers']),
-  },
   mounted() {
-    this.getSellers()
     this.$shopify.checkout.create().then((checkout) => {
       this.checkoutId = checkout.id
       this.checkoutUrl = checkout.webUrl
@@ -37,7 +30,6 @@ export default {
     })
   },
   methods: {
-    ...mapActions(['getSellers']),
     buyItem(variantId) {
       const lineItemsToAdd = [
         {

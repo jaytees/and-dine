@@ -1,6 +1,6 @@
 <template>
   <div class="navbar">
-    <img class="navbar__logo" src="~/assets/images/logo.png" />
+    <!-- <img class="navbar__logo" src="~/assets/images/logo.png" /> -->
     <ul class="navbar__items">
       <li
         v-for="(item, index) in navItems"
@@ -68,8 +68,10 @@ $tablet: 768px;
 $mobile: 600px;
 
 .navbar {
-  padding: 0 32px;
+  display: list-item;
+  padding: 20px 32px;
   background-color: transparent;
+  z-index: 999;
   &__logo {
     width: 150px;
   }
@@ -79,22 +81,22 @@ $mobile: 600px;
     list-style-type: none;
     &--tab {
       cursor: pointer;
-      margin: 0 20px;
+      margin: 0 15px;
 
       .link {
         text-decoration: none;
-        color: var(--colour-black-1);
-        font-size: 18px;
+        color: var(--colour-pink-1);
+        font-size: 16px;
         font-weight: 600;
 
         &:hover {
-          color: var(--colour-yellow-1);
+          color: var(--colour-white-1);
         }
         cursor: pointer;
       }
       .selected-link {
-        border-bottom: 3px solid var(--colour-yellow-1);
-        color: var(--colour-yellow-1);
+        border-bottom: 3px solid var(--colour-white-1);
+        color: var(--colour-white-1);
       }
     }
     &--icon {
@@ -103,9 +105,10 @@ $mobile: 600px;
       text-align: right;
       svg {
         margin: 0 5px;
+        color: var(--colour-pink-1);
       }
       svg:hover {
-        color: var(--colour-yellow-1);
+        color: var(--colour-white-1);
       }
     }
   }

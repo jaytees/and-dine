@@ -5,7 +5,13 @@ $mobile: 600px;
 @font-face {
   font-family: 'Circular';
   src: local('Circular'),
-    url(~assets/fonts/CircularStd-Medium.otf) format('otf');
+    url(~assets/fonts/circular/CircularStd-Medium.otf) format('otf');
+}
+
+@font-face {
+  font-family: 'Gotham';
+  src: local('Gomtham'),
+    url(~assets/fonts/gotham/Gotham-Black.otf) format('otf');
 }
 
 html {
@@ -18,11 +24,12 @@ html {
   --colour-purple-1: #6543fe;
   --colour-orange-1: #fa480e;
   --colour-grey-1: #e4ddf6;
+  --colour-green-1: #8cbd22;
+  --colour-blue-1: #1574f5;
+  --colour-red-1: #ed6065;
 
-  font-family: 'Circular', sans-serif;
-  font-weight: 600;
-  color: var(--colour-black-1);
-  background-color: var(--colour-yellow-2);
+  font-family: 'Gotham', sans-serif;
+  background-color: var(--colour-white-1);
   position: initial;
   word-spacing: 1px;
   -ms-text-size-adjust: 100%;
@@ -38,9 +45,19 @@ body {
   margin: 0;
 }
 
-.container {
-  padding: 50px 100px;
+h1 {
+  font-size: 60px;
+  font-weight: 600;
+  margin: 20px 0;
+}
+
+p {
   font-size: 16px;
+  font-weight: 600;
+}
+
+.container {
+  padding: 0;
   font-weight: 300;
   @media (max-width: $desktop) {
     width: 80%;
