@@ -82,6 +82,7 @@ export default {
   modules: [
     '@nuxtjs/axios',
     '@nuxtjs/proxy',
+    '@nuxtjs/device',
     '@nuxt/http',
     '@nuxtjs/pwa',
     '@nuxt/content',
@@ -95,7 +96,13 @@ export default {
         imports: [
           {
             set: '@fortawesome/free-solid-svg-icons',
-            icons: ['faShoppingBasket', 'faShoppingCart', 'faUser', 'faSearch'],
+            icons: [
+              'faShoppingBasket',
+              'faShoppingCart',
+              'faUser',
+              'faSearch',
+              'faBars',
+            ],
           },
         ],
       },

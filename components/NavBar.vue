@@ -1,7 +1,18 @@
 <template>
   <div class="navbar">
     <!-- <img class="navbar__logo" src="~/assets/images/logo.png" /> -->
-    <ul class="navbar__items">
+    <div class="navbar__items--icons-mobile">
+      <a href="https://anddine.myshopify.com/cart">
+        <fa :icon="['fas', 'shopping-cart']" />
+      </a>
+      <fa :icon="['fas', 'user']" />
+      <fa
+        class="burger"
+        :icon="['fas', 'bars']"
+        @click="showMobileNav = !showMobileNav"
+      />
+    </div>
+    <ul class="navbar__items" :class="showMobileNav && 'show-nav'">
       <li
         v-for="(item, index) in navItems"
         :key="`tab_${index}`"
@@ -26,11 +37,10 @@
           </nuxt-link>
         </div>
       </li>
-      <li class="navbar__items--icon">
+      <li class="navbar__items--icons-desktop">
         <a href="https://anddine.myshopify.com/cart">
           <fa :icon="['fas', 'shopping-cart']" />
         </a>
-
         <fa :icon="['fas', 'user']" />
       </li>
     </ul>
@@ -50,6 +60,7 @@ export default {
   data() {
     return {
       navItems: [],
+      showMobileNav: false,
     }
   },
   computed: {
@@ -57,9 +68,13 @@ export default {
       return this.$route.name
     },
   },
-
   mounted() {
     this.navItems = this.navigation
+  },
+  methods: {
+    showNav() {
+      this.showMobileNav = true
+    },
   },
 }
 </script>
@@ -70,17 +85,35 @@ $tablet: 768px;
 $mobile: 600px;
 
 .navbar {
-  display: list-item;
-  padding: 20px 100px;
+  padding: 0 100px;
   background-color: transparent;
+  @media (max-width: $tablet) {
+    background-color: var(--colour-white-1);
+  }
   z-index: 999;
+  @media (max-width: $tablet) {
+    padding: 20px;
+  }
   &__logo {
     width: 150px;
+  }
+  .show-nav {
+    display: block;
+    animation: fadeIn 0.5s;
   }
   &__items {
     float: right;
     display: flex;
     list-style-type: none;
+    padding: 20px 0;
+    @media (max-width: $tablet) {
+      display: none;
+      animation: fadeOut 0.5s;
+      width: 100%;
+      background-color: var(--colour-white-1);
+      padding: 20px;
+      margin-right: -20px;
+    }
     &--tab-wrapper {
       cursor: pointer;
       margin: 0 15px;
@@ -88,8 +121,11 @@ $mobile: 600px;
         padding: 5px;
         border-radius: 10px;
         background-color: var(--colour-pink-1);
-        &:hover {
+        @media (max-width: $tablet) {
           background-color: var(--colour-white-1);
+        }
+        &:hover {
+          opacity: 0.8;
         }
       }
       .link {
@@ -99,16 +135,22 @@ $mobile: 600px;
         font-weight: 600;
 
         &:hover {
-          color: var(--colour-pink-1);
+          opacity: 0.8;
         }
         cursor: pointer;
+        @media (max-width: $tablet) {
+          color: var(--colour-pink-1);
+        }
       }
       .selected-link {
         border-bottom: 3px solid var(--colour-pink-1);
         color: var(--colour-pink-1);
       }
     }
-    &--icon {
+    &--icons-desktop {
+      @media (max-width: $tablet) {
+        display: none;
+      }
       cursor: pointer;
       text-align: right;
       svg {
@@ -117,7 +159,22 @@ $mobile: 600px;
         color: var(--colour-pink-1);
       }
       svg:hover {
-        color: var(--colour-white-1);
+        opacity: 0.8;
+      }
+    }
+    &--icons-mobile {
+      @media (min-width: $tablet) {
+        display: none;
+      }
+      cursor: pointer;
+      text-align: right;
+      svg {
+        margin: 0 5px;
+        font-size: 24px;
+        color: var(--colour-pink-1);
+      }
+      svg:hover {
+        opacity: 0.8;
       }
     }
   }

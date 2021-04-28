@@ -18,7 +18,7 @@
           <div class="location-box__search">
             <text-input
               class="location-box__search--field"
-              width="250px"
+              :width="$device.isMobile ? '200px' : '300px'"
               place-holder="Enter your postcode..."
               :is-uppercase="true"
               @inputValue="updatePostcode"
@@ -82,6 +82,10 @@ export default {
 </script>
 
 <style lang="scss">
+$desktop: 1024px;
+$tablet: 768px;
+$mobile: 600px;
+
 .home {
   &__hero {
     width: 100%;
@@ -90,14 +94,30 @@ export default {
     background-size: cover;
     height: 600px;
     display: flex;
+    @media (max-width: $tablet) {
+      display: inline;
+      height: 800px;
+      background-position: top;
+    }
     position: absolute;
     z-index: -999;
     &--left,
     &--right {
       width: 50%;
+      @media (max-width: $tablet) {
+        width: 100%;
+      }
     }
     &--left {
       padding: 180px 200px 180px 100px;
+      @media (max-width: $tablet) {
+        padding: 5%;
+        text-align: center;
+        width: 90%;
+        h1 {
+          font-size: 46px;
+        }
+      }
       .title,
       .body {
         color: var(--colour-white-1);
@@ -108,14 +128,20 @@ export default {
     }
     &--right {
       padding: 150px 100px;
+      @media (max-width: $tablet) {
+        padding: 5%;
+        width: 90%;
+      }
       .location-box {
         background-color: var(--colour-white-1);
         border-radius: 10px;
-        height: 280px;
         padding: 30px;
         -webkit-box-shadow: 0px 5px 5px 0px var(--colour-grey-1); /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
         -moz-box-shadow: 0px 5px 5px 0px var(--colour-grey-1); /* Firefox 3.5 - 3.6 */
         box-shadow: 0px 5px 5px 0px var(--colour-grey-1);
+        @media (max-width: $tablet) {
+          text-align: center;
+        }
         &__logo {
           width: 200px;
           margin: 0 auto;

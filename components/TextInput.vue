@@ -3,7 +3,7 @@
     <span v-if="showTitle" class="text-container__title">{{ title }}</span>
     <input
       v-model="inputValue"
-      :style="`width: ${width}`"
+      :style="`min-width: ${width}`"
       class="text-container__input"
       :class="isUppercase && 'uppercase'"
       :placeholder="placeHolder"
@@ -76,14 +76,14 @@ export default {
     position: relative;
     display: block;
     height: 43px;
-    border: 2px solid var(--colour-pink-1);
+    border: 1px solid var(--colour-black-1);
     line-height: 3;
     border-radius: 4px;
     background-color: #ffffff;
     appearance: none;
     padding: 0 10px;
-    color: #2a3946;
-    font-family: 'Poppins', sans-serif !important;
+    color: var(--colour-black-1);
+    font-weight: 600;
   }
   &__title {
     min-height: 50px;
