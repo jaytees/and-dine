@@ -5,7 +5,9 @@
       <a href="https://anddine.myshopify.com/cart">
         <fa :icon="['fas', 'shopping-cart']" />
       </a>
-      <fa :icon="['fas', 'user']" />
+      <a href="https://anddine.myshopify.com/account/login">
+        <fa :icon="['fas', 'user']" />
+      </a>
       <fa
         class="burger"
         :icon="['fas', 'bars']"
@@ -35,7 +37,9 @@
         <a href="https://anddine.myshopify.com/cart">
           <fa :icon="['fas', 'shopping-cart']" />
         </a>
-        <fa :icon="['fas', 'user']" />
+        <a href="https://anddine.myshopify.com/account/login">
+          <fa :icon="['fas', 'user']" />
+        </a>
       </li>
     </ul>
   </div>
