@@ -10,8 +10,8 @@ $mobile: 600px;
 
 @font-face {
   font-family: 'Gotham';
-  src: local('Gomtham'),
-    url(~assets/fonts/gotham/Gotham-Black.otf) format('otf');
+  src: local('Gotham'),
+    url(~assets/fonts/gotham/Gotham-Bold.ttf) format('truetype');
 }
 
 html {
@@ -23,15 +23,16 @@ html {
   --colour-pink-2: #f9adff;
   --colour-purple-1: #6543fe;
   --colour-orange-1: #fa480e;
-  --colour-grey-1: #e4ddf6;
+  --colour-grey-1: #545454;
+  --colour-grey-2: #e4ddf6;
   --colour-green-1: #8cbd22;
   --colour-blue-1: #1574f5;
   --colour-red-1: #ed6065;
 
-  font-family: 'Gotham', sans-serif;
   background-color: var(--colour-white-1);
   position: initial;
-  word-spacing: 1px;
+  font-family: 'Gotham', sans-serif;
+  line-height: auto;
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
   -moz-osx-font-smoothing: grayscale;

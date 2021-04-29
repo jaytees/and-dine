@@ -109,7 +109,7 @@ $mobile: 600px;
       }
     }
     &--left {
-      padding: 180px 150px 180px 100px;
+      padding: 180px 130px 180px 100px;
       @media (max-width: $tablet) {
         padding: 5%;
         text-align: center;
@@ -136,9 +136,9 @@ $mobile: 600px;
         background-color: var(--colour-white-1);
         border-radius: 10px;
         padding: 30px;
-        -webkit-box-shadow: 0px 5px 5px 0px var(--colour-grey-1); /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
-        -moz-box-shadow: 0px 5px 5px 0px var(--colour-grey-1); /* Firefox 3.5 - 3.6 */
-        box-shadow: 0px 5px 5px 0px var(--colour-grey-1);
+        -webkit-box-shadow: 0px 10px 10px 0px var(--colour-grey-1); /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
+        -moz-box-shadow: 0px 10px 10px 0px var(--colour-grey-1); /* Firefox 3.5 - 3.6 */
+        box-shadow: 0px 10px 10px 0px var(--colour-grey-1);
         @media (max-width: $tablet) {
           text-align: center;
         }
