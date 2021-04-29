@@ -109,7 +109,7 @@ $mobile: 600px;
       }
     }
     &--left {
-      padding: 180px 200px 180px 100px;
+      padding: 180px 150px 180px 100px;
       @media (max-width: $tablet) {
         padding: 5%;
         text-align: center;

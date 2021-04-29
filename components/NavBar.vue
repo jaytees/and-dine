@@ -18,21 +18,15 @@
         :key="`tab_${index}`"
         class="navbar__items--tab-wrapper"
       >
-        <div v-if="item.value !== ''" class="tab">
-          <a
-            v-if="item.external"
-            class="link"
-            :href="item.external"
-            :class="item.name === currentPage && 'selected-link'"
-          >
+        <div
+          v-if="item.value !== ''"
+          class="tab"
+          :class="item.name === currentPage && 'selected-link'"
+        >
+          <a v-if="item.external" class="link" :href="item.external">
             <span>{{ item.value }}</span>
           </a>
-          <nuxt-link
-            v-else
-            class="link"
-            :to="item.link"
-            :class="item.name === currentPage && 'selected-link'"
-          >
+          <nuxt-link v-else class="link" :to="item.link">
             <span>{{ item.value }}</span>
           </nuxt-link>
         </div>
@@ -120,12 +114,15 @@ $mobile: 600px;
       .tab {
         padding: 5px;
         border-radius: 10px;
-        background-color: var(--colour-pink-1);
         @media (max-width: $tablet) {
           background-color: var(--colour-white-1);
         }
-        &:hover {
-          opacity: 0.8;
+        &:hover,
+        .selected-link {
+          background-color: var(--colour-pink-1);
+          @media (max-width: $tablet) {
+            opacity: 0.8;
+          }
         }
       }
       .link {
@@ -133,18 +130,10 @@ $mobile: 600px;
         color: var(--colour-white-1);
         font-size: 16px;
         font-weight: 600;
-
-        &:hover {
-          opacity: 0.8;
-        }
         cursor: pointer;
         @media (max-width: $tablet) {
           color: var(--colour-pink-1);
         }
-      }
-      .selected-link {
-        border-bottom: 3px solid var(--colour-pink-1);
-        color: var(--colour-pink-1);
       }
     }
     &--icons-desktop {
@@ -156,10 +145,16 @@ $mobile: 600px;
       svg {
         margin: 0 5px;
         font-size: 24px;
-        color: var(--colour-pink-1);
+        color: var(--colour-white-1);
+        @media (max-width: $tablet) {
+          color: var(--colour-pink-1);
+        }
       }
       svg:hover {
-        opacity: 0.8;
+        color: var(--colour-pink-1);
+        @media (max-width: $tablet) {
+          opacity: 0.8;
+        }
       }
     }
     &--icons-mobile {
