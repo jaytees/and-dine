@@ -79,13 +79,13 @@ $tablet: 768px;
 $mobile: 600px;
 
 .navbar {
-  padding: 0 100px;
+  padding: 0 10%;
   background-color: transparent;
-  @media (max-width: $tablet) {
+  @media (max-width: $desktop) {
     background-color: var(--colour-white-1);
   }
   z-index: 999;
-  @media (max-width: $tablet) {
+  @media (max-width: $desktop) {
     padding: 20px;
   }
   &__logo {
@@ -100,7 +100,7 @@ $mobile: 600px;
     display: flex;
     list-style-type: none;
     padding: 20px 0;
-    @media (max-width: $tablet) {
+    @media (max-width: $desktop) {
       display: none;
       animation: fadeOut 0.5s;
       width: 100%;
@@ -114,13 +114,13 @@ $mobile: 600px;
       .tab {
         padding: 5px;
         border-radius: 10px;
-        @media (max-width: $tablet) {
+        @media (max-width: $desktop) {
           background-color: var(--colour-white-1);
         }
         &:hover,
         .selected-link {
           background-color: var(--colour-pink-1);
-          @media (max-width: $tablet) {
+          @media (max-width: $desktop) {
             opacity: 0.8;
           }
         }
@@ -131,13 +131,13 @@ $mobile: 600px;
         font-size: 16px;
         font-weight: 600;
         cursor: pointer;
-        @media (max-width: $tablet) {
+        @media (max-width: $desktop) {
           color: var(--colour-pink-1);
         }
       }
     }
     &--icons-desktop {
-      @media (max-width: $tablet) {
+      @media (max-width: $desktop) {
         display: none;
       }
       cursor: pointer;
@@ -146,13 +146,13 @@ $mobile: 600px;
         margin: 0 5px;
         font-size: 24px;
         color: var(--colour-white-1);
-        @media (max-width: $tablet) {
+        @media (max-width: $desktop) {
           color: var(--colour-pink-1);
         }
       }
       svg:hover {
         color: var(--colour-pink-1);
-        @media (max-width: $tablet) {
+        @media (max-width: $desktop) {
           opacity: 0.8;
         }
       }
