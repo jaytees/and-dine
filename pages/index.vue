@@ -49,16 +49,16 @@
             class="shop-image"
             :style="`background-image: url(${seller.shop_logo});`"
           />
+          <img class="seller-image" :src="seller.store_logo" />
           <h3 class="shop-title">{{ seller.sp_store_name }}</h3>
           <h4 class="shop-location">{{ seller.city }}</h4>
-          <img class="seller-image" :src="seller.store_logo" />
         </nuxt-link>
       </div>
       <div class="home__sellers--wrapper">
         <div class="shop-image-placeholder"></div>
+        <div class="seller-placeholder"></div>
         <h3 class="shop-title">New Seller</h3>
         <h4 class="shop-location">New location</h4>
-        <div class="seller-placeholder"></div>
       </div>
     </div>
   </section>
@@ -194,23 +194,24 @@ $mobile: 600px;
       width: 35%;
       height: 400px;
       cursor: pointer;
+      position: relative;
       @media (max-width: $tablet) {
         width: 90%;
+        margin-bottom: 50px;
       }
       &:hover {
         opacity: 0.8;
       }
       &:nth-child(odd) {
         margin-right: 5%;
-        .seller-image {
-          left: 35.5%;
+        @media (max-width: $tablet) {
+          margin-right: 0;
         }
       }
       &:nth-child(even) {
         margin-left: 5%;
-        .seller-image,
-        .seller-placeholder {
-          left: 70%;
+        @media (max-width: $tablet) {
+          margin-left: 0;
         }
       }
       a {
@@ -240,15 +241,16 @@ $mobile: 600px;
       }
       .seller-image,
       .seller-placeholder {
-        width: 100px;
-        height: 100px;
         position: absolute;
-        border-radius: 50%;
-        top: 300px;
-        border: 4px solid var(--color-white-1);
+        bottom: 10px;
+        left: 89%;
         @media (max-width: $tablet) {
           left: 70%;
         }
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        border: 4px solid var(--color-white-1);
       }
       .shop-image-placeholder {
         background-image: url('~/assets/images/comingsoon.png');
