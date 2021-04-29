@@ -197,7 +197,7 @@ $mobile: 600px;
       }
       .shop-title {
         color: var(--color-pink-1);
-        font-size: 24px;
+        font-size: 22px;
         margin: 10px 0;
       }
       .shop-location {
@@ -206,21 +206,21 @@ $mobile: 600px;
         margin: 10px 0;
       }
       .shop-image {
-        height: 400px;
+        height: 350px;
         width: 100%;
+        background-size: center;
         border-radius: 20px;
-        -webkit-box-shadow: 0px 5px 5px 0px var(--color-grey-1);
-        -moz-box-shadow: 0px 5px 5px 0px var(--color-grey-1);
-        box-shadow: 0px 5px 5px 0px var(--color-grey-1);
-        border: 4px solid var(--color-white-1);
+        -webkit-box-shadow: 0px 5px 5px 0px var(--color-grey-2);
+        -moz-box-shadow: 0px 5px 5px 0px var(--color-grey-2);
+        box-shadow: 0px 5px 5px 0px var(--color-grey-2);
       }
       .seller-image {
         width: 100px;
         height: 100px;
         position: absolute;
         border-radius: 50%;
-        top: 85%;
-        left: 36%;
+        top: 300px;
+        left: 35.5%;
         border: 4px solid var(--color-white-1);
         @media (max-width: $tablet) {
           left: 70%;
