@@ -33,7 +33,7 @@
             />
           </div>
           <span v-if="showPostcodeError" class="location-box__error"
-            >Please enter a valid UK postcode!</span
+            >Please enter a valid UK postcode</span
           >
         </div>
       </div>
