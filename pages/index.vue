@@ -44,13 +44,21 @@
         :key="`seller__${index}`"
         class="home__sellers--wrapper"
       >
-        <img
-          class="shop-image"
-          :style="`background-image: url(${seller.shop_logo});`"
-        />
-        <h3 class="shop-title">{{ seller.sp_store_name }}</h3>
-        <h4 class="shop-location">{{ seller.city }}</h4>
-        <img class="seller-image" :src="seller.store_logo" />
+        <nuxt-link :to="seller.id.toString()">
+          <img
+            class="shop-image"
+            :style="`background-image: url(${seller.shop_logo});`"
+          />
+          <h3 class="shop-title">{{ seller.sp_store_name }}</h3>
+          <h4 class="shop-location">{{ seller.city }}</h4>
+          <img class="seller-image" :src="seller.store_logo" />
+        </nuxt-link>
+      </div>
+      <div class="home__sellers--wrapper">
+        <div class="shop-image-placeholder"></div>
+        <h3 class="shop-title">New Seller</h3>
+        <h4 class="shop-location">New location</h4>
+        <div class="seller-placeholder"></div>
       </div>
     </div>
   </section>
@@ -144,9 +152,9 @@ $mobile: 600px;
         background-color: var(--color-white-1);
         border-radius: 20px;
         padding: 30px;
-        -webkit-box-shadow: 0px 5px 5px 0px var(--color-grey-1);
-        -moz-box-shadow: 0px 5px 5px 0px var(--color-grey-1);
-        box-shadow: 0px 5px 5px 0px var(--color-grey-1);
+        -webkit-box-shadow: 0px 5px 5px 0px var(--color-grey-2);
+        -moz-box-shadow: 0px 5px 5px 0px var(--color-grey-2);
+        box-shadow: 0px 5px 5px 0px var(--color-grey-2);
         &__logo {
           width: 200px;
           margin: 0 auto;
@@ -183,29 +191,45 @@ $mobile: 600px;
       padding: 0 5%;
     }
     &--wrapper {
-      width: 40%;
+      width: 35%;
       height: 400px;
       cursor: pointer;
       @media (max-width: $tablet) {
         width: 90%;
       }
+      &:hover {
+        opacity: 0.8;
+      }
       &:nth-child(odd) {
         margin-right: 5%;
+        .seller-image {
+          left: 35.5%;
+        }
       }
       &:nth-child(even) {
         margin-left: 5%;
+        .seller-image,
+        .seller-placeholder {
+          left: 70%;
+        }
+      }
+      a {
+        text-decoration: none;
+      }
+      .shop-title,
+      .shop-location {
+        margin: 10px 0;
       }
       .shop-title {
         color: var(--color-pink-1);
         font-size: 22px;
-        margin: 10px 0;
       }
       .shop-location {
         color: var(--color-grey-1);
         font-size: 18px;
-        margin: 10px 0;
       }
-      .shop-image {
+      .shop-image,
+      .shop-image-placeholder {
         height: 350px;
         width: 100%;
         background-size: center;
@@ -214,17 +238,24 @@ $mobile: 600px;
         -moz-box-shadow: 0px 5px 5px 0px var(--color-grey-2);
         box-shadow: 0px 5px 5px 0px var(--color-grey-2);
       }
-      .seller-image {
+      .seller-image,
+      .seller-placeholder {
         width: 100px;
         height: 100px;
         position: absolute;
         border-radius: 50%;
         top: 300px;
-        left: 35.5%;
         border: 4px solid var(--color-white-1);
         @media (max-width: $tablet) {
           left: 70%;
         }
+      }
+      .shop-image-placeholder {
+        background-image: url('~/assets/images/comingsoon.png');
+        background-position: center;
+      }
+      .seller-placeholder {
+        background-color: var(--color-purple-2);
       }
     }
   }
