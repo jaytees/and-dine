@@ -1,6 +1,11 @@
 <template>
   <div class="navbar">
-    <!-- <img class="navbar__logo" src="~/assets/images/logo.png" /> -->
+    <img
+      v-if="$device.isMobile"
+      class="navbar__logo"
+      src="~/assets/images/logo-pink.png"
+    />
+    <img v-else class="navbar__logo" src="~/assets/images/logo.png" />
     <div class="navbar__items--icons-mobile">
       <a href="https://anddine.myshopify.com/cart">
         <fa :icon="['fas', 'shopping-cart']" />
@@ -86,14 +91,20 @@ $mobile: 600px;
   padding: 0 10%;
   background-color: transparent;
   @media (max-width: $desktop) {
-    background-color: var(--colour-white-1);
+    background-color: var(--color-white-1);
   }
   z-index: 999;
   @media (max-width: $desktop) {
     padding: 20px;
   }
   &__logo {
-    width: 150px;
+    width: 110px;
+    position: absolute;
+    padding: 20px 0;
+    @media (max-width: $desktop) {
+      width: 70px;
+      padding: 0;
+    }
   }
   .show-nav {
     display: block;
@@ -104,11 +115,11 @@ $mobile: 600px;
     display: flex;
     list-style-type: none;
     padding: 20px 0;
+    animation: fadeOut 0.5s;
     @media (max-width: $desktop) {
       display: none;
-      animation: fadeOut 0.5s;
       width: 100%;
-      background-color: var(--colour-white-1);
+      background-color: var(--color-white-1);
       padding: 20px;
       margin-right: -20px;
     }
@@ -119,11 +130,11 @@ $mobile: 600px;
         padding: 5px;
         border-radius: 10px;
         @media (max-width: $desktop) {
-          background-color: var(--colour-white-1);
+          background-color: var(--color-white-1);
         }
         &:hover,
         .selected-link {
-          background-color: var(--colour-pink-1);
+          background-color: var(--color-pink-1);
           @media (max-width: $desktop) {
             opacity: 0.8;
           }
@@ -131,12 +142,12 @@ $mobile: 600px;
       }
       .link {
         text-decoration: none;
-        color: var(--colour-white-1);
+        color: var(--color-white-1);
         font-size: 16px;
         font-weight: 600;
         cursor: pointer;
         @media (max-width: $desktop) {
-          color: var(--colour-pink-1);
+          color: var(--color-pink-1);
         }
       }
     }
@@ -149,13 +160,13 @@ $mobile: 600px;
       svg {
         margin: 0 5px;
         font-size: 24px;
-        color: var(--colour-white-1);
+        color: var(--color-white-1);
         @media (max-width: $desktop) {
-          color: var(--colour-pink-1);
+          color: var(--color-pink-1);
         }
       }
       svg:hover {
-        color: var(--colour-pink-1);
+        color: var(--color-pink-1);
         @media (max-width: $desktop) {
           opacity: 0.8;
         }
@@ -170,7 +181,7 @@ $mobile: 600px;
       svg {
         margin: 0 5px;
         font-size: 24px;
-        color: var(--colour-pink-1);
+        color: var(--color-pink-1);
       }
       svg:hover {
         opacity: 0.8;

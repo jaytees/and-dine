@@ -76,13 +76,13 @@ export default {
     position: relative;
     display: block;
     height: 43px;
-    border: 1px solid var(--colour-black-1);
+    border: 1px solid var(--color-black-1);
     line-height: 3;
     border-radius: 4px;
     background-color: #ffffff;
     appearance: none;
     padding: 0 10px;
-    color: var(--colour-black-1);
+    color: var(--color-black-1);
     font-weight: 600;
   }
   &__title {

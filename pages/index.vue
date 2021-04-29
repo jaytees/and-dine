@@ -2,8 +2,8 @@
   <section class="container home">
     <div class="home__hero">
       <div class="home__hero--left">
-        <h1 class="title">Real people, real food.</h1>
-        <p class="body">A new way to experience authentic home cooking.</p>
+        <h1 class="main-title">Real people, real food.</h1>
+        <p class="main-body">A new way to experience authentic home cooking.</p>
       </div>
       <div class="home__hero--right">
         <div class="location-box">
@@ -38,28 +38,36 @@
         </div>
       </div>
     </div>
+    <div class="home__sellers">
+      <div
+        v-for="(seller, index) in sellers"
+        :key="`seller__${index}`"
+        class="home__sellers--wrapper"
+      >
+        <img
+          class="shop-image"
+          :style="`background-image: url(${seller.shop_logo});`"
+        />
+        <h3 class="shop-title">{{ seller.sp_store_name }}</h3>
+        <h4 class="shop-location">{{ seller.city }}</h4>
+        <img class="seller-image" :src="seller.store_logo" />
+      </div>
+    </div>
   </section>
 </template>
 
 <script>
+import { mapState } from 'vuex'
 export default {
   name: 'Home',
-  async fetch() {
-    this.sellers = await fetch(`${process.env.STOREFRONT_URL}/sellers.json`, {
-      headers: {
-        Authorization: process.env.STOREFRONT_BEARER,
-      },
-    }).then((res) => res.json())
-  },
-  fetchOnServer: true,
   data() {
     return {
-      sellers: '',
       showPostcodeError: false,
       postcodeValue: '',
     }
   },
   computed: {
+    ...mapState(['sellers']),
     isValidPostcode() {
       const postcodeRegEx = /[A-Z]{1,2}[0-9]{1,2} ?[0-9][A-Z]{2}/i
       return postcodeRegEx.test(this.postcodeValue) && this.postcodeValue !== ''
@@ -94,13 +102,13 @@ $mobile: 600px;
     background-size: cover;
     height: 600px;
     display: flex;
+    position: absolute;
+    z-index: -999;
     @media (max-width: $tablet) {
       display: inline;
       height: 800px;
       background-position: top;
     }
-    position: absolute;
-    z-index: -999;
     &--left,
     &--right {
       width: 50%;
@@ -114,15 +122,15 @@ $mobile: 600px;
         padding: 5%;
         text-align: center;
         width: 90%;
-        h1 {
+        .main-title {
           font-size: 46px;
         }
       }
-      .title,
-      .body {
-        color: var(--colour-white-1);
+      .main-title,
+      .main-body {
+        color: var(--color-white-1);
       }
-      .body {
+      .main-body {
         font-size: 26px;
       }
     }
@@ -133,19 +141,19 @@ $mobile: 600px;
         width: 90%;
       }
       .location-box {
-        background-color: var(--colour-white-1);
-        border-radius: 10px;
+        background-color: var(--color-white-1);
+        border-radius: 20px;
         padding: 30px;
-        -webkit-box-shadow: 0px 5px 5px 0px var(--colour-grey-1); /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
-        -moz-box-shadow: 0px 5px 5px 0px var(--colour-grey-1); /* Firefox 3.5 - 3.6 */
-        box-shadow: 0px 5px 5px 0px var(--colour-grey-1);
+        -webkit-box-shadow: 0px 5px 5px 0px var(--color-grey-1);
+        -moz-box-shadow: 0px 5px 5px 0px var(--color-grey-1);
+        box-shadow: 0px 5px 5px 0px var(--color-grey-1);
         &__logo {
           width: 200px;
           margin: 0 auto;
           display: flex;
         }
         &__body {
-          color: var(--colour-black-1);
+          color: var(--color-black-1);
           margin: 30px 0;
         }
         &__search {
@@ -156,9 +164,66 @@ $mobile: 600px;
           }
         }
         &__error {
-          color: var(--colour-pink-1);
+          color: var(--color-pink-1);
           font-weight: 600;
           margin-top: 10px;
+        }
+      }
+    }
+  }
+  &__sellers {
+    width: 100%;
+    position: absolute;
+    top: 650px;
+    display: flex;
+    padding: 0 10%;
+    @media (max-width: $tablet) {
+      top: 850px;
+      display: inline;
+      padding: 0 5%;
+    }
+    &--wrapper {
+      width: 40%;
+      height: 400px;
+      cursor: pointer;
+      @media (max-width: $tablet) {
+        width: 90%;
+      }
+      &:nth-child(odd) {
+        margin-right: 5%;
+      }
+      &:nth-child(even) {
+        margin-left: 5%;
+      }
+      .shop-title {
+        color: var(--color-pink-1);
+        font-size: 24px;
+        margin: 10px 0;
+      }
+      .shop-location {
+        color: var(--color-grey-1);
+        font-size: 18px;
+        margin: 10px 0;
+      }
+      .shop-image {
+        height: 400px;
+        width: 100%;
+        border-radius: 20px;
+        -webkit-box-shadow: 0px 5px 5px 0px var(--color-grey-1);
+        -moz-box-shadow: 0px 5px 5px 0px var(--color-grey-1);
+        box-shadow: 0px 5px 5px 0px var(--color-grey-1);
+        border: 4px solid var(--color-white-1);
+      }
+      .seller-image {
+        width: 100px;
+        height: 100px;
+        position: absolute;
+        border-radius: 50%;
+        top: 85%;
+        left: 36%;
+        border: 4px solid var(--color-white-1);
+        @media (max-width: $tablet) {
+          left: 70%;
         }
       }
     }

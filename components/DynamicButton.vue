@@ -90,26 +90,26 @@ export default {
   }
 }
 .green {
-  background-color: var(--colour-green-1);
+  background-color: var(--color-green-1);
 }
 .blue {
-  background-color: var(--colour-blue-1);
+  background-color: var(--color-blue-1);
 }
 .red {
-  background-color: var(--colour-red-1);
+  background-color: var(--color-red-1);
 }
 .orange {
-  background-color: var(--colour-orange-1);
+  background-color: var(--color-orange-1);
 }
 .white {
-  color: var(--colour-black-1);
+  color: var(--color-black-1);
   background-color: #fff;
 }
 .purple {
-  background-color: var(--colour-purple-1);
+  background-color: var(--color-purple-1);
 }
 .pink {
-  background-color: var(--colour-pink-1);
+  background-color: var(--color-pink-1);
 }
 .dynamic-slot {
   background: transparent;
