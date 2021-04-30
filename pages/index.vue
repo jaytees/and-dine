@@ -68,6 +68,7 @@
 import { mapState } from 'vuex'
 export default {
   name: 'Home',
+  transition: 'fade-enter',
   data() {
     return {
       showPostcodeError: false,
@@ -110,7 +111,6 @@ $mobile: 600px;
     background-size: cover;
     height: 600px;
     display: flex;
-    position: relative;
     z-index: -999;
     @media (max-width: $tablet) {
       display: block;

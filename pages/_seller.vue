@@ -52,6 +52,7 @@
 import { mapMutations, mapGetters } from 'vuex'
 export default {
   name: 'Sellers',
+  transition: 'fade-enter',
   asyncData({ params }) {
     console.log(params)
     return {
@@ -124,9 +125,8 @@ $mobile: 600px;
     width: 100%;
     background-image: url(/_nuxt/assets/images/hero.jpg);
     background-size: cover;
-    padding: 300px 0;
+    padding: 200px 0;
     display: flex;
-    position: relative;
     z-index: -999;
     color: var(--color-white-1);
     @media (max-width: $tablet) {
