@@ -1,10 +1,10 @@
 <template>
   <div class="navbar">
-    <nuxt-link v-if="$device.isMobile" to="/">
-      <img class="navbar__logo" src="~/assets/images/logo-pink.png" />
+    <nuxt-link class="navbar__logo-pink" to="/">
+      <img src="~/assets/images/logo-pink.png" />
     </nuxt-link>
-    <nuxt-link v-else to="/">
-      <img class="navbar__logo" src="~/assets/images/logo.png" />
+    <nuxt-link class="navbar__logo-white" to="/">
+      <img src="~/assets/images/logo.png" />
     </nuxt-link>
     <div class="navbar__items--icons-mobile">
       <a href="https://anddine.myshopify.com/cart">
@@ -93,12 +93,27 @@ $mobile: 600px;
     padding: 20px 5%;
     background-color: var(--color-white-1);
   }
-  &__logo {
-    width: 110px;
-    padding: 20px 0;
+  &__logo-pink,
+  &__logo-white {
+    img {
+      width: 110px;
+      padding: 20px 0;
+      @media (max-width: $tablet) {
+        width: 70px;
+        padding: 0;
+      }
+    }
+  }
+  &__logo-pink {
+    display: none;
     @media (max-width: $tablet) {
-      width: 70px;
-      padding: 0;
+      display: inline;
+    }
+  }
+  &__logo-white {
+    display: inline;
+    @media (max-width: $tablet) {
+      display: none;
     }
   }
   .show-nav {
