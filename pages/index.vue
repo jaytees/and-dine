@@ -18,7 +18,7 @@
           <div class="location-box__search">
             <text-input
               class="location-box__search--field"
-              :width="$device.isMobile ? '200px' : '300px'"
+              :width="$device.isMobile ? '180px' : '300px'"
               place-holder="Enter your postcode..."
               :is-uppercase="true"
               @inputValue="updatePostcode"
@@ -105,15 +105,15 @@ $mobile: 600px;
 .home {
   &__hero {
     width: 100%;
-    top: 0;
     background-image: url('~/assets/images/hero.jpg');
     background-size: cover;
     height: 600px;
     display: flex;
-    position: absolute;
+    position: relative;
     z-index: -999;
     @media (max-width: $tablet) {
-      display: inline;
+      width: 100%;
+      display: inline-table;
       height: 800px;
       background-position: top;
     }
@@ -121,7 +121,7 @@ $mobile: 600px;
     &--right {
       width: 50%;
       @media (max-width: $tablet) {
-        width: 100%;
+        width: 90%;
       }
     }
     &--left {
@@ -129,9 +129,9 @@ $mobile: 600px;
       @media (max-width: $tablet) {
         padding: 5%;
         text-align: center;
-        width: 90%;
         .main-title {
           font-size: 46px;
+          margin-top: 100px;
         }
       }
       .main-title,
@@ -146,7 +146,6 @@ $mobile: 600px;
       padding: 150px 10%;
       @media (max-width: $tablet) {
         padding: 5%;
-        width: 90%;
       }
       .location-box {
         background-color: var(--color-white-1);
@@ -181,23 +180,20 @@ $mobile: 600px;
   }
   &__sellers {
     width: 100%;
-    position: absolute;
-    top: 650px;
-    display: flex;
-    padding: 0 10%;
+    position: relative;
+    padding: 50px 10%;
     @media (max-width: $tablet) {
-      top: 850px;
       display: inline;
       padding: 0 5%;
     }
     &--wrapper {
       width: 35%;
-      height: 400px;
       cursor: pointer;
+      float: left;
       position: relative;
       @media (max-width: $tablet) {
+        padding: 5%;
         width: 90%;
-        margin-bottom: 50px;
       }
       &:hover {
         opacity: 0.8;
@@ -221,17 +217,9 @@ $mobile: 600px;
       .shop-location {
         margin: 10px 0;
       }
-      .shop-title {
-        color: var(--color-pink-1);
-        font-size: 22px;
-      }
-      .shop-location {
-        color: var(--color-grey-1);
-        font-size: 18px;
-      }
       .shop-image,
       .shop-image-placeholder {
-        height: 350px;
+        height: 300px;
         width: 100%;
         background-size: center;
         border-radius: 20px;
@@ -241,16 +229,17 @@ $mobile: 600px;
       }
       .seller-image,
       .seller-placeholder {
-        position: absolute;
-        bottom: 10px;
-        left: 89%;
+        position: relative;
+        bottom: 80px;
+        left: 80%;
+        width: 100px;
+        height: 100px;
+        margin-bottom: -110px;
+        border-radius: 50%;
+        border: 4px solid var(--color-white-1);
         @media (max-width: $tablet) {
           left: 70%;
         }
-        width: 100px;
-        height: 100px;
-        border-radius: 50%;
-        border: 4px solid var(--color-white-1);
       }
       .shop-image-placeholder {
         background-image: url('~/assets/images/comingsoon.png');

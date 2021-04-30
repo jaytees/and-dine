@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import { mapState, mapMutations } from 'vuex'
+import { mapState, mapMutations, mapActions } from 'vuex'
 
 export default {
   name: 'Default',
@@ -22,10 +22,14 @@ export default {
   computed: {
     ...mapState(['navigationItems']),
   },
+  async mounted() {
+    await this.getProducts()
+  },
   methods: {
     ...mapMutations({
       setSellers: 'SET_SELLERS',
     }),
+    ...mapActions(['getProducts']),
   },
 }
 </script>

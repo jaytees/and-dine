@@ -72,7 +72,7 @@ export default {
 <style lang="scss">
 .text-container {
   &__input {
-    cursor: pointer;
+    cursor: text;
     position: relative;
     display: block;
     height: 43px;

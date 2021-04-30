@@ -1,24 +1,70 @@
 <template>
-  <section class="container">
-    <button
+  <section v-if="dataReady" class="seller container">
+    <!-- <button
       @click="
         buyItem('Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0VmFyaWFudC8zOTY5NjYxNDAzMTUyNQ==')
       "
     >
       Buy!!
-    </button>
+    </button> -->
+    <div
+      class="seller__hero"
+      :style="`background-image: url(${sellerById[0].store_banner})`"
+    >
+      <h1 class="seller__hero--title">{{ sellerById[0].sp_store_name }}</h1>
+    </div>
+    <div class="seller__bio">
+      <img class="seller__bio--profile-image" :src="sellerById[0].store_logo" />
+      <div class="seller__bio--profile-container">
+        <h3>{{ sellerById[0].sp_store_name }}</h3>
+        <h4>{{ productsById[0].product_type }}</h4>
+        <p>{{ removeTags(sellerById[0].short_desc) }}</p>
+      </div>
+    </div>
+    <div class="seller__delivery">
+      <h4>Delivery Information</h4>
+      <p>Order by midnight on Wednesday for delivery Saturday</p>
+    </div>
+    <div class="seller__products">
+      <div
+        v-for="(product, index) in productsById"
+        :key="`seller__${index}`"
+        class="seller__products--wrapper"
+      >
+        <img
+          class="product-image"
+          :style="
+            product.images.length > 0
+              ? `background-image: url(${product.images[0].img_lg})`
+              : `background-image: url('~assets/images/comingsoon.png')`
+          "
+        />
+        <h3 class="product-title">{{ product.product_name }}</h3>
+        <h4 class="product-price">£{{ product.price }}</h4>
+      </div>
+    </div>
   </section>
 </template>
 
 <script>
+import { mapMutations, mapGetters } from 'vuex'
 export default {
-  name: 'Shops',
-  data() {
+  name: 'Sellers',
+  asyncData({ params }) {
+    console.log(params)
     return {
-      checkoutId: '',
+      sellerId: params.seller,
+      checkoutId: false,
     }
   },
-  mounted() {
+  computed: {
+    ...mapGetters(['productsById', 'sellerById']),
+    dataReady() {
+      return this.productsById && this.sellerById
+    },
+  },
+  created() {
+    this.setChosenSellerId(this.sellerId)
     this.$shopify.checkout.create().then((checkout) => {
       this.checkoutId = checkout.id
       this.checkoutUrl = checkout.webUrl
@@ -30,6 +76,12 @@ export default {
     })
   },
   methods: {
+    ...mapMutations({
+      setChosenSellerId: 'SET_CHOSEN_SELLER_ID',
+    }),
+    removeTags(string) {
+      return string.replace(/<[^>]+>/g, '')
+    },
     buyItem(variantId) {
       const lineItemsToAdd = [
         {
@@ -50,3 +102,116 @@ export default {
   },
 }
 </script>
+
+<style lang="scss">
+$desktop: 1024px;
+$tablet: 768px;
+$mobile: 600px;
+
+.seller {
+  &__hero {
+    width: 100%;
+    display: grid;
+    background-image: url(/_nuxt/assets/images/hero.jpg);
+    background-size: cover;
+    height: 600px;
+    text-align: center;
+    position: relative;
+    z-index: -999;
+    color: var(--color-white-1);
+    @media (max-width: $tablet) {
+      display: inline-block;
+      height: 600px;
+      background-position: top;
+    }
+    &--title {
+      position: initial;
+      margin: 250px auto;
+      text-align: center;
+    }
+  }
+  &__bio,
+  &__products,
+  &__delivery {
+    padding: 50px 10% 0;
+    position: relative;
+    @media (max-width: $tablet) {
+      display: inline;
+      padding: 0;
+    }
+  }
+  &__bio {
+    display: flex;
+    width: 80%;
+    @media (max-width: $tablet) {
+      display: inline;
+      text-align: center;
+    }
+    &--profile-image {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      border: 4px solid var(--color-white-1);
+      @media (max-width: $tablet) {
+        margin: 20px auto 0;
+        display: block;
+      }
+    }
+    &--profile-container {
+      padding: 35px;
+    }
+  }
+  &__delivery {
+    width: 80%;
+    @media (max-width: $tablet) {
+      display: inline;
+      text-align: center;
+    }
+  }
+  &__products {
+    width: 100%;
+    @media (max-width: $tablet) {
+      display: inline-block;
+      padding: 5%;
+    }
+    &--wrapper {
+      width: 35%;
+      cursor: pointer;
+      float: left;
+      position: relative;
+      @media (max-width: $tablet) {
+        padding: 5%;
+        width: 80%;
+      }
+      &:hover {
+        opacity: 0.8;
+      }
+      &:nth-child(odd) {
+        margin-right: 5%;
+        @media (max-width: $tablet) {
+          margin-right: 0;
+        }
+      }
+      &:nth-child(even) {
+        margin-left: 5%;
+        @media (max-width: $tablet) {
+          margin-left: 0;
+        }
+      }
+      .product-title,
+      .product-price {
+        margin: 10px 0;
+      }
+      .product-image {
+        height: 300px;
+        width: 100%;
+        background-position: center;
+        border-radius: 20px;
+        -webkit-box-shadow: 0px 5px 5px 0px var(--color-grey-2);
+        -moz-box-shadow: 0px 5px 5px 0px var(--color-grey-2);
+        box-shadow: 0px 5px 5px 0px var(--color-grey-2);
+      }
+    }
+  }
+}
+</style>

@@ -1,11 +1,11 @@
 <template>
   <div class="navbar">
-    <img
-      v-if="$device.isMobile"
-      class="navbar__logo"
-      src="~/assets/images/logo-pink.png"
-    />
-    <img v-else class="navbar__logo" src="~/assets/images/logo.png" />
+    <nuxt-link v-if="$device.isMobile" to="/">
+      <img class="navbar__logo" src="~/assets/images/logo-pink.png" />
+    </nuxt-link>
+    <nuxt-link v-else to="/">
+      <img class="navbar__logo" src="~/assets/images/logo.png" />
+    </nuxt-link>
     <div class="navbar__items--icons-mobile">
       <a href="https://anddine.myshopify.com/cart">
         <fa :icon="['fas', 'shopping-cart']" />
@@ -74,11 +74,6 @@ export default {
   mounted() {
     this.navItems = this.navigation
   },
-  methods: {
-    showNav() {
-      this.showMobileNav = true
-    },
-  },
 }
 </script>
 
@@ -88,20 +83,20 @@ $tablet: 768px;
 $mobile: 600px;
 
 .navbar {
+  width: 80%;
   padding: 0 10%;
   background-color: transparent;
-  @media (max-width: $desktop) {
-    background-color: var(--color-white-1);
-  }
   z-index: 999;
-  @media (max-width: $desktop) {
-    padding: 20px;
+  position: absolute;
+  @media (max-width: $tablet) {
+    padding: 20px 5%;
+    width: 90%;
+    background-color: var(--color-white-1);
   }
   &__logo {
     width: 110px;
-    position: absolute;
     padding: 20px 0;
-    @media (max-width: $desktop) {
+    @media (max-width: $tablet) {
       width: 70px;
       padding: 0;
     }
@@ -115,13 +110,11 @@ $mobile: 600px;
     display: flex;
     list-style-type: none;
     padding: 20px 0;
-    animation: fadeOut 0.5s;
-    @media (max-width: $desktop) {
+    @media (max-width: $tablet) {
       display: none;
       width: 100%;
       background-color: var(--color-white-1);
       padding: 20px;
-      margin-right: -20px;
     }
     &--tab-wrapper {
       cursor: pointer;
@@ -129,13 +122,15 @@ $mobile: 600px;
       .tab {
         padding: 5px;
         border-radius: 10px;
-        @media (max-width: $desktop) {
+        color: var(--color-pink-1);
+        @media (max-width: $tablet) {
           background-color: var(--color-white-1);
         }
         &:hover,
         .selected-link {
           background-color: var(--color-pink-1);
-          @media (max-width: $desktop) {
+          color: var(--color-white-1);
+          @media (max-width: $tablet) {
             opacity: 0.8;
           }
         }
@@ -146,13 +141,13 @@ $mobile: 600px;
         font-size: 16px;
         font-weight: 600;
         cursor: pointer;
-        @media (max-width: $desktop) {
+        @media (max-width: $tablet) {
           color: var(--color-pink-1);
         }
       }
     }
     &--icons-desktop {
-      @media (max-width: $desktop) {
+      @media (max-width: $tablet) {
         display: none;
       }
       cursor: pointer;
@@ -161,13 +156,13 @@ $mobile: 600px;
         margin: 0 5px;
         font-size: 24px;
         color: var(--color-white-1);
-        @media (max-width: $desktop) {
+        @media (max-width: $tablet) {
           color: var(--color-pink-1);
         }
       }
       svg:hover {
         color: var(--color-pink-1);
-        @media (max-width: $desktop) {
+        @media (max-width: $tablet) {
           opacity: 0.8;
         }
       }
@@ -177,7 +172,7 @@ $mobile: 600px;
         display: none;
       }
       cursor: pointer;
-      text-align: right;
+      float: right;
       svg {
         margin: 0 5px;
         font-size: 24px;
