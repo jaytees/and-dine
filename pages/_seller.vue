@@ -111,23 +111,22 @@ $mobile: 600px;
 .seller {
   &__hero {
     width: 100%;
-    display: grid;
     background-image: url(/_nuxt/assets/images/hero.jpg);
     background-size: cover;
-    height: 600px;
-    text-align: center;
+    padding: 300px 0;
+    display: flex;
     position: relative;
     z-index: -999;
     color: var(--color-white-1);
     @media (max-width: $tablet) {
-      display: inline-block;
-      height: 600px;
+      display: block;
       background-position: top;
     }
     &--title {
-      position: initial;
-      margin: 250px auto;
-      text-align: center;
+      margin: 0 auto;
+      @media (max-width: $tablet) {
+        text-align: center;
+      }
     }
   }
   &__bio,
@@ -172,7 +171,6 @@ $mobile: 600px;
     width: 100%;
     @media (max-width: $tablet) {
       display: inline-block;
-      padding: 5%;
     }
     &--wrapper {
       width: 35%;
@@ -181,7 +179,7 @@ $mobile: 600px;
       position: relative;
       @media (max-width: $tablet) {
         padding: 5%;
-        width: 80%;
+        width: 90%;
       }
       &:hover {
         opacity: 0.8;

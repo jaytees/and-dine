@@ -89,8 +89,8 @@ $mobile: 600px;
   z-index: 999;
   position: absolute;
   @media (max-width: $tablet) {
-    padding: 20px 5%;
     width: 90%;
+    padding: 20px 5%;
     background-color: var(--color-white-1);
   }
   &__logo {

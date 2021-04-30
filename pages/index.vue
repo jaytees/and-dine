@@ -18,7 +18,7 @@
           <div class="location-box__search">
             <text-input
               class="location-box__search--field"
-              :width="$device.isMobile ? '180px' : '300px'"
+              :width="$device.isMobile ? '150px' : '300px'"
               place-holder="Enter your postcode..."
               :is-uppercase="true"
               @inputValue="updatePostcode"
@@ -105,6 +105,7 @@ $mobile: 600px;
 .home {
   &__hero {
     width: 100%;
+    padding: 0;
     background-image: url('~/assets/images/hero.jpg');
     background-size: cover;
     height: 600px;
@@ -112,9 +113,10 @@ $mobile: 600px;
     position: relative;
     z-index: -999;
     @media (max-width: $tablet) {
-      width: 100%;
-      display: inline-table;
+      display: block;
       height: 800px;
+      width: 90%;
+      padding: 0 5%;
       background-position: top;
     }
     &--left,
@@ -183,8 +185,8 @@ $mobile: 600px;
     position: relative;
     padding: 50px 10%;
     @media (max-width: $tablet) {
-      display: inline;
-      padding: 0 5%;
+      display: block;
+      padding: 0;
     }
     &--wrapper {
       width: 35%;
