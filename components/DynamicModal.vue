@@ -31,6 +31,13 @@
 export default {
   name: 'Modal',
   transition: 'fade-enter',
+  props: {
+    modalData: {
+      type: Array,
+      default: () => [],
+      required: false,
+    },
+  },
   methods: {
     closeModal() {
       this.$emit('closeModal')

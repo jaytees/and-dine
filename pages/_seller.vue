@@ -30,6 +30,7 @@
         v-for="(product, index) in productsById"
         :key="`seller__${index}`"
         class="seller__products--wrapper"
+        @click="openProductModal(product)"
       >
         <img
           class="product-image"
@@ -43,6 +44,7 @@
         <h4 class="product-price">£{{ product.price }}</h4>
       </div>
     </div>
+    <dynamic-modal v-if="showModal" @closeModal="closeProductModal" />
   </section>
 </template>
 
@@ -55,6 +57,8 @@ export default {
     return {
       sellerId: params.seller,
       checkoutId: false,
+      showModal: false,
+      chosenProduct: false,
     }
   },
   computed: {
@@ -98,6 +102,13 @@ export default {
           // Do something with the updated checkout
           console.log(checkout) // Array with one additional line item
         })
+    },
+    openProductModal(productInfo) {
+      this.chosenProduct = productInfo
+      this.showModal = true
+    },
+    closeProductModal() {
+      this.showModal = false
     },
   },
 }
