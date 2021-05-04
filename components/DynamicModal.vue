@@ -1,7 +1,6 @@
 <template>
   <div class="modal">
     <div class="modal__backdrop" @click="closeModal()" />
-
     <div class="modal__dialog">
       <div class="modal__header">
         <slot name="header" />
@@ -11,7 +10,7 @@
           @clickEvent="closeModal()"
         >
           <template v-slot:button-body>
-            <fa :icon="['fas', 'times']" />
+            <fa :icon="['fas', 'times-circle']" />
           </template>
         </dynamic-button>
       </div>
@@ -31,13 +30,6 @@
 export default {
   name: 'Modal',
   transition: 'fade-enter',
-  props: {
-    modalData: {
-      type: Array,
-      default: () => [],
-      required: false,
-    },
-  },
   methods: {
     closeModal() {
       this.$emit('closeModal')
@@ -79,8 +71,12 @@ export default {
     }
   }
   &__close {
-    width: 30px;
-    height: 30px;
+    color: var(--color-pink-1);
+    font-size: 35px;
+    cursor: pointer;
+    &:hover {
+      opacity: 0.8;
+    }
   }
   &__header {
     display: flex;

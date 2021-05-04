@@ -80,13 +80,13 @@ export default {
   color: #ffffff;
   font-weight: 600;
   font-size: 18px;
-  border-radius: 4px;
+  border-radius: 5px;
   border: none;
   text-align: center;
   cursor: pointer;
 
   &:hover {
-    opacity: 0.7;
+    opacity: 0.8;
   }
 }
 .green {

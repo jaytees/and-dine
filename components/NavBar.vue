@@ -136,7 +136,7 @@ $mobile: 600px;
       margin: 0 15px;
       .tab {
         padding: 5px;
-        border-radius: 10px;
+        border-radius: 5px;
         color: var(--color-pink-1);
         @media (max-width: $tablet) {
           background-color: var(--color-white-1);

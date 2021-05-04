@@ -46,19 +46,24 @@
       >
         <nuxt-link :to="seller.id.toString()">
           <img
+            v-if="seller.shop_logo !== ''"
             class="shop-image"
-            :style="`background-image: url(${seller.shop_logo});`"
+            :src="seller.shop_logo"
           />
-          <img class="seller-image" :src="seller.store_logo" />
+          <img v-else src="~/assets/images/comingsoon.png" class="shop-image" />
+          <img
+            v-if="seller.store_logo"
+            class="seller-image"
+            :src="seller.store_logo"
+          />
+          <img
+            v-else
+            class="seller-image"
+            src="~/assets/images/comingsoon.png"
+          />
           <h3 class="shop-title">{{ seller.sp_store_name }}</h3>
           <h4 class="shop-location">{{ seller.city }}</h4>
         </nuxt-link>
-      </div>
-      <div class="home__sellers--wrapper">
-        <div class="shop-image-placeholder"></div>
-        <div class="seller-placeholder"></div>
-        <h3 class="shop-title">New Seller</h3>
-        <h4 class="shop-location">New location</h4>
       </div>
     </div>
   </section>
@@ -142,6 +147,7 @@ $mobile: 600px;
       }
       .main-body {
         font-size: 26px;
+        margin-top: 15px;
       }
     }
     &--right {
@@ -151,7 +157,7 @@ $mobile: 600px;
       }
       .location-box {
         background-color: var(--color-white-1);
-        border-radius: 20px;
+        border-radius: 5px;
         padding: 30px;
         -webkit-box-shadow: 0px 5px 5px 0px var(--color-grey-2);
         -moz-box-shadow: 0px 5px 5px 0px var(--color-grey-2);
@@ -164,6 +170,7 @@ $mobile: 600px;
         &__body {
           color: var(--color-black-1);
           margin: 30px 0;
+          font-size: 18px;
         }
         &__search {
           display: flex;
@@ -174,14 +181,13 @@ $mobile: 600px;
         }
         &__error {
           color: var(--color-pink-1);
-          font-weight: 600;
+          font-weight: 300;
           margin-top: 10px;
         }
       }
     }
   }
   &__sellers {
-    width: 100%;
     position: relative;
     padding: 50px 10%;
     @media (max-width: $tablet) {
@@ -193,47 +199,32 @@ $mobile: 600px;
       cursor: pointer;
       float: left;
       position: relative;
+      margin: 0 20px 0 0;
       @media (max-width: $tablet) {
         padding: 5%;
         width: 90%;
+        margin: 0;
       }
       &:hover {
         opacity: 0.8;
       }
-      &:nth-child(odd) {
-        margin-right: 5%;
-        @media (max-width: $tablet) {
-          margin-right: 0;
-        }
-      }
-      &:nth-child(even) {
-        margin-left: 5%;
-        @media (max-width: $tablet) {
-          margin-left: 0;
-        }
-      }
       a {
         text-decoration: none;
       }
-      .shop-title,
-      .shop-location {
-        margin: 10px 0;
-      }
-      .shop-image,
-      .shop-image-placeholder {
-        height: 300px;
+      .shop-image {
         width: 100%;
-        background-size: center;
-        border-radius: 20px;
+        border-radius: 5px;
+        height: 250px;
+        background-color: var(--color-purple-1);
         -webkit-box-shadow: 0px 5px 5px 0px var(--color-grey-2);
         -moz-box-shadow: 0px 5px 5px 0px var(--color-grey-2);
         box-shadow: 0px 5px 5px 0px var(--color-grey-2);
       }
-      .seller-image,
-      .seller-placeholder {
+      .seller-image {
         position: relative;
         bottom: 80px;
-        left: 80%;
+        left: 75%;
+        background-color: var(--color-purple-1);
         width: 100px;
         height: 100px;
         margin-bottom: -110px;
@@ -242,13 +233,6 @@ $mobile: 600px;
         @media (max-width: $tablet) {
           left: 70%;
         }
-      }
-      .shop-image-placeholder {
-        background-image: url('~/assets/images/comingsoon.png');
-        background-position: center;
-      }
-      .seller-placeholder {
-        background-color: var(--color-purple-2);
       }
     }
   }

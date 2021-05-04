@@ -1,12 +1,5 @@
 <template>
   <section v-if="dataReady" class="seller container">
-    <!-- <button
-      @click="
-        buyItem('Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0VmFyaWFudC8zOTY5NjYxNDAzMTUyNQ==')
-      "
-    >
-      Buy!!
-    </button> -->
     <div
       class="seller__hero"
       :style="`background-image: url(${sellerById[0].store_banner})`"
@@ -18,7 +11,7 @@
       <div class="seller__bio--profile-container">
         <h3>{{ sellerById[0].sp_store_name }}</h3>
         <h4>{{ productsById[0].product_type }}</h4>
-        <p>{{ removeTags(sellerById[0].short_desc) }}</p>
+        <p>{{ parseString(sellerById[0].short_desc) }}</p>
       </div>
     </div>
     <div class="seller__delivery">
@@ -34,17 +27,56 @@
       >
         <img
           class="product-image"
-          :style="
+          :src="
             product.images.length > 0
-              ? `background-image: url(${product.images[0].img_lg})`
-              : `background-image: url('~assets/images/comingsoon.png')`
+              ? product.images[0].img_lg
+              : '~/assets/images/comingsoon.png'
           "
         />
         <h3 class="product-title">{{ product.product_name }}</h3>
         <h4 class="product-price">£{{ product.price }}</h4>
       </div>
     </div>
-    <dynamic-modal v-if="showModal" @closeModal="closeProductModal" />
+    <dynamic-modal
+      v-if="showModal"
+      class="seller__modal"
+      @closeModal="closeProductModal"
+    >
+      <template v-slot:body>
+        <img
+          class="seller__modal--image"
+          :src="
+            chosenProduct.images.length > 0
+              ? chosenProduct.images[0].img_lg
+              : '~/assets/images/comingsoon.png'
+          "
+        />
+        <div class="seller__modal--content">
+          <h2>{{ chosenProduct.product_name }}</h2>
+          <p>{{ parseString(chosenProduct.product_description) }}</p>
+          <h4>Ingredients</h4>
+          <p>{{ parseString(chosenProduct.product_tag) }}</p>
+          <h4>Cooking Instructions</h4>
+          <p>{{ parseString(chosenProduct.product_policy) }}</p>
+        </div>
+        <div class="seller__modal--actions">
+          <div class="quantity-container">
+            <fa
+              :icon="['fas', 'minus-circle']"
+              :class="productQuantity <= 1 && 'disable-icon'"
+              @click="changeQuantity(false)"
+            />
+            <h3>{{ productQuantity }}</h3>
+            <fa :icon="['fas', 'plus-circle']" @click="changeQuantity(true)" />
+          </div>
+          <dynamic-button
+            color="pink"
+            :text="`Add to cart - £${overallPrice}`"
+            @clickEvent="addToCart(chosenProduct.product_name)"
+          />
+        </div>
+      </template>
+    </dynamic-modal>
   </section>
 </template>
 
@@ -54,18 +86,23 @@ export default {
   name: 'Sellers',
   transition: 'fade-enter',
   asyncData({ params }) {
-    console.log(params)
     return {
       sellerId: params.seller,
       checkoutId: false,
       showModal: false,
       chosenProduct: false,
+      productQuantity: 1,
+      checkoutUrl: '',
+      shopifyProducts: [],
     }
   },
   computed: {
     ...mapGetters(['productsById', 'sellerById']),
     dataReady() {
-      return this.productsById && this.sellerById
+      return this.productsById.length > 0 && this.sellerById.length > 0
+    },
+    overallPrice() {
+      return this.chosenProduct.price * this.productQuantity
     },
   },
   created() {
@@ -73,35 +110,42 @@ export default {
     this.$shopify.checkout.create().then((checkout) => {
       this.checkoutId = checkout.id
       this.checkoutUrl = checkout.webUrl
-      console.log(checkout)
     })
     this.$shopify.product.fetchAll().then((products) => {
       // Do something with the products
-      console.log(products)
+      this.shopifyProducts = products
     })
   },
   methods: {
     ...mapMutations({
       setChosenSellerId: 'SET_CHOSEN_SELLER_ID',
+      setCheckoutInfo: 'SET_CHECKOUT_INFO',
     }),
-    removeTags(string) {
-      return string.replace(/<[^>]+>/g, '')
+    parseString(string) {
+      const noTags = string.replace(/<[^>]+>/g, '')
+      const noQuotes = noTags.replace(/[[\]"]+/g, '', '')
+      const addSpaces = noQuotes.replace(/,/g, ', ')
+      return addSpaces.replace(/&nbsp;/g, '')
     },
-    buyItem(variantId) {
+    changeQuantity(plus) {
+      !plus && this.productQuantity > 1 && (this.productQuantity -= 1)
+      plus && (this.productQuantity += 1)
+    },
+    addToCart(itemName) {
+      const variant = this.shopifyProducts.filter(
+        (product) => product.title === itemName
+      )
       const lineItemsToAdd = [
         {
-          variantId,
-          quantity: 3,
+          variantId: variant[0].variants[0].id,
+          quantity: this.productQuantity,
           customAttributes: [{ key: '', value: '' }],
         },
       ]
-
-      // Add an item to the checkout
       this.$shopify.checkout
         .addLineItems(this.checkoutId, lineItemsToAdd)
         .then((checkout) => {
-          // Do something with the updated checkout
-          console.log(checkout) // Array with one additional line item
+          location.replace(checkout.webUrl)
         })
     },
     openProductModal(productInfo) {
@@ -110,6 +154,7 @@ export default {
     },
     closeProductModal() {
       this.showModal = false
+      this.productQuantity = 1
     },
   },
 }
@@ -123,8 +168,8 @@ $mobile: 600px;
 .seller {
   &__hero {
     width: 100%;
-    background-image: url(/_nuxt/assets/images/hero.jpg);
-    background-size: cover;
+    background-image: url('~assets/images/hero.jpg');
+    background-position: cover;
     padding: 200px 0;
     display: flex;
     z-index: -999;
@@ -179,7 +224,6 @@ $mobile: 600px;
     }
   }
   &__products {
-    width: 100%;
     @media (max-width: $tablet) {
       display: inline-block;
     }
@@ -188,37 +232,86 @@ $mobile: 600px;
       cursor: pointer;
       float: left;
       position: relative;
+      margin: 0 20px 0 0;
       @media (max-width: $tablet) {
         padding: 5%;
         width: 90%;
+        margin: 0;
       }
       &:hover {
         opacity: 0.8;
       }
-      &:nth-child(odd) {
-        margin-right: 5%;
-        @media (max-width: $tablet) {
-          margin-right: 0;
-        }
+      .product-title {
+        margin: 5px 0;
       }
-      &:nth-child(even) {
-        margin-left: 5%;
-        @media (max-width: $tablet) {
-          margin-left: 0;
-        }
-      }
-      .product-title,
       .product-price {
-        margin: 10px 0;
+        margin: 0 0 10px;
       }
       .product-image {
-        height: 300px;
+        height: 250px;
         width: 100%;
         background-position: center;
-        border-radius: 20px;
+        border-radius: 5px;
         -webkit-box-shadow: 0px 5px 5px 0px var(--color-grey-2);
         -moz-box-shadow: 0px 5px 5px 0px var(--color-grey-2);
         box-shadow: 0px 5px 5px 0px var(--color-grey-2);
+      }
+    }
+  }
+  &__modal {
+    &--image {
+      height: 300px;
+      -webkit-box-shadow: 0px 5px 5px 0px var(--color-grey-2);
+      -moz-box-shadow: 0px 5px 5px 0px var(--color-grey-2);
+      box-shadow: 0px 5px 5px 0px var(--color-grey-2);
+      @media (max-width: $tablet) {
+        height: 200px;
+      }
+    }
+    &--content {
+      margin: 20px 0;
+      border-top: 1px solid var(--color-grey-2);
+      border-bottom: 1px solid var(--color-grey-2);
+      p {
+        margin: 10px 0;
+      }
+    }
+    &--actions {
+      display: flex;
+      @media (max-width: $tablet) {
+        display: block;
+        text-align: center;
+      }
+      .quantity-container {
+        display: flex;
+        @media (max-width: $tablet) {
+          margin: 0 auto;
+          display: inline-flex;
+        }
+        .disable-icon {
+          color: var(--color-grey-2);
+        }
+        svg {
+          color: var(--color-pink-1);
+          font-size: 35px;
+          cursor: pointer;
+          &:hover {
+            opacity: 0.8;
+          }
+        }
+        h3 {
+          margin: 0 20px;
+          font-weight: 900;
+          font-size: 35px;
+        }
+      }
+      .dynamic-button {
+        position: absolute;
+        right: 20px;
+        @media (max-width: $tablet) {
+          position: inherit;
+          margin: 20px;
+        }
       }
     }
   }

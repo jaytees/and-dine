@@ -13,6 +13,7 @@ export const state = () => ({
       external: 'https://anddine.sp-seller.webkul.com',
     },
   ],
+  checkoutInfo: [],
 })
 
 export const mutations = {
@@ -24,6 +25,9 @@ export const mutations = {
   },
   SET_CHOSEN_SELLER_ID(state, payload) {
     state.chosenSellerId = payload
+  },
+  SET_CHECKOUT_INFO(state, payload) {
+    state.checkoutInfo = payload
   },
 }
 

@@ -78,7 +78,7 @@ export default {
     height: 43px;
     border: 1px solid var(--color-black-1);
     line-height: 3;
-    border-radius: 4px;
+    border-radius: 5px;
     background-color: #ffffff;
     appearance: none;
     padding: 0 10px;
