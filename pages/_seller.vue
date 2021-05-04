@@ -188,8 +188,10 @@ $mobile: 600px;
   &__bio,
   &__products,
   &__delivery {
-    padding: 50px 10% 0;
+    padding: 50px 5% 0;
     position: relative;
+    margin: 0 auto;
+    width: 100%;
     @media (max-width: $tablet) {
       display: inline;
       padding: 0;
@@ -228,11 +230,11 @@ $mobile: 600px;
       display: inline-block;
     }
     &--wrapper {
-      width: 35%;
+      width: 29%;
       cursor: pointer;
       float: left;
       position: relative;
-      margin: 0 20px 0 0;
+      margin: 0 1% 0 0;
       @media (max-width: $tablet) {
         padding: 5%;
         width: 90%;

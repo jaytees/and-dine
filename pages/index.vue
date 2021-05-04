@@ -189,17 +189,18 @@ $mobile: 600px;
   }
   &__sellers {
     position: relative;
-    padding: 50px 10%;
+    padding: 50px 5%;
+    width: 100%;
     @media (max-width: $tablet) {
       display: block;
       padding: 0;
     }
     &--wrapper {
-      width: 35%;
+      width: 29%;
       cursor: pointer;
       float: left;
       position: relative;
-      margin: 0 20px 0 0;
+      margin: 0 1% 0 0;
       @media (max-width: $tablet) {
         padding: 5%;
         width: 90%;
