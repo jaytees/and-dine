@@ -65,18 +65,18 @@ export default {
     fallback: '404.html',
   },
 
-  axios: {
-    proxy: true,
-    baseURL: '/api/',
-    responseType: 'json',
-  },
-  proxy: {
-    '/api/': {
-      target: 'https://develop.d2nz46kp2z46p7.amplifyapp.com',
-      pathRewrite: { '^/api/': '' },
-      changeOrigin: true,
-    },
-  },
+  // axios: {
+  //   proxy: true,
+  //   baseURL: '/api/',
+  //   responseType: 'json',
+  // },
+  // proxy: {
+  //   '/api/': {
+  //     target: 'https://develop.d2nz46kp2z46p7.amplifyapp.com',
+  //     pathRewrite: { '^/api/': '' },
+  //     changeOrigin: true,
+  //   },
+  // },
 
   // Modules (https://go.nuxtjs.dev/config-modules)
   modules: [

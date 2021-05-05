@@ -6,36 +6,26 @@
     >
       <h1 class="seller__hero--title">{{ sellerById[0].sp_store_name }}</h1>
     </div>
-    <div class="seller__bio">
-      <img class="seller__bio--profile-image" :src="sellerById[0].store_logo" />
-      <div class="seller__bio--profile-container">
-        <h3>{{ sellerById[0].sp_store_name }}</h3>
-        <h4>{{ productsById[0].product_type }}</h4>
-        <p>{{ parseString(sellerById[0].short_desc) }}</p>
-      </div>
-    </div>
+    <seller-bio
+      class="seller__bio"
+      :seller-logo="sellerById[0].store_logo"
+      :seller-name="sellerById[0].sp_store_name"
+      :product-type="productsById[0].product_type"
+      :seller-description="parseString(sellerById[0].short_desc)"
+    />
     <div class="seller__delivery">
       <h4>Delivery Information</h4>
       <p>Order by midnight on Wednesday for delivery Saturday</p>
     </div>
     <div class="seller__products">
-      <div
+      <image-list
         v-for="(product, index) in productsById"
         :key="`seller__${index}`"
-        class="seller__products--wrapper"
-        @click="openProductModal(product)"
-      >
-        <img
-          class="product-image"
-          :src="
-            product.images.length > 0
-              ? product.images[0].img_lg
-              : '~/assets/images/comingsoon.png'
-          "
-        />
-        <h3 class="product-title">{{ product.product_name }}</h3>
-        <h4 class="product-price">£{{ product.price }}</h4>
-      </div>
+        :image-title="product.product_name"
+        :image-subtitle="`£${product.price}`"
+        :background-image="product.images[0].img_lg"
+        @clickEvent="openProductModal"
+      />
     </div>
     <dynamic-modal
       v-if="showModal"
@@ -188,7 +178,7 @@ $mobile: 600px;
   &__bio,
   &__products,
   &__delivery {
-    padding: 50px 5% 0;
+    padding: 50px 5%;
     position: relative;
     margin: 0 auto;
     width: 100%;
@@ -197,67 +187,11 @@ $mobile: 600px;
       padding: 0;
     }
   }
-  &__bio {
-    display: flex;
-    width: 80%;
-    @media (max-width: $tablet) {
-      display: inline;
-      text-align: center;
-    }
-    &--profile-image {
-      width: 200px;
-      height: 200px;
-      border-radius: 50%;
-      border: 4px solid var(--color-white-1);
-      @media (max-width: $tablet) {
-        margin: 20px auto 0;
-        display: block;
-      }
-    }
-    &--profile-container {
-      padding: 35px;
-    }
-  }
   &__delivery {
     width: 80%;
     @media (max-width: $tablet) {
       display: inline;
       text-align: center;
-    }
-  }
-  &__products {
-    @media (max-width: $tablet) {
-      display: inline-block;
-    }
-    &--wrapper {
-      width: 29%;
-      cursor: pointer;
-      float: left;
-      position: relative;
-      margin: 0 1% 0 0;
-      @media (max-width: $tablet) {
-        padding: 5%;
-        width: 90%;
-        margin: 0;
-      }
-      &:hover {
-        opacity: 0.8;
-      }
-      .product-title {
-        margin: 5px 0;
-      }
-      .product-price {
-        margin: 0 0 10px;
-      }
-      .product-image {
-        height: 250px;
-        width: 100%;
-        background-position: center;
-        border-radius: 5px;
-        -webkit-box-shadow: 0px 5px 5px 0px var(--color-grey-2);
-        -moz-box-shadow: 0px 5px 5px 0px var(--color-grey-2);
-        box-shadow: 0px 5px 5px 0px var(--color-grey-2);
-      }
     }
   }
   &__modal {
