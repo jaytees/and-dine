@@ -49,7 +49,10 @@ export default {
   },
 
   env: {
-    STOREFRONT_URL: 'https://mvmapi.webkul.com',
+    STOREFRONT_URL:
+      process.env.NODE_ENV !== 'production'
+        ? '/api/proxy/'
+        : 'https://mvmapi.webkul.com/api/v2/',
     STOREFRONT_REFRESH_TOKEN:
       'ZDgyMmE2NTk5NzNlZDgyMDk4MmNlMTZjNGUxODg2ZWU3ZGQzZjg1ODgyNTZiM2JjMGEyMGYzNWUzYjVkNDQ3MA',
     STOREFRONT_ACCESS_TOKEN:
@@ -67,14 +70,17 @@ export default {
 
   axios: {
     proxy: false,
-    baseURL: 'http://localhost:3000',
+    baseURL:
+      process.env.NODE_ENV !== 'production'
+        ? 'http://localhost:3000'
+        : 'https://develop.d2nz46kp2z46p7.amplifyapp.com',
     responseType: 'json',
     useCredentials: true,
   },
 
   proxy: {
     '/api/proxy/': {
-      target: 'https://mvmapi.webkul.com/api/v2',
+      target: 'https://mvmapi.webkul.com/api/v2/',
       pathRewrite: { '^/api/proxy/': '' },
       changeOrigin: true,
       ws: false,
