@@ -83,7 +83,6 @@ export default {
       target: 'https://mvmapi.webkul.com/api/v2/',
       pathRewrite: { '^/api/proxy/': '' },
       changeOrigin: true,
-      ws: false,
     },
   },
 

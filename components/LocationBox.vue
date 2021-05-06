@@ -30,7 +30,6 @@
 <script>
 export default {
   name: 'LocationBox',
-  transition: 'fade-enter',
   data() {
     return {
       showPostcodeError: false,

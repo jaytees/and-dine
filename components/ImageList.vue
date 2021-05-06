@@ -32,7 +32,6 @@
 <script>
 export default {
   name: 'ImageList',
-  transition: 'fade-enter',
   props: {
     imageTitle: {
       type: String,
@@ -88,7 +87,7 @@ $mobile: 600px;
       margin: 0;
     }
     @media (max-width: $tablet) {
-      padding: 5%;
+      padding: 0;
       width: 90%;
       margin: 0;
     }

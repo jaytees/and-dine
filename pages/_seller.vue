@@ -151,7 +151,9 @@ $mobile: 600px;
   &__hero {
     width: 100%;
     background-image: url('~assets/images/hero.jpg');
-    background-position: cover;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
     padding: 200px 0;
     display: flex;
     z-index: -999;
@@ -174,10 +176,6 @@ $mobile: 600px;
     position: relative;
     margin: 0 auto;
     width: 100%;
-    @media (max-width: $tablet) {
-      display: inline;
-      padding: 0;
-    }
   }
   &__delivery {
     width: 80%;

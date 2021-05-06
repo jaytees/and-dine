@@ -71,14 +71,15 @@ $mobile: 600px;
     padding: 0;
     background-image: url('~/assets/images/hero.jpg');
     background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
     height: 600px;
     display: flex;
     z-index: -999;
     @media (max-width: $tablet) {
       display: block;
       height: 800px;
-      width: 90%;
-      padding: 0 5%;
+      width: 100%;
       background-position: top;
     }
     &--left,

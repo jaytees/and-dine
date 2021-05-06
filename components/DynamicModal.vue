@@ -29,7 +29,6 @@
 <script>
 export default {
   name: 'Modal',
-  transition: 'fade-enter',
   methods: {
     closeModal() {
       this.$emit('closeModal')
@@ -39,15 +38,23 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+$desktop: 1024px;
+$tablet: 768px;
+$mobile: 600px;
+
 .modal {
   position: fixed;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
-  z-index: 9;
+  z-index: 9999;
   overflow-x: hidden;
   overflow-y: auto;
+  @media (max-width: $tablet) {
+    width: 91%;
+    overflow-y: hidden;
+  }
   &__backdrop {
     position: fixed;
     top: 0;
@@ -66,8 +73,10 @@ export default {
     display: flex;
     flex-direction: column;
     z-index: 2;
-    @media screen and (max-width: 992px) {
-      width: 90%;
+    @media (max-width: $tablet) {
+      width: 100%;
+      margin: 0;
+      height: 100%;
     }
   }
   &__close {
