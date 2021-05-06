@@ -72,7 +72,13 @@ $mobile: 600px;
     }
   }
   &__profile-container {
-    padding: 35px;
+    padding: 10px 35px 35px;
+    @media (max-width: $tablet) {
+      padding: 35px 35px 0;
+      h3 {
+        margin-bottom: 10px;
+      }
+    }
   }
 }
 </style>

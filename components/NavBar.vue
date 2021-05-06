@@ -88,6 +88,7 @@ $mobile: 600px;
   background-color: transparent;
   z-index: 999;
   position: absolute;
+  font-family: 'Gotham-Bold', sans-serif;
   @media (max-width: $tablet) {
     width: 90%;
     padding: 20px 5%;

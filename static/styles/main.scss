@@ -9,9 +9,15 @@ $mobile: 600px;
 }
 
 @font-face {
-  font-family: 'Gotham';
-  src: local('Gotham'),
+  font-family: 'Gotham-Regular';
+  src: local('Gotham-Regular'),
     url(~assets/fonts/gotham/Gotham-Regular.otf) format('otf');
+}
+
+@font-face {
+  font-family: 'Gotham-Bold';
+  src: local('Gotham-Bold'),
+    url(~assets/fonts/gotham/Gotham-Bold.otf) format('otf');
 }
 
 html {
@@ -32,7 +38,7 @@ html {
 
   background-color: var(--color-white-1);
   position: initial;
-  font-family: 'Gotham', sans-serif;
+  font-family: 'Gotham-Regular', sans-serif;
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
   -moz-osx-font-smoothing: grayscale;
@@ -50,19 +56,21 @@ h1 {
   font-size: 60px;
   font-weight: 600;
   margin: 0 0 10px 0;
+  font-family: 'Gotham-Bold', sans-serif;
 }
 
 h2 {
   color: var(--color-pink-1);
-  font-size: 32px;
-  font-weight: 600;
+  font-size: 34px;
   margin: 10px 0;
+  font-family: 'Gotham-Bold', sans-serif;
 }
 
 h3 {
   color: var(--color-pink-1);
-  font-size: 18px;
-  margin: 0 0 10px 0;
+  font-size: 20px;
+  margin: 0 0 5px 0;
+  font-family: 'Gotham-Bold', sans-serif;
 }
 
 h4 {
