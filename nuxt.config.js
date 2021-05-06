@@ -65,7 +65,7 @@ export default {
 
   generate: {
     // routes: dynamicRoutes,
-    fallback: '404.html',
+    fallback: true,
   },
 
   axios: {
