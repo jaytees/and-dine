@@ -49,7 +49,7 @@ export default {
   },
 
   env: {
-    STOREFRONT_URL: 'https://mvmapi.webkul.com/api/v2',
+    STOREFRONT_URL: 'https://mvmapi.webkul.com',
     STOREFRONT_REFRESH_TOKEN:
       'ZDgyMmE2NTk5NzNlZDgyMDk4MmNlMTZjNGUxODg2ZWU3ZGQzZjg1ODgyNTZiM2JjMGEyMGYzNWUzYjVkNDQ3MA',
     STOREFRONT_ACCESS_TOKEN:
@@ -65,18 +65,21 @@ export default {
     fallback: '404.html',
   },
 
-  // axios: {
-  //   proxy: true,
-  //   baseURL: '/api/',
-  //   responseType: 'json',
-  // },
-  // proxy: {
-  //   '/api/': {
-  //     target: 'https://develop.d2nz46kp2z46p7.amplifyapp.com',
-  //     pathRewrite: { '^/api/': '' },
-  //     changeOrigin: true,
-  //   },
-  // },
+  axios: {
+    proxy: false,
+    baseURL: 'http://localhost:3000',
+    responseType: 'json',
+    useCredentials: true,
+  },
+
+  proxy: {
+    '/api/proxy/': {
+      target: 'https://mvmapi.webkul.com/api/v2',
+      pathRewrite: { '^/api/proxy/': '' },
+      changeOrigin: true,
+      ws: false,
+    },
+  },
 
   // Modules (https://go.nuxtjs.dev/config-modules)
   modules: [

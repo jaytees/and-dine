@@ -11,7 +11,7 @@
       :seller-logo="sellerById[0].store_logo"
       :seller-name="sellerById[0].sp_store_name"
       :product-type="productsById[0].product_type"
-      :seller-description="parseString(sellerById[0].short_desc)"
+      :seller-description="parseString(sellerById[0].description)"
     />
     <div class="seller__delivery">
       <h4>Delivery Information</h4>
@@ -24,11 +24,11 @@
         :image-title="product.product_name"
         :image-subtitle="`£${product.price}`"
         :background-image="product.images[0].img_lg"
-        @clickEvent="openProductModal"
+        @clickEvent="openProductModal(product)"
       />
     </div>
     <dynamic-modal
-      v-if="showModal"
+      v-if="showModal && chosenProduct"
       class="seller__modal"
       @closeModal="closeProductModal"
     >
@@ -71,23 +71,20 @@
 </template>
 
 <script>
-import { mapMutations, mapGetters } from 'vuex'
+import { mapMutations, mapGetters, mapState } from 'vuex'
 export default {
-  name: 'Sellers',
-  transition: 'fade-enter',
+  name: 'Seller',
   asyncData({ params }) {
     return {
       sellerId: params.seller,
-      checkoutId: false,
       showModal: false,
       chosenProduct: false,
       productQuantity: 1,
-      checkoutUrl: '',
-      shopifyProducts: [],
     }
   },
   computed: {
-    ...mapGetters(['productsById', 'sellerById']),
+    ...mapGetters(['sellerById', 'productsById']),
+    ...mapState(['checkoutInfo', 'shopifyProducts']),
     dataReady() {
       return this.productsById.length > 0 && this.sellerById.length > 0
     },
@@ -95,21 +92,14 @@ export default {
       return this.chosenProduct.price * this.productQuantity
     },
   },
-  created() {
+  mounted() {
     this.setChosenSellerId(this.sellerId)
-    this.$shopify.checkout.create().then((checkout) => {
-      this.checkoutId = checkout.id
-      this.checkoutUrl = checkout.webUrl
-    })
-    this.$shopify.product.fetchAll().then((products) => {
-      // Do something with the products
-      this.shopifyProducts = products
-    })
   },
   methods: {
     ...mapMutations({
       setChosenSellerId: 'SET_CHOSEN_SELLER_ID',
       setCheckoutInfo: 'SET_CHECKOUT_INFO',
+      setProducts: 'SET_PRODUCTS',
     }),
     parseString(string) {
       const noTags = string.replace(/<[^>]+>/g, '')
@@ -133,8 +123,10 @@ export default {
         },
       ]
       this.$shopify.checkout
-        .addLineItems(this.checkoutId, lineItemsToAdd)
+        .addLineItems(this.checkoutInfo.id, lineItemsToAdd)
         .then((checkout) => {
+          this.setCheckoutInfo(checkout)
+          this.$cookies.set('checkout_info', checkout)
           location.replace(checkout.webUrl)
         })
     },
@@ -178,7 +170,7 @@ $mobile: 600px;
   &__bio,
   &__products,
   &__delivery {
-    padding: 50px 5%;
+    padding: 50px 5% 0;
     position: relative;
     margin: 0 auto;
     width: 100%;

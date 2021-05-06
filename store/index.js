@@ -13,12 +13,16 @@ export const state = () => ({
       external: 'https://anddine.sp-seller.webkul.com',
     },
   ],
-  checkoutInfo: [],
+  checkoutInfo: false,
+  shopifyProducts: false,
 })
 
 export const mutations = {
   SET_PRODUCTS(state, payload) {
     state.products = payload
+  },
+  SET_SHOPIFY_PRODUCTS(state, payload) {
+    state.shopifyProducts = payload
   },
   SET_SELLERS(state, payload) {
     state.sellers = payload
@@ -35,7 +39,7 @@ export const actions = {
   async getProducts({ commit }) {
     await this.$axios
       .$get(
-        `${process.env.STOREFRONT_URL}/products.json?access_token=${process.env.STOREFRONT_ACCESS_TOKEN}&refresh_token=${process.env.STOREFRONT_REFRESH_TOKEN}`
+        `/api/proxy/products.json?access_token=${process.env.STOREFRONT_ACCESS_TOKEN}&refresh_token=${process.env.STOREFRONT_REFRESH_TOKEN},`
       )
       .then((resp) => {
         commit('SET_PRODUCTS', resp.products)
