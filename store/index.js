@@ -39,12 +39,7 @@ export const actions = {
   async getProducts({ commit }) {
     await this.$axios
       .$get(
-        `${process.env.STOREFRONT_URL}products.json?access_token=${process.env.STOREFRONT_ACCESS_TOKEN}&refresh_token=${process.env.STOREFRONT_REFRESH_TOKEN},`,
-        {
-          headers: {
-            'Access-Control-Allow-Origin': '*',
-          },
-        }
+        `${process.env.STOREFRONT_URL}products.json?access_token=${process.env.STOREFRONT_ACCESS_TOKEN}&refresh_token=${process.env.STOREFRONT_REFRESH_TOKEN},`
       )
       .then((resp) => {
         commit('SET_PRODUCTS', resp.products)
