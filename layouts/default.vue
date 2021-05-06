@@ -12,7 +12,7 @@ export default {
   name: 'Default',
   async fetch() {
     await this.$axios
-      .get(`${process.env.STOREFRONT_URL}sellers.json`, {
+      .get(`${process.env.STOREFRONT_URL}/sellers.json`, {
         headers: {
           Authorization: process.env.STOREFRONT_BEARER,
         },
@@ -28,7 +28,7 @@ export default {
     ...mapState(['navigationItems', 'checkoutInfo']),
   },
   async mounted() {
-    this.getProducts()
+    await this.getProducts()
     !this.checkoutInfo &&
       this.$shopify.checkout.create().then((checkout) => {
         this.setCheckoutInfo(checkout)
