@@ -74,8 +74,6 @@ export default {
       process.env.NODE_ENV !== 'production'
         ? 'http://localhost:3000/'
         : 'https://develop.d2nz46kp2z46p7.amplifyapp.com/',
-    responseType: 'json',
-    useCredentials: true,
   },
 
   proxy: {
