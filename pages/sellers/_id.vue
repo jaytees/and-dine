@@ -33,14 +33,14 @@
       @closeModal="closeProductModal"
     >
       <template v-slot:body>
-        <img
+        <div
           class="seller__modal--image"
-          :src="
+          :style="
             chosenProduct.images.length > 0
-              ? chosenProduct.images[0].img_lg
+              ? `background-image: url(${chosenProduct.images[0].img_lg})`
               : '~/assets/images/comingsoon.png'
           "
-        />
+        ></div>
         <div class="seller__modal--content">
           <h2>{{ chosenProduct.product_name }}</h2>
           <p>{{ parseString(chosenProduct.product_description) }}</p>
@@ -76,7 +76,7 @@ export default {
   name: 'Seller',
   asyncData({ params }) {
     return {
-      sellerId: params.seller,
+      sellerId: params.id,
       showModal: false,
       chosenProduct: false,
       productQuantity: 1,
@@ -102,10 +102,13 @@ export default {
       setProducts: 'SET_PRODUCTS',
     }),
     parseString(string) {
-      const noTags = string.replace(/<[^>]+>/g, '')
-      const noQuotes = noTags.replace(/[[\]"]+/g, '', '')
-      const addSpaces = noQuotes.replace(/,/g, ', ')
-      return addSpaces.replace(/&nbsp;/g, '')
+      if (string) {
+        const noTags = string.replace(/<[^>]+>/g, '')
+        const noQuotes = noTags.replace(/[[\]"]+/g, '', '')
+        const addSpaces = noQuotes.replace(/,/g, ', ')
+        return addSpaces.replace(/&nbsp;/g, '')
+      }
+      return 'Coming soon!'
     },
     changeQuantity(plus) {
       !plus && this.productQuantity > 1 && (this.productQuantity -= 1)
@@ -187,9 +190,12 @@ $mobile: 600px;
   &__modal {
     &--image {
       height: 300px;
+      background-position: center;
+      background-size: cover;
       -webkit-box-shadow: 0px 5px 5px 0px var(--color-grey-2);
       -moz-box-shadow: 0px 5px 5px 0px var(--color-grey-2);
       box-shadow: 0px 5px 5px 0px var(--color-grey-2);
+      border-radius: 5px;
       @media (max-width: $tablet) {
         height: 200px;
       }

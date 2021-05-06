@@ -54,7 +54,7 @@ export default {
       }
     },
     goToPage(link) {
-      this.$router.push(`/${link.toString()}`)
+      this.$router.push(`sellers/${link.toString()}`)
     },
   },
 }

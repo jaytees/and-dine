@@ -1,6 +1,13 @@
 <template>
   <div class="bio">
-    <img class="bio__profile-image" :src="sellerLogo" />
+    <div
+      class="bio__profile-image"
+      :style="
+        sellerLogo
+          ? `background-image: url(${sellerLogo})`
+          : 'background-color: var(--color-purple-1)'
+      "
+    ></div>
     <div class="bio__profile-container">
       <h3>{{ sellerName }}</h3>
       <h4>{{ productType }}</h4>
@@ -51,9 +58,13 @@ $mobile: 600px;
     text-align: center;
   }
   &__profile-image {
+    background-color: var(--color-purple-1);
     width: 200px;
     height: 200px;
+    display: inline-table;
     border-radius: 50%;
+    background-position: bottom;
+    background-size: cover;
     border: 4px solid var(--color-white-1);
     @media (max-width: $tablet) {
       margin: 20px auto 0;

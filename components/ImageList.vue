@@ -1,27 +1,23 @@
 <template>
   <div class="images">
     <div class="images__list" @click="returnClickEvent">
-      <img
-        v-if="backgroundImage !== ''"
+      <div
         class="images__list--background-image"
-        :src="backgroundImage"
-      />
-      <img
-        v-else
-        class="images__list--background-image"
-        src="~assets/images/comingsoon.png"
-      />
+        :style="
+          backgroundImage
+            ? `background-image: url(${backgroundImage})`
+            : '~/assets/images/comingsoon.png'
+        "
+      ></div>
       <div v-if="profileImage">
-        <img
-          v-if="profileImage"
+        <div
           class="images__list--profile-image"
-          :src="profileImage"
-        />
-        <img
-          v-else
-          class="images__list--profile-image"
-          src="~assets/images/comingsoon.png"
-        />
+          :style="
+            profileImage
+              ? `background-image: url(${profileImage})`
+              : '~/assets/images/comingsoon.png'
+          "
+        ></div>
       </div>
       <h3 class="images__list--image-title">{{ imageTitle }}</h3>
       <h4 class="images__list--image-subtitle">{{ imageSubtitle }}</h4>
@@ -99,15 +95,16 @@ $mobile: 600px;
     }
 
     &--image-title {
-      margin: 5px 0;
+      margin: 15px 0 0;
     }
     &--image-subtitle {
       margin: 0 0 10px;
     }
     &--background-image {
-      height: 250px;
+      height: 200px;
       width: 100%;
       background-position: center;
+      background-size: cover;
       background-color: var(--color-purple-1);
       border-radius: 5px;
       -webkit-box-shadow: 0px 5px 5px 0px var(--color-grey-2);
@@ -116,6 +113,8 @@ $mobile: 600px;
     }
     &--profile-image {
       position: relative;
+      background-position: center;
+      background-size: cover;
       bottom: 80px;
       left: 75%;
       background-color: var(--color-purple-1);
