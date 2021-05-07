@@ -7,7 +7,7 @@
     <div class="location-box__search">
       <text-input
         class="location-box__search--field"
-        :width="$device.isMobile ? '150px' : '300px'"
+        width="95%"
         place-holder="Enter your postcode..."
         :is-uppercase="true"
         @inputValue="updatePostcode"
@@ -83,6 +83,9 @@ $mobile: 600px;
   &__search {
     display: flex;
     margin-bottom: 20px;
+    &--field {
+      width: 100%;
+    }
     &--button {
       margin-left: 15px;
     }

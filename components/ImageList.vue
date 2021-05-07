@@ -88,7 +88,7 @@ $mobile: 600px;
       margin: 0;
     }
     &:hover {
-      opacity: 0.8;
+      opacity: 0.9;
     }
     @media (max-width: $tablet) {
       display: inline-block;
@@ -101,7 +101,7 @@ $mobile: 600px;
       margin: 0 0 10px;
     }
     &--background-image {
-      height: 200px;
+      height: 250px;
       width: 100%;
       background-position: center;
       background-size: cover;

@@ -1,9 +1,11 @@
 <template>
-  <section class="container home">
+  <section class="home">
     <div class="home__hero">
       <div class="home__hero--left">
         <h1 class="main-title">Real people, real food.</h1>
-        <p class="main-body">A new way to experience authentic home cooking.</p>
+        <h3 class="main-body">
+          A new way to experience authentic home cooking.
+        </h3>
       </div>
       <div class="home__hero--right">
         <location-box />
@@ -63,41 +65,35 @@ export default {
 
 <style lang="scss">
 $desktop: 1024px;
-$tablet: 768px;
+$desktop: 768px;
 $mobile: 600px;
 
 .home {
   &__hero {
-    width: 100%;
-    padding: 0;
+    padding: 200px 5%;
+    width: 90%;
     background-image: url('~/assets/images/hero.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-    height: 600px;
     display: flex;
     z-index: -999;
-    @media (max-width: $tablet) {
+    @media (max-width: $desktop) {
+      padding: 50px 5%;
+      width: 90%;
       display: block;
       height: 800px;
-      width: 100%;
       background-position: top;
     }
-    &--left,
-    &--right {
-      width: 50%;
-      @media (max-width: $tablet) {
-        width: 90%;
-      }
-    }
     &--left {
-      padding: 180px 5% 180px 10%;
-      @media (max-width: $tablet) {
-        padding: 5%;
+      width: 50%;
+      padding: 5%;
+      @media (max-width: $desktop) {
+        width: 90%;
+        padding: 100px 5% 30px;
         text-align: center;
         .main-title {
           font-size: 46px;
-          margin-top: 100px;
         }
       }
       .main-title,
@@ -105,14 +101,18 @@ $mobile: 600px;
         color: var(--color-white-1);
       }
       .main-body {
-        font-size: 26px;
+        font-size: 24px;
         margin-top: 15px;
+        font-family: 'Gotham-Bold', sans-serif;
+        text-shadow: 2px 2px 8px var(--color-grey-1);
       }
     }
     &--right {
-      padding: 150px 10%;
-      @media (max-width: $tablet) {
+      width: 50%;
+      padding: 0 5%;
+      @media (max-width: $desktop) {
         padding: 5%;
+        width: 90%;
       }
     }
   }

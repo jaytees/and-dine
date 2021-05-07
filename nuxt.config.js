@@ -51,7 +51,7 @@ export default {
     STOREFRONT_URL:
       process.env.NODE_ENV !== 'production'
         ? '/api/proxy/'
-        : 'https://mvmapi.webkul.com/api/v2',
+        : 'https://mvmapi.webkul.com/api/v2/',
     STOREFRONT_REFRESH_TOKEN:
       'ZDgyMmE2NTk5NzNlZDgyMDk4MmNlMTZjNGUxODg2ZWU3ZGQzZjg1ODgyNTZiM2JjMGEyMGYzNWUzYjVkNDQ3MA',
     STOREFRONT_ACCESS_TOKEN:
@@ -89,7 +89,7 @@ export default {
 
   proxy: {
     '/api/proxy/': {
-      target: 'https://mvmapi.webkul.com/api/v2',
+      target: 'https://mvmapi.webkul.com/api/v2/',
       pathRewrite: { '^/api/proxy/': '' },
       changeOrigin: true,
     },

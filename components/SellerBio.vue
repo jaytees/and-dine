@@ -1,14 +1,14 @@
 <template>
-  <div class="bio">
+  <div class="seller-bio">
     <div
-      class="bio__profile-image"
+      class="seller-bio__profile-image"
       :style="
         sellerLogo
           ? `background-image: url(${sellerLogo})`
           : 'background-color: var(--color-purple-1)'
       "
     ></div>
-    <div class="bio__profile-container">
+    <div class="seller-bio__profile-container">
       <h3>{{ sellerName }}</h3>
       <h4>{{ productType }}</h4>
       <p>{{ sellerDescription }}</p>
@@ -50,7 +50,7 @@ $desktop: 1024px;
 $tablet: 768px;
 $mobile: 600px;
 
-.bio {
+.seller-bio {
   display: flex;
   width: 80%;
   @media (max-width: $tablet) {
@@ -72,7 +72,7 @@ $mobile: 600px;
     }
   }
   &__profile-container {
-    padding: 10px 35px 35px;
+    padding: 10px 2% 35px;
     @media (max-width: $tablet) {
       padding: 35px 35px 0;
       h3 {

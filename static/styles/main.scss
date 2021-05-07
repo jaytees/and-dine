@@ -9,9 +9,9 @@ $mobile: 600px;
 }
 
 @font-face {
-  font-family: 'Gotham-Regular';
-  src: local('Gotham-Regular'),
-    url(~assets/fonts/gotham/Gotham-Regular.otf) format('otf');
+  font-family: 'Gotham-Ultra';
+  src: local('Gotham-Ultra'),
+    url(~assets/fonts/gotham/Gotham-Ultra.otf) format('otf');
 }
 
 @font-face {
@@ -38,13 +38,12 @@ html {
 
   background-color: var(--color-white-1);
   position: initial;
-  font-family: 'Gotham-Regular', sans-serif;
+  font-family: 'Gotham-Ultra', sans-serif;
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   box-sizing: border-box;
-  overflow-x: hidden;
   width: 100%;
 }
 
@@ -57,6 +56,7 @@ h1 {
   font-weight: 600;
   margin: 0 0 10px 0;
   font-family: 'Gotham-Bold', sans-serif;
+  text-shadow: 2px 2px 8px var(--color-grey-1);
 }
 
 h2 {
@@ -88,10 +88,19 @@ p {
 
 .container {
   padding: 0;
-  width: 100%;
   position: relative;
   margin: 0 auto;
+  float: left;
+  overflow-x: hidden;
   transition: all 0.5s cubic-bezier(0.55, 0, 0.1, 1);
+}
+
+.cart-closed {
+  width: 100%;
+}
+
+.cart-open {
+  width: 70%;
 }
 
 @keyframes fadeIn {

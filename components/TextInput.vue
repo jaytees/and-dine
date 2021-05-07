@@ -3,7 +3,7 @@
     <span v-if="showTitle" class="text-container__title">{{ title }}</span>
     <input
       v-model="inputValue"
-      :style="`min-width: ${width}`"
+      :style="`width: ${width}`"
       class="text-container__input"
       :class="isUppercase && 'uppercase'"
       :placeholder="placeHolder"

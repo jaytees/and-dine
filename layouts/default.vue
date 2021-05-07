@@ -1,6 +1,7 @@
 <template>
-  <div>
-    <nav-bar :navigation="navigationItems" />
+  <div class="container" :class="cartIsOpen ? 'cart-open' : 'cart-closed'">
+    <shopping-cart v-if="cartIsOpen" @returnCartClick="toggleCart" />
+    <nav-bar :navigation="navigationItems" @returnCartClick="toggleCart" />
     <nuxt />
   </div>
 </template>
@@ -13,7 +14,7 @@ export default {
   middleware: ['webkul'],
   async fetch() {
     await this.$axios
-      .get(`${process.env.STOREFRONT_URL}/sellers.json`, {
+      .get(`${process.env.STOREFRONT_URL}sellers.json`, {
         headers: {
           Authorization: process.env.STOREFRONT_BEARER,
         },
@@ -22,18 +23,23 @@ export default {
       .catch((err) => console.log(err))
   },
   fetchOnServer: true,
+  data() {
+    return {
+      cartIsOpen: false,
+    }
+  },
   computed: {
     ...mapState(['navigationItems', 'checkoutInfo']),
   },
   async mounted() {
-    // await this.getProducts()
-    !this.checkoutInfo &&
-      this.$shopify.checkout.create().then((checkout) => {
-        this.setCheckoutInfo(checkout)
-        this.$cookies.set('checkout_info', checkout)
-      })
+    this.$cookies.get('checkout_info')
+      ? this.setCheckoutInfo(this.$cookies.get('checkout_info'))
+      : this.$shopify.checkout.create().then((checkout) => {
+          this.setCheckoutInfo(checkout)
+          this.$cookies.set('checkout_info', checkout)
+        })
     await this.$shopify.product.fetchAll().then((products) => {
-      this.shopifyProducts = products
+      this.setShopifyProducts(products)
     })
   },
   methods: {
@@ -43,6 +49,9 @@ export default {
       setSellers: 'SET_SELLERS',
       setCheckoutInfo: 'SET_CHECKOUT_INFO',
     }),
+    toggleCart() {
+      this.cartIsOpen = !this.cartIsOpen
+    },
   },
 }
 </script>

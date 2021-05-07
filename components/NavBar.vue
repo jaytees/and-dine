@@ -7,12 +7,7 @@
       <img src="~/assets/images/logo.png" />
     </nuxt-link>
     <div class="navbar__items--icons-mobile">
-      <a href="https://anddine.myshopify.com/cart">
-        <fa :icon="['fas', 'shopping-cart']" />
-      </a>
-      <a href="https://anddine.myshopify.com/account/login">
-        <fa :icon="['fas', 'user']" />
-      </a>
+      <fa :icon="['fas', 'shopping-cart']" @click="returnCartClick" />
       <fa
         class="burger"
         :icon="['fas', 'bars']"
@@ -39,12 +34,8 @@
         </div>
       </li>
       <li class="navbar__items--icons-desktop">
-        <a href="https://anddine.myshopify.com/cart">
-          <fa :icon="['fas', 'shopping-cart']" />
-        </a>
-        <a href="https://anddine.myshopify.com/account/login">
-          <fa :icon="['fas', 'user']" />
-        </a>
+        <fa :icon="['fas', 'shopping-cart']" @click="returnCartClick" />
+        <!-- <fa :icon="['fas', 'user']" /> -->
       </li>
     </ul>
   </div>
@@ -73,6 +64,11 @@ export default {
   },
   mounted() {
     this.navItems = this.navigation
+  },
+  methods: {
+    returnCartClick() {
+      this.$emit('returnCartClick', true)
+    },
   },
 }
 </script>
@@ -147,7 +143,7 @@ $mobile: 600px;
           background-color: var(--color-pink-1);
           color: var(--color-white-1);
           @media (max-width: $tablet) {
-            opacity: 0.8;
+            opacity: 0.9;
           }
         }
       }
@@ -179,7 +175,7 @@ $mobile: 600px;
       svg:hover {
         color: var(--color-pink-1);
         @media (max-width: $tablet) {
-          opacity: 0.8;
+          opacity: 0.9;
         }
       }
     }
@@ -195,7 +191,7 @@ $mobile: 600px;
         color: var(--color-pink-1);
       }
       svg:hover {
-        opacity: 0.8;
+        opacity: 0.9;
       }
     }
   }

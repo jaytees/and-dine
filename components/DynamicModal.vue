@@ -43,6 +43,7 @@ $tablet: 768px;
 $mobile: 600px;
 
 .modal {
+  transition: 0.5s;
   position: fixed;
   top: 0;
   right: 0;
@@ -51,6 +52,9 @@ $mobile: 600px;
   z-index: 9999;
   overflow-x: hidden;
   overflow-y: auto;
+  -webkit-box-shadow: 0px 5px 5px 0px var(--color-grey-2);
+  -moz-box-shadow: 0px 5px 5px 0px var(--color-grey-2);
+  box-shadow: 0px 5px 5px 0px var(--color-grey-2);
   @media (max-width: $tablet) {
     width: 100%;
     overflow-y: hidden;
@@ -61,12 +65,14 @@ $mobile: 600px;
     right: 0;
     bottom: 0;
     left: 0;
-    background-color: rgba(0, 0, 0, 0.3);
+    background-color: var(--color-grey-2);
+    opacity: 0.8;
     z-index: 1;
   }
   &__dialog {
     position: relative;
     width: 600px;
+    padding: 2%;
     background-color: #ffffff;
     border-radius: 5px;
     margin: 50px auto;
@@ -74,9 +80,10 @@ $mobile: 600px;
     flex-direction: column;
     z-index: 2;
     @media (max-width: $tablet) {
-      width: 100%;
-      margin: 0;
+      width: 90%;
+      padding: 5%;
       height: 100%;
+      margin: 0;
     }
   }
   &__close {
@@ -84,24 +91,20 @@ $mobile: 600px;
     font-size: 35px;
     cursor: pointer;
     &:hover {
-      opacity: 0.8;
+      opacity: 0.9;
     }
   }
   &__header {
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
-    padding: 20px 20px 10px;
+    margin-bottom: 2%;
   }
   &__body {
-    padding: 10px 20px 10px;
     overflow: auto;
     display: flex;
     flex-direction: column;
     align-items: stretch;
-  }
-  &__footer {
-    padding: 10px 20px 20px;
   }
 }
 </style>

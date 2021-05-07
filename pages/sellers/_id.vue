@@ -1,5 +1,5 @@
 <template>
-  <section v-if="dataReady" class="seller container">
+  <section v-if="dataReady" class="seller">
     <div
       class="seller__hero"
       :style="`background-image: url(${sellerById[0].store_banner})`"
@@ -196,9 +196,6 @@ $mobile: 600px;
       -moz-box-shadow: 0px 5px 5px 0px var(--color-grey-2);
       box-shadow: 0px 5px 5px 0px var(--color-grey-2);
       border-radius: 5px;
-      @media (max-width: $tablet) {
-        height: 200px;
-      }
     }
     &--content {
       margin: 20px 0;
@@ -213,6 +210,7 @@ $mobile: 600px;
       @media (max-width: $tablet) {
         display: block;
         text-align: center;
+        margin-top: 30px;
       }
       .quantity-container {
         display: flex;
@@ -228,7 +226,7 @@ $mobile: 600px;
           font-size: 35px;
           cursor: pointer;
           &:hover {
-            opacity: 0.8;
+            opacity: 0.9;
           }
         }
         h3 {
