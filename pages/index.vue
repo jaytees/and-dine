@@ -10,15 +10,16 @@
       </div>
     </div>
     <div class="home__sellers">
-      <image-list
-        v-for="(seller, index) in sellers"
-        :key="`seller__${index}`"
-        :image-title="seller.sp_store_name"
-        :image-subtitle="seller.city"
-        :profile-image="seller.store_logo"
-        :background-image="seller.shop_logo"
-        @clickEvent="goToPage(seller.id)"
-      />
+      <div v-for="(seller, index) in sellers" :key="`seller__${index}`">
+        <nuxt-link :to="`/sellers/${seller.id}`">
+          <image-list
+            :image-title="seller.sp_store_name"
+            :image-subtitle="seller.city"
+            :profile-image="seller.store_logo"
+            :background-image="seller.shop_logo"
+          />
+        </nuxt-link>
+      </div>
     </div>
   </section>
 </template>

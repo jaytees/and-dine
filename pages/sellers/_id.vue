@@ -93,7 +93,6 @@ export default {
     },
   },
   mounted() {
-    console.log(this.products)
     this.setChosenSellerId(this.sellerId)
   },
   methods: {

@@ -52,7 +52,7 @@ $mobile: 600px;
   overflow-x: hidden;
   overflow-y: auto;
   @media (max-width: $tablet) {
-    width: 91%;
+    width: 100%;
     overflow-y: hidden;
   }
   &__backdrop {
