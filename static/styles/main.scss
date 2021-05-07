@@ -5,32 +5,45 @@ $mobile: 600px;
 @font-face {
   font-family: 'Circular';
   src: local('Circular'),
-    url(~assets/fonts/CircularStd-Medium.otf) format('otf');
+    url(~assets/fonts/circular/CircularStd-Medium.otf) format('otf');
+}
+
+@font-face {
+  font-family: 'Gotham-Ultra';
+  src: local('Gotham-Ultra'),
+    url(~assets/fonts/gotham/Gotham-Ultra.otf) format('otf');
+}
+
+@font-face {
+  font-family: 'Gotham-Bold';
+  src: local('Gotham-Bold'),
+    url(~assets/fonts/gotham/Gotham-Bold.otf) format('otf');
 }
 
 html {
-  --colour-white-1: #ffffff;
-  --colour-black-1: #3b444b;
-  --colour-yellow-1: #fecb02;
-  --colour-yellow-2: #fbfae0;
-  --colour-pink-1: #ff1e5f;
-  --colour-pink-2: #f9adff;
-  --colour-purple-1: #6543fe;
-  --colour-orange-1: #fa480e;
-  --colour-grey-1: #e4ddf6;
+  --color-white-1: #ffffff;
+  --color-black-1: #3b444b;
+  --color-yellow-1: #fecb02;
+  --color-yellow-2: #fbfae0;
+  --color-pink-1: #ff1e5f;
+  --color-pink-2: #f9adff;
+  --color-purple-1: #6543fe;
+  --color-purple-2: #e4ddf6;
+  --color-orange-1: #fa480e;
+  --color-grey-1: #545454;
+  --color-grey-2: #d3d3d3;
+  --color-green-1: #8cbd22;
+  --color-blue-1: #1574f5;
+  --color-red-1: #ed6065;
 
-  font-family: 'Circular', sans-serif;
-  font-weight: 600;
-  color: var(--colour-black-1);
-  background-color: var(--colour-yellow-2);
+  background-color: var(--color-white-1);
   position: initial;
-  word-spacing: 1px;
+  font-family: 'Gotham-Ultra', sans-serif;
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   box-sizing: border-box;
-  overflow-x: hidden;
   width: 100%;
 }
 
@@ -38,17 +51,73 @@ body {
   margin: 0;
 }
 
-.container {
-  padding: 50px 100px;
+h1 {
+  font-size: 60px;
+  font-weight: 600;
+  margin: 0 0 10px 0;
+  font-family: 'Gotham-Bold', sans-serif;
+  text-shadow: 2px 2px 8px var(--color-grey-1);
+}
+
+h2 {
+  color: var(--color-pink-1);
+  font-size: 34px;
+  margin: 10px 0;
+  font-family: 'Gotham-Bold', sans-serif;
+}
+
+h3 {
+  color: var(--color-pink-1);
+  font-size: 20px;
+  margin: 0 0 5px 0;
+  font-family: 'Gotham-Bold', sans-serif;
+}
+
+h4 {
+  color: var(--color-grey-1);
+  font-size: 16px;
+  margin: 0 0 10px 0;
+}
+
+p {
   font-size: 16px;
   font-weight: 300;
-  @media (max-width: $desktop) {
-    width: 80%;
+  color: var(--color-grey-1);
+  margin: 0;
+}
+
+.container {
+  padding: 0;
+  position: relative;
+  margin: 0 auto;
+  float: left;
+  overflow-x: hidden;
+  transition: all 0.5s cubic-bezier(0.55, 0, 0.1, 1);
+}
+
+.cart-closed {
+  width: 100%;
+}
+
+.cart-open {
+  width: 70%;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
   }
 
-  @media (max-width: $mobile) {
-    width: 100%;
+  to {
+    opacity: 1;
   }
-  margin: 0 auto;
-  transition: all 0.5s cubic-bezier(0.55, 0, 0.1, 1);
+}
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
 }

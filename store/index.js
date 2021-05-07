@@ -1,58 +1,61 @@
 export const state = () => ({
-  products: '',
-  sellers: '',
+  products: false,
+  sellers: false,
+  chosenSellerId: false,
   navigationItems: [
-    { id: 0, name: 'index', value: 'Home', link: '/' },
-    { id: 1, name: 'shops', value: 'Shops', link: '/shops' },
+    { id: 0, name: 'index', value: '', link: '/' },
+    { id: 1, name: 'about', value: 'ABOUT US', link: '/about' },
     {
       id: 2,
       name: 'join',
-      value: 'Join as seller',
+      value: 'COOK WITH US',
       link: '/join',
       external: 'https://anddine.sp-seller.webkul.com',
     },
   ],
+  checkoutInfo: false,
+  shopifyProducts: false,
 })
 
 export const mutations = {
   SET_PRODUCTS(state, payload) {
     state.products = payload
   },
+  SET_SHOPIFY_PRODUCTS(state, payload) {
+    state.shopifyProducts = payload
+  },
   SET_SELLERS(state, payload) {
     state.sellers = payload
+  },
+  SET_CHOSEN_SELLER_ID(state, payload) {
+    state.chosenSellerId = payload
+  },
+  SET_CHECKOUT_INFO(state, payload) {
+    state.checkoutInfo = payload
   },
 }
 
 export const actions = {
-  async getProducts({ commit }) {
-    await this.$axios
-      .$get(
-        `${process.env.STOREFRONT_URL}/products.json?access_token=${process.env.STOREFRONT_ACCESS_TOKEN}&refresh_token=${process.env.STOREFRONT_REFRESH_TOKEN}`
-      )
-      .then((resp) => {
-        commit('SET_PRODUCTS', resp.products)
-      })
-  },
-  async getSellers({ commit }) {
-    await this.$axios
-      .$get(`${process.env.STOREFRONT_URL}/sellers.json`, {
-        headers: {
-          'Access-Control-Allow-Origin': '*',
-          'Content-Type': 'application/json',
-          Authorization: process.env.STOREFRONT_BEARER,
-        },
-      })
-      .then((resp) => {
-        commit('SET_SELLERS', resp.sellers)
-      })
+  setProducts({ commit }, products) {
+    commit('SET_PRODUCTS', products)
   },
 }
 
 export const getters = {
-  styleKeys: (state) => {
-    return Object.keys(state.chosenElement.style)
+  productsById: (state) => {
+    return (
+      state.products &&
+      state.products.filter(
+        (product) => product.seller_id === parseInt(state.chosenSellerId)
+      )
+    )
   },
-  contentKeys: (state) => {
-    return Object.keys(state.content)
+  sellerById: (state) => {
+    return (
+      state.sellers &&
+      state.sellers.filter(
+        (seller) => seller.id === parseInt(state.chosenSellerId)
+      )
+    )
   },
 }

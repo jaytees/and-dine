@@ -17,6 +17,7 @@
     @click="returnClick"
   >
     {{ text }}
+    <fa v-if="iconUsed" :icon="['fas', icon]" />
   </button>
 </template>
 
@@ -46,13 +47,23 @@ export default {
     },
     text: {
       type: String,
-      default: 'Click me!',
+      default: '',
+      required: false,
+    },
+    icon: {
+      type: String,
+      default: '',
       required: false,
     },
     color: {
       type: String,
       default: 'green',
       required: false,
+    },
+  },
+  computed: {
+    iconUsed() {
+      return this.icon !== ''
     },
   },
   methods: {
@@ -66,34 +77,39 @@ export default {
 <style lang="scss">
 .dynamic-button {
   padding: 14px 10px;
-  margin: 10px;
   color: #ffffff;
   font-weight: 600;
   font-size: 18px;
-  border-radius: 4px;
+  border-radius: 5px;
   border: none;
   text-align: center;
   cursor: pointer;
 
   &:hover {
-    opacity: 0.7;
+    opacity: 0.9;
   }
 }
 .green {
-  background-color: #8cbd22;
+  background-color: var(--color-green-1);
 }
 .blue {
-  background-color: #1574f5;
+  background-color: var(--color-blue-1);
 }
 .red {
-  background-color: #ed6065;
+  background-color: var(--color-red-1);
 }
 .orange {
-  background-color: #ff8005;
+  background-color: var(--color-orange-1);
 }
 .white {
-  color: #ff8005;
+  color: var(--color-black-1);
   background-color: #fff;
+}
+.purple {
+  background-color: var(--color-purple-1);
+}
+.pink {
+  background-color: var(--color-pink-1);
 }
 .dynamic-slot {
   background: transparent;

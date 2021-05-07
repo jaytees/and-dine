@@ -1,10 +1,11 @@
 <template>
   <div class="text-container">
-    <span class="text-container__title">{{ title }}</span>
+    <span v-if="showTitle" class="text-container__title">{{ title }}</span>
     <input
       v-model="inputValue"
       :style="`width: ${width}`"
       class="text-container__input"
+      :class="isUppercase && 'uppercase'"
       :placeholder="placeHolder"
       type="text"
       @change="returnValue"
@@ -41,22 +42,28 @@ export default {
       default: 'Please enter some text',
       required: false,
     },
+    isUppercase: {
+      type: Boolean,
+      default: false,
+      required: false,
+    },
   },
   data() {
     return {
       inputValue: '',
     }
   },
+  computed: {
+    showTitle() {
+      return this.title !== ''
+    },
+  },
   mounted() {
     this.inputValue = this.value
   },
   methods: {
     returnValue() {
-      this.$emit('inputValue', {
-        title: this.title,
-        value: this.inputValue,
-        index: this.index,
-      })
+      this.$emit('inputValue', this.inputValue)
     },
   },
 }
@@ -65,23 +72,26 @@ export default {
 <style lang="scss">
 .text-container {
   &__input {
+    cursor: text;
     position: relative;
     display: block;
     height: 43px;
-    border: 1px solid #fff;
+    border: 1px solid var(--color-black-1);
     line-height: 3;
-    border-radius: 4px;
+    border-radius: 5px;
     background-color: #ffffff;
-    margin: 10px;
     appearance: none;
     padding: 0 10px;
-    color: #2a3946;
-    font-family: 'Poppins', sans-serif !important;
+    color: var(--color-black-1);
+    font-weight: 600;
   }
   &__title {
     min-height: 50px;
     padding: 10px;
     font-weight: 600;
   }
+}
+.uppercase {
+  text-transform: uppercase;
 }
 </style>
