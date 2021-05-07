@@ -84,7 +84,7 @@ export default {
   },
   computed: {
     ...mapGetters(['sellerById', 'productsById']),
-    ...mapState(['checkoutInfo', 'shopifyProducts']),
+    ...mapState(['checkoutInfo', 'shopifyProducts', 'products']),
     dataReady() {
       return this.productsById.length > 0 && this.sellerById.length > 0
     },
@@ -93,6 +93,7 @@ export default {
     },
   },
   mounted() {
+    console.log(this.products)
     this.setChosenSellerId(this.sellerId)
   },
   methods: {

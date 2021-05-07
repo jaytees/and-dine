@@ -38,12 +38,18 @@ export const mutations = {
 export const actions = {
   async getProducts({ commit }) {
     await this.$axios
-      .$get(
-        `${process.env.STOREFRONT_URL}/products.json?access_token=${process.env.STOREFRONT_ACCESS_TOKEN}&refresh_token=${process.env.STOREFRONT_REFRESH_TOKEN},`
-      )
+      .$get(`${process.env.STOREFRONT_URL}/products.json`, {
+        params: {
+          access_token: process.env.STOREFRONT_ACCESS_TOKEN,
+          refresh_token: process.env.STOREFRONT_REFRESH_TOKEN,
+        },
+      })
       .then((resp) => {
         commit('SET_PRODUCTS', resp.products)
       })
+  },
+  setProducts({ commit }, products) {
+    commit('SET_PRODUCTS', products)
   },
 }
 

@@ -10,6 +10,7 @@ import { mapState, mapMutations, mapActions } from 'vuex'
 
 export default {
   name: 'Default',
+  middleware: ['webkul'],
   async fetch() {
     await this.$axios
       .get(`${process.env.STOREFRONT_URL}/sellers.json`, {
@@ -18,17 +19,14 @@ export default {
         },
       })
       .then((res) => this.setSellers(res.data.sellers))
-      .catch((err) => {
-        // eslint-disable-next-line
-        console.log(err)
-      })
+      .catch((err) => console.log(err))
   },
   fetchOnServer: true,
   computed: {
     ...mapState(['navigationItems', 'checkoutInfo']),
   },
   async mounted() {
-    await this.getProducts()
+    // await this.getProducts()
     !this.checkoutInfo &&
       this.$shopify.checkout.create().then((checkout) => {
         this.setCheckoutInfo(checkout)
