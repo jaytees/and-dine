@@ -48,7 +48,6 @@ $mobile: 600px;
 .quantity-operator {
   display: flex;
   @media (max-width: $tablet) {
-    margin: 0 auto;
     display: inline-flex;
   }
   .disable-icon {

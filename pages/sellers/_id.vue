@@ -51,6 +51,7 @@
         </div>
         <div class="seller__modal--actions">
           <quantity-operator
+            class="quantity-operator"
             :product-quantity="productQuantity"
             @returnQuantity="updateQuantity"
           />
@@ -93,8 +94,6 @@ export default {
   methods: {
     ...mapMutations({
       setChosenSellerId: 'SET_CHOSEN_SELLER_ID',
-      setCheckoutInfo: 'SET_CHECKOUT_INFO',
-      setProducts: 'SET_PRODUCTS',
     }),
     ...mapActions(['addToCart']),
     parseString(string) {
@@ -191,6 +190,11 @@ $mobile: 600px;
         display: block;
         text-align: center;
         margin-top: 30px;
+      }
+      .quantity-operator {
+        @media (max-width: $tablet) {
+          margin: 0 auto;
+        }
       }
       .dynamic-button {
         position: absolute;
