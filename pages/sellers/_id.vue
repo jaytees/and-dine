@@ -50,19 +50,14 @@
           <p>{{ parseString(chosenProduct.product_policy) }}</p>
         </div>
         <div class="seller__modal--actions">
-          <div class="quantity-container">
-            <fa
-              :icon="['fas', 'minus-circle']"
-              :class="productQuantity <= 1 && 'disable-icon'"
-              @click="changeQuantity(false)"
-            />
-            <h3>{{ productQuantity }}</h3>
-            <fa :icon="['fas', 'plus-circle']" @click="changeQuantity(true)" />
-          </div>
+          <quantity-operator
+            :product-quantity="productQuantity"
+            @returnQuantity="updateQuantity"
+          />
           <dynamic-button
             color="pink"
             :text="`Add to cart - £${overallPrice}`"
-            @clickEvent="addToCart(chosenProduct.product_name)"
+            @clickEvent="addItem(chosenProduct.product_name)"
           />
         </div>
       </template>
@@ -71,7 +66,7 @@
 </template>
 
 <script>
-import { mapMutations, mapGetters, mapState } from 'vuex'
+import { mapMutations, mapGetters, mapState, mapActions } from 'vuex'
 export default {
   name: 'Seller',
   asyncData({ params }) {
@@ -101,6 +96,7 @@ export default {
       setCheckoutInfo: 'SET_CHECKOUT_INFO',
       setProducts: 'SET_PRODUCTS',
     }),
+    ...mapActions(['addToCart']),
     parseString(string) {
       if (string) {
         const noTags = string.replace(/<[^>]+>/g, '')
@@ -110,29 +106,6 @@ export default {
       }
       return 'Coming soon!'
     },
-    changeQuantity(plus) {
-      !plus && this.productQuantity > 1 && (this.productQuantity -= 1)
-      plus && (this.productQuantity += 1)
-    },
-    addToCart(itemName) {
-      const variant = this.shopifyProducts.filter(
-        (product) => product.title === itemName
-      )
-      const lineItemsToAdd = [
-        {
-          variantId: variant[0].variants[0].id,
-          quantity: this.productQuantity,
-          customAttributes: [{ key: '', value: '' }],
-        },
-      ]
-      this.$shopify.checkout
-        .addLineItems(this.checkoutInfo.id, lineItemsToAdd)
-        .then((checkout) => {
-          this.setCheckoutInfo(checkout)
-          this.$cookies.set('checkout_info', checkout)
-          location.replace(checkout.webUrl)
-        })
-    },
     openProductModal(productInfo) {
       this.chosenProduct = productInfo
       this.showModal = true
@@ -140,6 +113,13 @@ export default {
     closeProductModal() {
       this.showModal = false
       this.productQuantity = 1
+    },
+    updateQuantity(payload) {
+      this.productQuantity = payload.quantity
+    },
+    addItem(name) {
+      this.addToCart({ name, quantity: this.productQuantity })
+      this.closeProductModal()
     },
   },
 }
@@ -211,29 +191,6 @@ $mobile: 600px;
         display: block;
         text-align: center;
         margin-top: 30px;
-      }
-      .quantity-container {
-        display: flex;
-        @media (max-width: $tablet) {
-          margin: 0 auto;
-          display: inline-flex;
-        }
-        .disable-icon {
-          color: var(--color-grey-2);
-        }
-        svg {
-          color: var(--color-pink-1);
-          font-size: 35px;
-          cursor: pointer;
-          &:hover {
-            opacity: 0.9;
-          }
-        }
-        h3 {
-          margin: 0 20px;
-          font-weight: 900;
-          font-size: 35px;
-        }
       }
       .dynamic-button {
         position: absolute;

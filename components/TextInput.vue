@@ -75,14 +75,14 @@ export default {
     cursor: text;
     position: relative;
     display: block;
-    height: 43px;
-    border: 1px solid var(--color-black-1);
+    height: 41px;
+    border: 2px solid var(--color-pink-1);
     line-height: 3;
     border-radius: 5px;
-    background-color: #ffffff;
+    background-color: var(--color-white-1);
     appearance: none;
     padding: 0 10px;
-    color: var(--color-black-1);
+    color: var(--color-grey-1);
     font-weight: 600;
   }
   &__title {

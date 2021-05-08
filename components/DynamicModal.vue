@@ -89,6 +89,7 @@ $mobile: 600px;
   &__close {
     color: var(--color-pink-1);
     font-size: 35px;
+    padding: 0;
     cursor: pointer;
     &:hover {
       opacity: 0.9;

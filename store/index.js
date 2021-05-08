@@ -39,6 +39,42 @@ export const actions = {
   setProducts({ commit }, products) {
     commit('SET_PRODUCTS', products)
   },
+  addToCart({ commit, state }, payload) {
+    const variant = state.shopifyProducts.filter(
+      (product) => product.title === payload.name
+    )
+    const lineItemsToAdd = [
+      {
+        variantId: variant[0].variants[0].id,
+        quantity: payload.quantity,
+        customAttributes: [{ key: '', value: '' }],
+      },
+    ]
+    this.$shopify.checkout
+      .addLineItems(state.checkoutInfo.id, lineItemsToAdd)
+      .then((checkout) => {
+        commit('SET_CHECKOUT_INFO', checkout)
+        this.$cookies.set('checkout_id', checkout.id)
+      })
+      .catch((err) => console.log(err))
+  },
+  removeFromCart({ commit, state }, payload) {
+    this.$shopify.checkout
+      .removeLineItems(payload.checkoutId, payload.lineItems)
+      .then((checkout) => {
+        commit('SET_CHECKOUT_INFO', checkout)
+        this.$cookies.set('checkout_id', checkout.id)
+      })
+      .catch((err) => console.log(err))
+  },
+  updateItemQuantity({ commit, state }, payload) {
+    this.$shopify.checkout
+      .updateLineItems(payload.checkoutId, payload.lineItems)
+      .then((checkout) => {
+        commit('SET_CHECKOUT_INFO', checkout)
+        this.$cookies.set('checkout_id', checkout.id)
+      })
+  },
 }
 
 export const getters = {
@@ -57,5 +93,11 @@ export const getters = {
         (seller) => seller.id === parseInt(state.chosenSellerId)
       )
     )
+  },
+  cartItemCount: (state) => {
+    let count = 0
+    state.checkoutInfo &&
+      state.checkoutInfo.lineItems.forEach((item) => (count += item.quantity))
+    return count
   },
 }

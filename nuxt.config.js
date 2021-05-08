@@ -122,6 +122,7 @@ export default {
               'faPlusCircle',
               'faMinusCircle',
               'faTimesCircle',
+              'faTimes',
             ],
           },
         ],

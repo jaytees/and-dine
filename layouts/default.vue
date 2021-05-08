@@ -1,13 +1,21 @@
 <template>
   <div class="container" :class="cartIsOpen ? 'cart-open' : 'cart-closed'">
-    <shopping-cart v-if="cartIsOpen" @returnCartClick="toggleCart" />
-    <nav-bar :navigation="navigationItems" @returnCartClick="toggleCart" />
+    <shopping-cart
+      v-if="cartIsOpen"
+      :checkout-info="checkoutInfo"
+      @returnCartClick="toggleCart"
+    />
+    <nav-bar
+      :navigation="navigationItems"
+      :item-count="cartItemCount"
+      @returnCartClick="toggleCart"
+    />
     <nuxt />
   </div>
 </template>
 
 <script>
-import { mapState, mapMutations, mapActions } from 'vuex'
+import { mapState, mapMutations, mapActions, mapGetters } from 'vuex'
 
 export default {
   name: 'Default',
@@ -30,13 +38,18 @@ export default {
   },
   computed: {
     ...mapState(['navigationItems', 'checkoutInfo']),
+    ...mapGetters(['cartItemCount']),
   },
   async mounted() {
-    this.$cookies.get('checkout_info')
-      ? this.setCheckoutInfo(this.$cookies.get('checkout_info'))
+    this.$cookies.get('checkout_id')
+      ? this.$shopify.checkout
+          .fetch(this.$cookies.get('checkout_id'))
+          .then((checkout) => {
+            this.setCheckoutInfo(checkout)
+          })
       : this.$shopify.checkout.create().then((checkout) => {
           this.setCheckoutInfo(checkout)
-          this.$cookies.set('checkout_info', checkout)
+          this.$cookies.set('checkout_id', checkout)
         })
     await this.$shopify.product.fetchAll().then((products) => {
       this.setShopifyProducts(products)

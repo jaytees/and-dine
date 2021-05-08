@@ -8,6 +8,7 @@
     </nuxt-link>
     <div class="navbar__items--icons-mobile">
       <fa :icon="['fas', 'shopping-cart']" @click="returnCartClick" />
+      <h3 v-if="showCount">{{ itemCount }}</h3>
       <fa
         class="burger"
         :icon="['fas', 'bars']"
@@ -35,7 +36,7 @@
       </li>
       <li class="navbar__items--icons-desktop">
         <fa :icon="['fas', 'shopping-cart']" @click="returnCartClick" />
-        <!-- <fa :icon="['fas', 'user']" /> -->
+        <h3 v-if="showCount">{{ itemCount }}</h3>
       </li>
     </ul>
   </div>
@@ -47,8 +48,13 @@ export default {
   props: {
     navigation: {
       type: Array,
-      require: true,
       default: () => [],
+      require: true,
+    },
+    itemCount: {
+      type: Number,
+      default: 0,
+      require: true,
     },
   },
   data() {
@@ -60,6 +66,9 @@ export default {
   computed: {
     currentPage() {
       return this.$route.name
+    },
+    showCount() {
+      return this.itemCount > 0
     },
   },
   mounted() {
@@ -178,6 +187,17 @@ $mobile: 600px;
           opacity: 0.9;
         }
       }
+      h3 {
+        position: absolute;
+        top: 27px;
+        right: 9.5%;
+        background-color: var(--color-white-1);
+        border-radius: 50%;
+        width: 17px;
+        text-align: center;
+        border: 2px solid;
+        font-size: 15px;
+      }
     }
     &--icons-mobile {
       @media (min-width: $tablet) {
@@ -192,6 +212,18 @@ $mobile: 600px;
       }
       svg:hover {
         opacity: 0.9;
+      }
+      h3 {
+        position: absolute;
+        top: 12px;
+        right: 14%;
+        color: var(--color-white-1);
+        background-color: var(--color-pink-1);
+        border-radius: 50%;
+        border: 2px solid var(--color-white-1);
+        width: 17px;
+        text-align: center;
+        font-size: 15px;
       }
     }
   }
