@@ -10,7 +10,7 @@
           @clickEvent="closeModal()"
         >
           <template v-slot:button-body>
-            <fa :icon="['fas', 'times-circle']" />
+            <fa :icon="['fas', 'times']" />
           </template>
         </dynamic-button>
       </div>
@@ -106,6 +106,9 @@ $mobile: 600px;
     display: flex;
     flex-direction: column;
     align-items: stretch;
+  }
+  &--footer {
+    padding: 2%;
   }
 }
 </style>

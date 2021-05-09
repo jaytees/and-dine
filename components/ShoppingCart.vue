@@ -6,7 +6,7 @@
       @clickEvent="returnCartClick()"
     >
       <template v-slot:button-body>
-        <fa :icon="['fas', 'times-circle']" />
+        <fa :icon="['fas', 'times']" />
       </template>
     </dynamic-button>
     <div v-if="showItems">
@@ -114,17 +114,23 @@ $mobile: 600px;
   &__items {
     padding: 30px 0 20px;
     display: flex;
+    &--quantity {
+      svg,
+      h3 {
+        font-size: 20px !important;
+      }
+    }
     &--container {
       display: flex;
       position: absolute;
       right: 5%;
-      margin-top: 10px;
       .title {
         margin: 0 10px;
       }
       .remove {
         color: var(--color-pink-1);
         cursor: pointer;
+        font-size: 20px;
       }
     }
   }

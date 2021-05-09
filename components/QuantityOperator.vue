@@ -1,12 +1,12 @@
 <template>
   <div class="quantity-operator">
     <fa
-      :icon="['fas', 'minus-circle']"
+      :icon="['fa', 'minus']"
       :class="quantity <= 1 && 'disable-icon'"
       @click="changeQuantity(false)"
     />
     <h3>{{ quantity }}</h3>
-    <fa :icon="['fas', 'plus-circle']" @click="changeQuantity(true)" />
+    <fa :icon="['fas', 'plus']" @click="changeQuantity(true)" />
   </div>
 </template>
 
@@ -55,8 +55,8 @@ $mobile: 600px;
   }
   svg {
     color: var(--color-pink-1);
-    font-size: 35px;
     cursor: pointer;
+    font-size: 30px;
     &:hover {
       opacity: 0.9;
     }
@@ -64,7 +64,7 @@ $mobile: 600px;
   h3 {
     margin: 0 20px;
     font-weight: 900;
-    font-size: 35px;
+    font-size: 30px;
   }
 }
 </style>
