@@ -41,26 +41,25 @@ export default {
     ...mapGetters(['cartItemCount']),
   },
   async mounted() {
-    this.$cookies.get('checkout_id')
-      ? this.$shopify.checkout
-          .fetch(this.$cookies.get('checkout_id'))
-          .then((checkout) => {
-            this.setCheckoutInfo(checkout)
-          })
-      : this.$shopify.checkout.create().then((checkout) => {
-          this.setCheckoutInfo(checkout)
-          this.$cookies.set('checkout_id', checkout)
-        })
+    if (this.$cookies.get('checkout_id')) {
+      this.fetchCheckout()
+      this.$cookies.get('chosen_store') &&
+        this.setChosenStore(this.$cookies.get('chosen_store'))
+    } else {
+      this.$cookies.remove('chosen_store')
+      this.setupCheckout()
+    }
     await this.$shopify.product.fetchAll().then((products) => {
       this.setShopifyProducts(products)
     })
   },
   methods: {
-    ...mapActions(['getProducts']),
+    ...mapActions(['getProducts', 'setupCheckout', 'fetchCheckout']),
     ...mapMutations({
       setShopifyProducts: 'SET_SHOPIFY_PRODUCTS',
       setSellers: 'SET_SELLERS',
       setCheckoutInfo: 'SET_CHECKOUT_INFO',
+      setChosenStore: 'SET_CHOSEN_STORE',
     }),
     toggleCart() {
       this.cartIsOpen = !this.cartIsOpen

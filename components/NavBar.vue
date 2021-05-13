@@ -93,7 +93,7 @@ $mobile: 600px;
   background-color: transparent;
   z-index: 999;
   position: absolute;
-  font-family: 'Gotham-Bold', sans-serif;
+  font-family: 'Gotham-Black', sans-serif;
   @media (max-width: $tablet) {
     width: 90%;
     padding: 20px 5%;
@@ -158,10 +158,13 @@ $mobile: 600px;
       }
       .link {
         text-decoration: none;
-        color: var(--color-white-1);
+        color: var(--color-pink-1);
         font-size: 16px;
         font-weight: 600;
         cursor: pointer;
+        &:hover {
+          color: var(--color-white-1);
+        }
         @media (max-width: $tablet) {
           color: var(--color-pink-1);
         }
@@ -176,14 +179,9 @@ $mobile: 600px;
       svg {
         margin: 0 5px;
         font-size: 24px;
-        color: var(--color-white-1);
-        @media (max-width: $tablet) {
-          color: var(--color-pink-1);
-        }
-      }
-      svg:hover {
         color: var(--color-pink-1);
-        @media (max-width: $tablet) {
+        &:hover {
+          color: var(--color-white-1);
           opacity: 0.9;
         }
       }
@@ -209,9 +207,9 @@ $mobile: 600px;
         margin: 0 5px;
         font-size: 24px;
         color: var(--color-pink-1);
-      }
-      svg:hover {
-        opacity: 0.9;
+        &:hover {
+          opacity: 0.9;
+        }
       }
       h3 {
         position: absolute;

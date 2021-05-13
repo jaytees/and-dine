@@ -10,6 +10,7 @@
       </template>
     </dynamic-button>
     <div v-if="showItems">
+      <h3 class="shopping-cart__title">Your order with {{ chosenStore }}</h3>
       <div
         v-for="(item, index) in checkoutInfo.lineItems"
         :key="`item_${index}`"
@@ -50,19 +51,13 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapActions, mapState } from 'vuex'
 export default {
   name: 'ShoppingCart',
-  props: {
-    checkoutInfo: {
-      type: Object,
-      default: () => {},
-      required: true,
-    },
-  },
   computed: {
+    ...mapState(['chosenStore', 'checkoutInfo']),
     showItems() {
-      return this.checkoutInfo.lineItems.length > 0
+      return this.checkoutInfo && this.checkoutInfo.lineItems.length > 0
     },
   },
   methods: {
@@ -110,6 +105,9 @@ $mobile: 600px;
   @media (max-width: $desktop) {
     width: 90%;
     padding: 5%;
+  }
+  &__title {
+    margin: 20px 0;
   }
   &__items {
     padding: 30px 0 20px;

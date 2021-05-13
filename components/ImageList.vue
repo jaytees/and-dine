@@ -72,11 +72,12 @@ $mobile: 600px;
     padding: 0;
   }
   &__list {
-    width: 26%;
     cursor: pointer;
     float: left;
     position: relative;
     padding: 0 2%;
+    width: 40%;
+    margin: 0;
     @media (max-width: $desktop) {
       padding: 0 2%;
       width: 40%;
@@ -101,7 +102,7 @@ $mobile: 600px;
       margin: 0 0 10px;
     }
     &--background-image {
-      height: 250px;
+      height: 400px;
       width: 100%;
       background-position: center;
       background-size: cover;
@@ -110,21 +111,30 @@ $mobile: 600px;
       -webkit-box-shadow: 0px 5px 5px 0px var(--color-grey-2);
       -moz-box-shadow: 0px 5px 5px 0px var(--color-grey-2);
       box-shadow: 0px 5px 5px 0px var(--color-grey-2);
+      @media (max-width: $desktop) {
+        height: 300px;
+      }
+      @media (max-width: $tablet) {
+        height: 350px;
+      }
     }
     &--profile-image {
       position: relative;
       background-position: center;
       background-size: cover;
-      bottom: 80px;
-      left: 75%;
+      bottom: 60px;
+      left: 85%;
       background-color: var(--color-purple-1);
       width: 100px;
       height: 100px;
       margin-bottom: -110px;
       border-radius: 50%;
       border: 4px solid var(--color-white-1);
-      @media (max-width: $tablet) {
+      @media (max-width: $desktop) {
         left: 70%;
+      }
+      @media (max-width: $tablet) {
+        left: 75%;
       }
     }
   }

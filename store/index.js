@@ -2,6 +2,7 @@ export const state = () => ({
   products: false,
   sellers: false,
   chosenSellerId: false,
+  chosenStore: false,
   navigationItems: [
     { id: 0, name: 'index', value: '', link: '/' },
     { id: 1, name: 'about', value: 'ABOUT US', link: '/about' },
@@ -33,16 +34,19 @@ export const mutations = {
   SET_CHECKOUT_INFO(state, payload) {
     state.checkoutInfo = payload
   },
+  SET_CHOSEN_STORE(state, payload) {
+    state.chosenStore = payload
+  },
 }
 
 export const actions = {
   setProducts({ commit }, products) {
     commit('SET_PRODUCTS', products)
   },
-  addToCart({ commit, state }, payload) {
-    const variant = state.shopifyProducts.filter(
-      (product) => product.title === payload.name
-    )
+  async addToCart({ commit, state }, payload) {
+    const variant =
+      state.shopifyProducts &&
+      state.shopifyProducts.filter((product) => product.title === payload.name)
     const lineItemsToAdd = [
       {
         variantId: variant[0].variants[0].id,
@@ -50,16 +54,18 @@ export const actions = {
         customAttributes: [{ key: '', value: '' }],
       },
     ]
-    this.$shopify.checkout
+    await this.$shopify.checkout
       .addLineItems(state.checkoutInfo.id, lineItemsToAdd)
       .then((checkout) => {
         commit('SET_CHECKOUT_INFO', checkout)
+        commit('SET_CHOSEN_STORE', payload.store)
         this.$cookies.set('checkout_id', checkout.id)
+        this.$cookies.set('chosen_store', payload.store)
       })
       .catch((err) => console.log(err))
   },
-  removeFromCart({ commit, state }, payload) {
-    this.$shopify.checkout
+  async removeFromCart({ commit }, payload) {
+    await this.$shopify.checkout
       .removeLineItems(payload.checkoutId, payload.lineItems)
       .then((checkout) => {
         commit('SET_CHECKOUT_INFO', checkout)
@@ -67,12 +73,30 @@ export const actions = {
       })
       .catch((err) => console.log(err))
   },
-  updateItemQuantity({ commit, state }, payload) {
-    this.$shopify.checkout
+  async updateItemQuantity({ commit }, payload) {
+    await this.$shopify.checkout
       .updateLineItems(payload.checkoutId, payload.lineItems)
       .then((checkout) => {
         commit('SET_CHECKOUT_INFO', checkout)
         this.$cookies.set('checkout_id', checkout.id)
+      })
+  },
+  removeCartItems({ commit }, store) {
+    commit('SET_CHOSEN_STORE', store)
+    this.$cookies.set('chosen_store', store)
+    commit('SET_CHECKOUT_INFO', false)
+  },
+  async setupCheckout({ commit }) {
+    await this.$shopify.checkout.create().then((checkout) => {
+      commit('SET_CHECKOUT_INFO', checkout)
+      this.$cookies.set('checkout_id', checkout.id)
+    })
+  },
+  async fetchCheckout({ commit }) {
+    await this.$shopify.checkout
+      .fetch(this.$cookies.get('checkout_id'))
+      .then((checkout) => {
+        commit('SET_CHECKOUT_INFO', checkout)
       })
   },
 }
@@ -99,5 +123,11 @@ export const getters = {
     state.checkoutInfo &&
       state.checkoutInfo.lineItems.forEach((item) => (count += item.quantity))
     return count
+  },
+  cartItemNames: (state) => {
+    return (
+      state.checkoutInfo &&
+      state.checkoutInfo.lineItems.map((item) => item.title).join(', ')
+    )
   },
 }

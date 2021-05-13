@@ -28,7 +28,7 @@
       />
     </div>
     <dynamic-modal
-      v-if="showModal && chosenProduct"
+      v-if="showProductModal && chosenProduct"
       class="seller__modal"
       @closeModal="closeProductModal"
     >
@@ -63,6 +63,29 @@
         </div>
       </template>
     </dynamic-modal>
+    <dynamic-modal
+      v-if="showStoreModal"
+      class="seller__modal"
+      @closeModal="closeStoreModal"
+    >
+      <template v-slot:body>
+        <h2 class="seller__modal--title">Create new order?</h2>
+        <h4 class="seller__modal--body">
+          Your order is {{ cartItemNames }} from {{ chosenStore }}
+        </h4>
+        <dynamic-button
+          text="New order"
+          color="pink"
+          width="100%"
+          @clickEvent="
+            closeStoreModal(
+              sellerById[0].sp_store_name,
+              chosenProduct.product_name
+            )
+          "
+        />
+      </template>
+    </dynamic-modal>
   </section>
 </template>
 
@@ -73,19 +96,26 @@ export default {
   asyncData({ params }) {
     return {
       sellerId: params.id,
-      showModal: false,
+      showProductModal: false,
+      showStoreModal: false,
       chosenProduct: false,
       productQuantity: 1,
     }
   },
   computed: {
-    ...mapGetters(['sellerById', 'productsById']),
-    ...mapState(['checkoutInfo', 'shopifyProducts', 'products']),
+    ...mapGetters(['sellerById', 'productsById', 'cartItemNames']),
+    ...mapState(['checkoutInfo', 'shopifyProducts', 'products', 'chosenStore']),
     dataReady() {
       return this.productsById.length > 0 && this.sellerById.length > 0
     },
     overallPrice() {
       return this.chosenProduct.price * this.productQuantity
+    },
+    cartHasItems() {
+      return this.checkoutInfo.lineItems.length > 0
+    },
+    storeNameCorrect() {
+      return this.chosenStore === this.sellerById[0].sp_store_name
     },
   },
   mounted() {
@@ -95,7 +125,7 @@ export default {
     ...mapMutations({
       setChosenSellerId: 'SET_CHOSEN_SELLER_ID',
     }),
-    ...mapActions(['addToCart']),
+    ...mapActions(['addToCart', 'removeCartItems', 'setupCheckout']),
     parseString(string) {
       if (string) {
         const noTags = string.replace(/<[^>]+>/g, '')
@@ -107,18 +137,37 @@ export default {
     },
     openProductModal(productInfo) {
       this.chosenProduct = productInfo
-      this.showModal = true
+      this.showProductModal = true
     },
     closeProductModal() {
-      this.showModal = false
+      this.showProductModal = false
       this.productQuantity = 1
+    },
+    openStoreModal() {
+      this.showStoreModal = true
+    },
+    closeStoreModal(store, product) {
+      this.showStoreModal = false
+      if (store) {
+        this.removeCartItems(store)
+        this.setupCheckout()
+        this.addItem(product)
+      }
     },
     updateQuantity(payload) {
       this.productQuantity = payload.quantity
     },
     addItem(name) {
-      this.addToCart({ name, quantity: this.productQuantity })
-      this.closeProductModal()
+      if (this.cartHasItems && !this.storeNameCorrect) {
+        this.openStoreModal()
+      } else {
+        this.closeProductModal()
+        this.addToCart({
+          name,
+          quantity: this.productQuantity,
+          store: this.sellerById[0].sp_store_name,
+        })
+      }
     },
   },
 }
@@ -204,6 +253,9 @@ $mobile: 600px;
           margin: 20px;
         }
       }
+    }
+    &--body {
+      margin: 20px 0;
     }
   }
 }
