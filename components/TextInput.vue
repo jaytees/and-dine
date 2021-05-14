@@ -1,6 +1,9 @@
 <template>
   <div class="text-container">
-    <span v-if="showTitle" class="text-container__title">{{ title }}</span>
+    <span v-if="isTitleVisible" class="text-container__title"
+      >{{ title }}
+      <p v-if="isRequired">*</p></span
+    >
     <input
       v-model="inputValue"
       :style="`width: ${width}`"
@@ -10,6 +13,9 @@
       type="text"
       @change="returnValue"
     />
+    <span v-if="showError" class="text-container__error"
+      >Please enter a valid {{ title }}</span
+    >
   </div>
 </template>
 
@@ -47,15 +53,28 @@ export default {
       default: false,
       required: false,
     },
+    showError: {
+      type: Boolean,
+      default: false,
+      required: false,
+    },
+    isRequired: {
+      type: Boolean,
+      default: false,
+      required: false,
+    },
+    showTitle: {
+      type: Boolean,
+      default: true,
+      required: false,
+    },
   },
-  data() {
-    return {
-      inputValue: '',
-    }
-  },
+  data: () => ({
+    inputValue: '',
+  }),
   computed: {
-    showTitle() {
-      return this.title !== ''
+    isTitleVisible() {
+      return this.title !== '' && this.showTitle
     },
   },
   mounted() {
@@ -75,20 +94,29 @@ export default {
     cursor: text;
     position: relative;
     display: block;
-    height: 41px;
-    border: 2px solid var(--color-pink-1);
+    height: 42px;
     line-height: 3;
     border-radius: 5px;
     background-color: var(--color-white-1);
     appearance: none;
     padding: 0 10px;
     color: var(--color-grey-1);
-    font-weight: 600;
+    font-family: 'Gotham-Black', sans-serif;
+  }
+  &__title,
+  &__error {
+    display: flex;
   }
   &__title {
-    min-height: 50px;
-    padding: 10px;
-    font-weight: 600;
+    margin-bottom: 10px;
+    color: var(--color-grey-1);
+    p {
+      color: var(--color-pink-1);
+    }
+  }
+  &__error {
+    margin-top: 10px;
+    color: var(--color-pink-1);
   }
 }
 .uppercase {

@@ -14,7 +14,7 @@
       :seller-description="parseString(sellerById[0].description)"
     />
     <div class="seller__delivery">
-      <h4>Delivery Information</h4>
+      <h3>Delivery Information</h3>
       <p>Order by midnight on Wednesday for delivery Saturday</p>
     </div>
     <div class="seller__products">
@@ -44,9 +44,9 @@
         <div class="seller__modal--content">
           <h2>{{ chosenProduct.product_name }}</h2>
           <p>{{ parseString(chosenProduct.product_description) }}</p>
-          <h4>Ingredients</h4>
+          <h3>Ingredients</h3>
           <p>{{ parseString(chosenProduct.product_tag) }}</p>
-          <h4>Cooking Instructions</h4>
+          <h3>Cooking Instructions</h3>
           <p>{{ parseString(chosenProduct.product_policy) }}</p>
         </div>
         <div class="seller__modal--actions">
@@ -93,15 +93,13 @@
 import { mapMutations, mapGetters, mapState, mapActions } from 'vuex'
 export default {
   name: 'Seller',
-  asyncData({ params }) {
-    return {
-      sellerId: params.id,
-      showProductModal: false,
-      showStoreModal: false,
-      chosenProduct: false,
-      productQuantity: 1,
-    }
-  },
+  asyncData: ({ params }) => ({
+    sellerId: params.id,
+    showProductModal: false,
+    showStoreModal: false,
+    chosenProduct: false,
+    productQuantity: 1,
+  }),
   computed: {
     ...mapGetters(['sellerById', 'productsById', 'cartItemNames']),
     ...mapState(['checkoutInfo', 'shopifyProducts', 'products', 'chosenStore']),
@@ -182,6 +180,7 @@ $mobile: 600px;
 .seller {
   &__hero {
     width: 100%;
+    animation: fadeIn 1s;
     background-image: url('~assets/images/hero.jpg');
     background-size: cover;
     background-repeat: no-repeat;
@@ -204,6 +203,7 @@ $mobile: 600px;
   &__bio,
   &__products,
   &__delivery {
+    animation: fadeIn 1s;
     padding: 50px 5% 0;
     position: relative;
     margin: 0 auto;

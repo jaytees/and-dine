@@ -1,9 +1,3 @@
-// import { flattened } from './data/sizes'
-// const dynamicRoutes = () => {
-//   return new Promise((resolve) => {
-//     resolve(flattened.map((el) => `/${el}/`))
-//   })
-// }
 export default {
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
@@ -18,7 +12,7 @@ export default {
   },
 
   // Global CSS (https://go.nuxtjs.dev/config-css)
-  css: ['~/static/styles/main.scss'],
+  css: ['~/static/styles/main.scss', '~/static/styles/animate.scss'],
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
   plugins: [
@@ -58,12 +52,12 @@ export default {
       'YjZiNmRlZjE1ZGJiZWRlMTFmZGRmYzc0Njg0ZDIyMjYwYjcxMDQxZjEyNzA3ZGRhMzlhOTgzODAzNDE0NzYzYQ',
     STOREFRONT_BEARER:
       'Bearer YjZiNmRlZjE1ZGJiZWRlMTFmZGRmYzc0Njg0ZDIyMjYwYjcxMDQxZjEyNzA3ZGRhMzlhOTgzODAzNDE0NzYzYQ',
-    SHOPIFY_DOMAIN: 'anddine.myshopify.com', // your shopify domain
-    SHOPIFY_ACCESS_TOKEN: 'd4ba832cfe834593d2b1e99447a4c3f4', // your shopify storefront access token
+    SHOPIFY_DOMAIN: 'anddine.myshopify.com',
+    SHOPIFY_ACCESS_TOKEN: 'd4ba832cfe834593d2b1e99447a4c3f4',
+    GOOGLE_MAPS_KEY: 'AIzaSyAPy8EG0Vnj9VQX59FVLOc9abCLOx4vaHk',
   },
 
   generate: {
-    // routes: dynamicRoutes,
     fallback: true,
   },
 
@@ -95,7 +89,6 @@ export default {
     },
   },
 
-  // Modules (https://go.nuxtjs.dev/config-modules)
   modules: [
     '@nuxtjs/axios',
     '@nuxtjs/proxy',
@@ -106,6 +99,24 @@ export default {
     'nuxt-shopify',
     '@nuxt/http',
     'cookie-universal-nuxt',
+    [
+      'nuxt-google-maps-module',
+      {
+        key: process.env.GOOGLE_MAPS_KEY,
+      },
+    ],
+    [
+      'nuxt-mail',
+      {
+        message: {
+          to: 'charliebrafman@me.com',
+        },
+        smtp: {
+          host: 'smtp.mail.me.com',
+          port: 587,
+        },
+      },
+    ],
     [
       'nuxt-fontawesome',
       {

@@ -57,12 +57,10 @@ export default {
       require: true,
     },
   },
-  data() {
-    return {
-      navItems: [],
-      showMobileNav: false,
-    }
-  },
+  data: () => ({
+    navItems: [],
+    showMobileNav: false,
+  }),
   computed: {
     currentPage() {
       return this.$route.name
@@ -124,7 +122,7 @@ $mobile: 600px;
   }
   .show-nav {
     display: block;
-    animation: fadeIn 0.5s;
+    animation: fadeInDown 1s;
   }
   &__items {
     float: right;

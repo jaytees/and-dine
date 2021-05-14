@@ -4,7 +4,7 @@
     class="dynamic-slot"
     :href="href"
     :class="color"
-    @click="returnClick"
+    @click="!disabled && returnClick()"
   >
     <slot name="button-body" />
   </button>
@@ -13,8 +13,8 @@
     :style="`width: ${width}; height:${height}`"
     class="dynamic-button"
     :href="href"
-    :class="color"
-    @click="returnClick"
+    :class="disabled ? 'disabled' : color"
+    @click="!disabled && returnClick()"
   >
     {{ text }}
     <fa v-if="iconUsed" :icon="['fas', icon]" />
@@ -60,6 +60,11 @@ export default {
       default: 'green',
       required: false,
     },
+    disabled: {
+      type: Boolean,
+      default: false,
+      required: false,
+    },
   },
   computed: {
     iconUsed() {
@@ -84,9 +89,10 @@ export default {
   border: none;
   text-align: center;
   cursor: pointer;
-
+  transition: transform 0.2s;
   &:hover {
     opacity: 0.9;
+    transform: scale(1.02);
   }
 }
 .green {
@@ -114,5 +120,8 @@ export default {
 .dynamic-slot {
   background: transparent;
   border: none;
+}
+.disabled {
+  background-color: var(--color-grey-2);
 }
 </style>

@@ -90,6 +90,7 @@ $tablet: 768px;
 $mobile: 600px;
 
 .shopping-cart {
+  animation: fadeInLeft 1s;
   height: 100%;
   width: 26%;
   position: fixed;
@@ -103,6 +104,7 @@ $mobile: 600px;
   -moz-box-shadow: 0px 5px 5px 0px var(--color-grey-2);
   box-shadow: 0px 5px 5px 0px var(--color-grey-2);
   @media (max-width: $desktop) {
+    animation: fadeIn 1s;
     width: 90%;
     padding: 5%;
   }

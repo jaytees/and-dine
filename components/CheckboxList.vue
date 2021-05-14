@@ -39,12 +39,10 @@ export default {
       required: true,
     },
   },
-  data() {
-    return {
-      checkboxValues: [],
-      all: false,
-    }
-  },
+  data: () => ({
+    checkboxValues: [],
+    all: false,
+  }),
   watch: {
     values(to, from) {
       if (to !== from) this.checkboxValues = to

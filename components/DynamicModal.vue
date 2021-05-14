@@ -57,7 +57,6 @@ $mobile: 600px;
   box-shadow: 0px 5px 5px 0px var(--color-grey-2);
   @media (max-width: $tablet) {
     width: 100%;
-    overflow-y: hidden;
   }
   &__backdrop {
     position: fixed;
@@ -70,6 +69,7 @@ $mobile: 600px;
     z-index: 1;
   }
   &__dialog {
+    animation: bounceIn 1s;
     position: relative;
     width: 600px;
     padding: 2%;
@@ -80,6 +80,7 @@ $mobile: 600px;
     flex-direction: column;
     z-index: 2;
     @media (max-width: $tablet) {
+      animation: fadeIn 1s;
       width: 90%;
       padding: 5%;
       height: 100%;

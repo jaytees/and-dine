@@ -8,8 +8,10 @@
       <text-input
         class="location-box__search--field"
         width="95%"
-        place-holder="Enter your postcode..."
-        :is-uppercase="true"
+        title="Postcode"
+        :show-title="false"
+        :place-holder="postcodeValue || 'Enter your postcode...'"
+        :show-error="!isValidPostcode && isPostcodePopulated"
         @inputValue="updatePostcode"
       />
       <dynamic-button
@@ -18,40 +20,46 @@
         icon="search"
         color="pink"
         height="45px"
-        @clickEvent="validatePostcode"
+        @clickEvent="addPostcodeCookie"
       />
     </div>
-    <span v-if="showPostcodeError" class="location-box__error"
-      >Please enter a valid UK postcode</span
-    >
   </div>
 </template>
 
 <script>
 export default {
   name: 'LocationBox',
-  data() {
-    return {
-      showPostcodeError: false,
-      postcodeValue: '',
-    }
-  },
+  data: () => ({
+    showPostcodeError: false,
+    postcodeValue: '',
+  }),
   computed: {
     isValidPostcode() {
       const postcodeRegEx = /[A-Z]{1,2}[0-9]{1,2} ?[0-9][A-Z]{2}/i
       return postcodeRegEx.test(this.postcodeValue) && this.postcodeValue !== ''
     },
+    isPostcodePopulated() {
+      return this.postcodeValue !== ''
+    },
+  },
+  mounted() {
+    if (this.$cookies.get('customer_location'))
+      this.postcodeValue = this.$cookies.get('customer_location')
   },
   methods: {
     updatePostcode(postcode) {
       this.postcodeValue = postcode
     },
-    validatePostcode() {
-      if (this.isValidPostcode) {
-        this.showPostcodeError = false
-        this.$cookies.set('dine-location', this.postcodeValue)
-      } else {
-        this.showPostcodeError = true
+    addPostcodeCookie() {
+      if (this.isValidPostcode && this.isPostcodePopulated) {
+        this.$cookies.set('customer_location', this.postcodeValue)
+        // const autocomplete = new this.$google.maps.places.Autocomplete(
+        //   this.inputValue,
+        //   {
+        //     types: ['geocode'],
+        //   }
+        // )
+        // console.log(autocomplete)
       }
     },
   },

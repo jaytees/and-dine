@@ -1,6 +1,9 @@
 <template>
   <div class="dropdown-container">
-    <span v-if="title" class="dropdown-container__title">{{ title }}</span>
+    <span v-if="title" class="dropdown-container__title"
+      >{{ title }}
+      <p v-if="isRequired">*</p></span
+    >
     <select
       v-model="selectedValue"
       :style="`width: ${width}`"
@@ -47,16 +50,23 @@ export default {
       default: () => [],
       required: true,
     },
+    showError: {
+      type: Boolean,
+      default: false,
+      required: false,
+    },
+    isRequired: {
+      type: Boolean,
+      default: false,
+      required: false,
+    },
   },
-  data() {
-    return {
-      selectedValue: '',
-    }
-  },
+  data: () => ({
+    selectedValue: '',
+  }),
   watch: {
     selectedValue(to, from) {
-      if (to !== from)
-        this.$emit('selectedValue', { value: to, index: this.index })
+      if (to !== from) this.$emit('selectedValue', to)
     },
     selected(to, from) {
       this.selectedValue = to
@@ -74,21 +84,23 @@ export default {
     cursor: pointer;
     position: relative;
     display: block;
-    border: 1px solid #fff;
     height: 45px;
     line-height: 3;
     border-radius: 5px;
-    background-color: #ffffff;
-    margin: 10px;
+    background-color: var(--color-white-1);
     appearance: none;
     padding: 0 10px;
-    color: #2a3946;
-    font-family: 'Poppins', sans-serif !important;
+    color: var(--color-grey-1);
+    border: 2px solid;
+    font-family: 'Gotham-Black', sans-serif;
   }
   &__title {
-    min-height: 50px;
-    padding: 10px;
-    font-weight: 600;
+    padding: 10px 0;
+    display: flex;
+    color: var(--color-grey-1);
+    p {
+      color: var(--color-pink-1);
+    }
   }
 }
 </style>

@@ -7,13 +7,7 @@ export const state = () => ({
   navigationItems: [
     { id: 0, name: 'index', value: '', link: '/' },
     { id: 1, name: 'about', value: 'ABOUT US', link: '/about' },
-    {
-      id: 2,
-      name: 'join',
-      value: 'COOK WITH US',
-      link: '/join',
-      external: 'https://anddine.sp-seller.webkul.com',
-    },
+    { id: 2, name: 'join', value: 'COOK WITH US', link: '/join' },
   ],
   checkoutInfo: false,
   shopifyProducts: false,
@@ -102,6 +96,13 @@ export const actions = {
       .then((checkout) => {
         commit('SET_CHECKOUT_INFO', checkout)
       })
+  },
+  async sendEmail(info) {
+    await this.$axios.$post('/mail/send', {
+      from: info.name,
+      subject: 'New customer sign-up',
+      text: `Hello my name is ${info.firstName} ${info.lastName} and I would like to start cooking with you! My details are as follows: Email: ${info.email} <br/> Number: ${info.number} <br /> Postcode: ${info.postcode} <br /> Cuisine: ${info.cuisine} <br /> Thanks!`,
+    })
   },
 }
 

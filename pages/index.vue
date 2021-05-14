@@ -1,13 +1,13 @@
 <template>
   <section class="home">
     <div class="home__hero">
-      <div class="home__hero--left">
+      <div class="home__hero--left fadeInDown">
         <h1 class="main-title">Real people, real food.</h1>
         <h3 class="main-body">
           A new way to experience authentic home cooking.
         </h3>
       </div>
-      <div class="home__hero--right">
+      <div class="home__hero--right fadeInDown">
         <location-box />
       </div>
     </div>
@@ -31,31 +31,14 @@ import { mapState } from 'vuex'
 export default {
   name: 'Home',
   transition: 'fade-enter',
-  data() {
-    return {
-      showPostcodeError: false,
-      postcodeValue: '',
-    }
-  },
+  data: () => ({
+    showPostcodeError: false,
+    postcodeValue: '',
+  }),
   computed: {
     ...mapState(['sellers']),
-    isValidPostcode() {
-      const postcodeRegEx = /[A-Z]{1,2}[0-9]{1,2} ?[0-9][A-Z]{2}/i
-      return postcodeRegEx.test(this.postcodeValue) && this.postcodeValue !== ''
-    },
   },
   methods: {
-    updatePostcode(postcode) {
-      this.postcodeValue = postcode
-    },
-    validatePostcode() {
-      if (this.isValidPostcode) {
-        this.showPostcodeError = false
-        this.$cookies.set('dine-location', this.postcodeValue)
-      } else {
-        this.showPostcodeError = true
-      }
-    },
     goToPage(link) {
       this.$router.push(`sellers/${link.toString()}`)
     },
@@ -70,6 +53,7 @@ $mobile: 600px;
 
 .home {
   &__hero {
+    animation: fadeIn 1s;
     padding: 200px 5%;
     width: 90%;
     background-image: url('~/assets/images/hero.jpg');
@@ -86,9 +70,11 @@ $mobile: 600px;
       background-position: top;
     }
     &--left {
+      animation: bounceIn 1s;
       width: 50%;
       padding: 5%;
       @media (max-width: $desktop) {
+        animation: fadeIn 1s;
         width: 90%;
         padding: 100px 5% 30px;
         text-align: center;
@@ -108,15 +94,18 @@ $mobile: 600px;
       }
     }
     &--right {
+      animation: bounceIn 1s;
       width: 50%;
       padding: 0 5%;
       @media (max-width: $desktop) {
+        animation: fadeIn 1s;
         padding: 5%;
         width: 90%;
       }
     }
   }
   &__sellers {
+    animation: fadeIn 1s;
     padding: 50px 5%;
     position: relative;
     margin: 0 auto;

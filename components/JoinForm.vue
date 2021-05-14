@@ -1,0 +1,219 @@
+<template>
+  <div class="join-form">
+    <img class="join-form__logo" src="~/assets/images/popup-pink.png" />
+    <h3 v-if="showSuccess">Thanks for joining, we will contact you shorty</h3>
+    <div v-else>
+      <h3 class="join-form__title">About you</h3>
+      <h4 class="join-form__body">
+        Please fill in the details below and our team will be in touch soon.
+      </h4>
+      <h4 class="join-form__required">All fields are required*</h4>
+      <div class="join-form__half">
+        <text-input
+          title="First name"
+          class="join-form__half--field"
+          width="90%"
+          place-holder="Enter your first name..."
+          :is-required="true"
+          @inputValue="updateFirstName"
+        />
+        <text-input
+          title="Last name"
+          class="join-form__half--field"
+          width="90%"
+          place-holder="Enter your last name..."
+          :is-required="true"
+          @inputValue="updateLastName"
+        />
+      </div>
+      <div class="join-form__full"></div>
+      <text-input
+        title="Email"
+        class="join-form__full--field"
+        width="95%"
+        place-holder="Enter your email..."
+        :show-error="!isValidEmail && areFieldsPopulated"
+        :is-required="true"
+        @inputValue="updateEmail"
+      />
+      <text-input
+        title="Phone number"
+        class="join-form__full--field"
+        width="95%"
+        place-holder="Enter your phone number..."
+        :show-error="!isValidPhoneNumber && areFieldsPopulated"
+        :is-required="true"
+        @inputValue="updatePhoneNumber"
+      />
+      <text-input
+        title="Postcode"
+        class="join-form__full--field"
+        width="95%"
+        place-holder="Enter your postcode..."
+        :show-error="!isValidPostcode && areFieldsPopulated"
+        :is-required="true"
+        @inputValue="updatePostcode"
+      />
+      <drop-down
+        title="Cuisine"
+        class="join-form__full--field"
+        width="100%"
+        :options="productTypes"
+        :is-required="true"
+        @selectedValue="updateCuisine"
+      />
+      <dynamic-button
+        class="join-form__full--button"
+        width="100%"
+        text="Subscribe"
+        color="pink"
+        height="45px"
+        :disabled="!disableButton"
+        @clickEvent="composeEmail"
+      />
+    </div>
+  </div>
+</template>
+
+<script>
+import { mapActions } from 'vuex'
+export default {
+  name: 'JoinForm',
+  props: {
+    productTypes: {
+      type: Array,
+      default: () => [],
+      required: true,
+    },
+  },
+  data: () => ({
+    showPostcodeError: false,
+    firstName: '',
+    lastName: '',
+    email: '',
+    phoneNumber: '',
+    postcode: '',
+    cuisine: '',
+    showSuccess: false,
+  }),
+  computed: {
+    isValidPostcode() {
+      const postcodeRegEx = /[A-Z]{1,2}[0-9]{1,2} ?[0-9][A-Z]{2}/i
+      return postcodeRegEx.test(this.postcode)
+    },
+    isValidEmail() {
+      const emailRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+      return emailRegex.test(this.email)
+    },
+    isValidPhoneNumber() {
+      const phoneNumberRegex = /^(?:(?:00)?44|0)7(?:[45789]\d{2}|624)\d{6}$/
+      return phoneNumberRegex.test(this.phoneNumber)
+    },
+    areFieldsPopulated() {
+      return (
+        this.firstName !== '' &&
+        this.lastName !== '' &&
+        this.email !== '' &&
+        this.phoneNumber !== '' &&
+        this.postcode !== '' &&
+        this.cuisine !== ''
+      )
+    },
+    disableButton() {
+      return (
+        this.areFieldsPopulated &&
+        this.isValidPostcode &&
+        this.isValidEmail &&
+        this.isValidPhoneNumber
+      )
+    },
+  },
+  methods: {
+    ...mapActions(['sendEmail']),
+    updateFirstName(firstName) {
+      this.firstName = firstName
+    },
+    updateLastName(lastName) {
+      this.lastName = lastName
+    },
+    updateEmail(email) {
+      this.email = email
+    },
+    updatePhoneNumber(phoneNumber) {
+      this.phoneNumber = phoneNumber
+    },
+    updatePostcode(postcode) {
+      this.postcode = postcode
+    },
+    updateCuisine(cuisine) {
+      this.cuisine = cuisine
+    },
+    composeEmail() {
+      const emailInfo = {
+        firstName: this.firstName,
+        lastName: this.lastName,
+        email: this.email,
+        phoneNumber: this.phoneNumber,
+        postcode: this.postcode,
+        cuisine: this.cuisine,
+      }
+      this.sendEmail(emailInfo)
+        .then(() => this.showSuccess)
+        .catch((err) => console.log(err))
+    },
+  },
+}
+</script>
+
+<style lang="scss">
+$desktop: 1024px;
+$tablet: 768px;
+$mobile: 600px;
+
+.join-form {
+  background-color: var(--color-white-1);
+  border-radius: 5px;
+  padding: 30px;
+  -webkit-box-shadow: 0px 5px 5px 0px var(--color-grey-2);
+  -moz-box-shadow: 0px 5px 5px 0px var(--color-grey-2);
+  box-shadow: 0px 5px 5px 0px var(--color-grey-2);
+  &__logo {
+    width: 200px;
+    margin: 0 auto;
+    display: flex;
+  }
+  &__body {
+    color: var(--color-grey-1);
+    margin: 0 0 30px 0;
+  }
+  &__required {
+    color: var(--color-pink-1);
+    margin: 0 0 10px 0;
+  }
+  &__half,
+  &__full {
+    &--field {
+      margin-bottom: 20px;
+    }
+  }
+  &__half {
+    display: flex;
+    &--field {
+      width: 90%;
+      &:first-child {
+        margin-right: 5%;
+      }
+    }
+  }
+  &__full {
+    &--field {
+      width: 100%;
+    }
+  }
+  &__error {
+    color: var(--color-pink-1);
+    font-weight: 300;
+    margin-top: 10px;
+  }
+}
+</style>

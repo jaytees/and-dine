@@ -78,6 +78,7 @@ $mobile: 600px;
     padding: 0 2%;
     width: 40%;
     margin: 0;
+    transition: transform 0.2s;
     @media (max-width: $desktop) {
       padding: 0 2%;
       width: 40%;
@@ -90,6 +91,7 @@ $mobile: 600px;
     }
     &:hover {
       opacity: 0.9;
+      transform: scale(1.02);
     }
     @media (max-width: $tablet) {
       display: inline-block;
