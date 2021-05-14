@@ -112,7 +112,7 @@ export default {
       return this.chosenProduct.price * this.productQuantity
     },
     cartHasItems() {
-      return this.checkoutInfo.lineItems.length > 0
+      return this.checkoutInfo && this.checkoutInfo.lineItems.length > 0
     },
     storeNameCorrect() {
       return this.chosenStore === this.sellerById[0].sp_store_name
@@ -124,6 +124,7 @@ export default {
   methods: {
     ...mapMutations({
       setChosenSellerId: 'SET_CHOSEN_SELLER_ID',
+      setCartStatus: 'SET_CART_STATUS',
     }),
     ...mapActions(['addToCart', 'removeCartItems', 'setupCheckout']),
     parseString(string) {
@@ -138,6 +139,7 @@ export default {
     openProductModal(productInfo) {
       this.chosenProduct = productInfo
       this.showProductModal = true
+      this.setCartStatus(false)
     },
     closeProductModal() {
       this.showProductModal = false
@@ -150,8 +152,7 @@ export default {
       this.showStoreModal = false
       if (store) {
         this.removeCartItems(store)
-        this.setupCheckout()
-        this.addItem(product)
+        this.setupCheckout().then(() => this.addItem(product))
       }
     },
     updateQuantity(payload) {
@@ -161,12 +162,12 @@ export default {
       if (this.cartHasItems && !this.storeNameCorrect) {
         this.openStoreModal()
       } else {
-        this.closeProductModal()
         this.addToCart({
           name,
           quantity: this.productQuantity,
           store: this.sellerById[0].sp_store_name,
         })
+        this.closeProductModal()
       }
     },
   },

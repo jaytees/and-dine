@@ -3,6 +3,7 @@ export const state = () => ({
   sellers: false,
   chosenSellerId: false,
   chosenStore: false,
+  cartIsOpen: false,
   navigationItems: [
     { id: 0, name: 'index', value: '', link: '/' },
     { id: 1, name: 'about', value: 'ABOUT US', link: '/about' },
@@ -36,6 +37,9 @@ export const mutations = {
   },
   SET_CHOSEN_STORE(state, payload) {
     state.chosenStore = payload
+  },
+  SET_CART_STATUS(state, payload) {
+    state.cartIsOpen = payload
   },
 }
 

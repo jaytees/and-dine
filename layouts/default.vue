@@ -31,13 +31,8 @@ export default {
       .catch((err) => console.log(err))
   },
   fetchOnServer: true,
-  data() {
-    return {
-      cartIsOpen: false,
-    }
-  },
   computed: {
-    ...mapState(['navigationItems', 'checkoutInfo']),
+    ...mapState(['navigationItems', 'checkoutInfo', 'cartIsOpen']),
     ...mapGetters(['cartItemCount']),
   },
   async mounted() {
@@ -60,9 +55,10 @@ export default {
       setSellers: 'SET_SELLERS',
       setCheckoutInfo: 'SET_CHECKOUT_INFO',
       setChosenStore: 'SET_CHOSEN_STORE',
+      setCartStatus: 'SET_CART_STATUS',
     }),
     toggleCart() {
-      this.cartIsOpen = !this.cartIsOpen
+      this.setCartStatus(!this.cartIsOpen)
     },
   },
 }
