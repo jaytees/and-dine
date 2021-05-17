@@ -10,7 +10,6 @@
     ></div>
     <div class="seller-bio__profile-container">
       <h3>{{ sellerName }}</h3>
-      <h4>{{ productType }}</h4>
       <p>{{ sellerDescription }}</p>
     </div>
   </div>

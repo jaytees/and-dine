@@ -98,7 +98,7 @@ $mobile: 600px;
     }
 
     &--image-title {
-      margin: 15px 0 5px;
+      margin: 15px 0 0;
     }
     &--image-subtitle {
       margin: 0 0 10px;

@@ -1,5 +1,5 @@
 <template>
-  <section v-if="dataReady" class="seller">
+  <section v-if="sellerReady" class="seller">
     <div
       class="seller__hero"
       :style="`background-image: url(${sellerById[0].store_banner})`"
@@ -10,14 +10,13 @@
       class="seller__bio"
       :seller-logo="sellerById[0].store_logo"
       :seller-name="sellerById[0].sp_store_name"
-      :product-type="productsById[0].product_type"
       :seller-description="parseString(sellerById[0].description)"
     />
     <div class="seller__delivery">
       <h3>Delivery Information</h3>
       <p>Order by midnight on Wednesday for delivery Saturday</p>
     </div>
-    <div class="seller__products">
+    <div v-if="productsReady" class="seller__products">
       <image-list
         v-for="(product, index) in productsById"
         :key="`seller__${index}`"
@@ -103,8 +102,11 @@ export default {
   computed: {
     ...mapGetters(['sellerById', 'productsById', 'cartItemNames']),
     ...mapState(['checkoutInfo', 'shopifyProducts', 'products', 'chosenStore']),
-    dataReady() {
-      return this.productsById.length > 0 && this.sellerById.length > 0
+    productsReady() {
+      return this.productsById.length > 0
+    },
+    sellerReady() {
+      return this.sellerById.length > 0
     },
     overallPrice() {
       return this.chosenProduct.price * this.productQuantity

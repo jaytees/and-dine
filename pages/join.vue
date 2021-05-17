@@ -78,7 +78,7 @@ $mobile: 600px;
       .main-body {
         font-size: 24px;
         margin-top: 15px;
-        font-family: 'Circular', sans-serif;
+        font-family: 'Poppins', sans-serif;
         text-shadow: 2px 2px 8px var(--color-grey-1);
       }
     }

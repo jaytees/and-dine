@@ -88,14 +88,14 @@ $mobile: 600px;
       .main-body {
         font-size: 24px;
         margin-top: 15px;
-        font-family: 'Circular', sans-serif;
+        font-family: 'Poppins', sans-serif;
         text-shadow: 2px 2px 8px var(--color-grey-1);
       }
     }
     &--right {
       animation: fadeIn 0.5s;
       width: 50%;
-      padding: 0 5%;
+      padding: 5%;
       @media (max-width: $desktop) {
         padding: 5%;
         width: 90%;
