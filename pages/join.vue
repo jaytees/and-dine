@@ -40,7 +40,7 @@ export default {
 
 <style lang="scss">
 $desktop: 1024px;
-$desktop: 768px;
+$tablet: 768px;
 $mobile: 600px;
 
 .join {
@@ -59,11 +59,11 @@ $mobile: 600px;
       background-position: top;
     }
     &--right {
-      animation: bounceIn 1s;
+      animation: bounceIn 0.5s;
       width: 50%;
       padding: 5%;
       @media (max-width: $desktop) {
-        animation: fadeIn 1s;
+        animation: fadeIn 0.5s;
         width: 90%;
         padding: 100px 5% 30px;
         text-align: center;
@@ -83,11 +83,11 @@ $mobile: 600px;
       }
     }
     &--left {
-      animation: bounceIn 1s;
+      animation: bounceIn 0.5s;
       width: 50%;
       padding: 0 5%;
       @media (max-width: $desktop) {
-        animation: fadeIn 1s;
+        animation: fadeIn 0.5s;
         padding: 5%;
         width: 90%;
       }

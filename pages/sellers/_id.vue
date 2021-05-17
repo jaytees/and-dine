@@ -180,7 +180,7 @@ $mobile: 600px;
 .seller {
   &__hero {
     width: 100%;
-    animation: fadeIn 1s;
+    animation: fadeIn 0.5s;
     background-image: url('~assets/images/hero.jpg');
     background-size: cover;
     background-repeat: no-repeat;
@@ -203,7 +203,7 @@ $mobile: 600px;
   &__bio,
   &__products,
   &__delivery {
-    animation: fadeIn 1s;
+    animation: fadeIn 0.5s;
     padding: 50px 5% 0;
     position: relative;
     margin: 0 auto;

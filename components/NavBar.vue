@@ -122,7 +122,7 @@ $mobile: 600px;
   }
   .show-nav {
     display: block;
-    animation: fadeInDown 1s;
+    animation: fadeInDown 0.5s;
   }
   &__items {
     float: right;

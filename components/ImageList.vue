@@ -76,7 +76,7 @@ $mobile: 600px;
     float: left;
     position: relative;
     padding: 0 2%;
-    width: 40%;
+    width: 26%;
     margin: 0;
     transition: transform 0.2s;
     @media (max-width: $desktop) {
@@ -104,7 +104,7 @@ $mobile: 600px;
       margin: 0 0 10px;
     }
     &--background-image {
-      height: 400px;
+      height: 300px;
       width: 100%;
       background-position: center;
       background-size: cover;
