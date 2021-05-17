@@ -101,7 +101,7 @@ export default {
     appearance: none;
     padding: 0 10px;
     color: var(--color-grey-1);
-    font-family: 'Gotham-Black', sans-serif;
+    font-family: 'Circular', sans-serif;
   }
   &__title,
   &__error {

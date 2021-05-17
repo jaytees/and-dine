@@ -5,19 +5,13 @@ $mobile: 600px;
 @font-face {
   font-family: 'Circular';
   src: local('Circular'),
-    url(~assets/fonts/circular/CircularStd-Medium.otf) format('otf');
+    url(~assets/fonts/circular/CircularStd-Black.otf) format('otf');
 }
 
 @font-face {
   font-family: 'Gotham-Ultra';
   src: local('Gotham-Ultra'),
     url(~assets/fonts/gotham/Gotham-Ultra.otf) format('otf');
-}
-
-@font-face {
-  font-family: 'Gotham-Black';
-  src: local('Gotham-Black'),
-    url(~assets/fonts/gotham/Gotham-Black.ttf) format('truetype');
 }
 
 html {
@@ -38,7 +32,7 @@ html {
 
   background-color: var(--color-white-1);
   position: initial;
-  font-family: 'Gotham-Black', sans-serif;
+  font-family: 'Circular', sans-serif;
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
   -moz-osx-font-smoothing: grayscale;
@@ -53,9 +47,9 @@ body {
 
 h1 {
   font-size: 64px;
-  font-weight: 600;
+  font-weight: 900;
   margin: 0 0 10px 0;
-  font-family: 'Gotham-Black', sans-serif;
+  font-family: 'Circular', sans-serif;
   text-shadow: 2px 2px 8px var(--color-grey-1);
 }
 
@@ -63,21 +57,21 @@ h2 {
   color: var(--color-pink-1);
   font-size: 34px;
   margin: 10px 0;
-  font-family: 'Gotham-Black', sans-serif;
+  font-family: 'Circular', sans-serif;
 }
 
 h3 {
   color: var(--color-pink-1);
   font-size: 20px;
   margin: 0 0 5px 0;
-  font-family: 'Gotham-Black', sans-serif;
+  font-family: 'Circular', sans-serif;
 }
 
 h4 {
   color: var(--color-grey-1);
   font-size: 16px;
   margin: 0 0 10px 0;
-  font-family: 'Gotham-Black', sans-serif;
+  font-family: 'Circular', sans-serif;
 }
 
 p {
@@ -85,14 +79,14 @@ p {
   font-weight: 300;
   color: var(--color-grey-1);
   margin: 0;
-  font-family: 'Gotham-Black', sans-serif;
+  font-family: 'Circular', sans-serif;
 }
 
 button,
 a {
   font-weight: 300;
   margin: 0;
-  font-family: 'Gotham-Black', sans-serif;
+  font-family: 'Circular', sans-serif;
 }
 
 .container {
