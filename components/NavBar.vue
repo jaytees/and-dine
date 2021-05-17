@@ -230,7 +230,7 @@ $mobile: 600px;
         background-color: var(--color-pink-1);
         border-radius: 50%;
         border: 2px solid var(--color-white-1);
-        width: 24px;
+        width: 20px;
         text-align: center;
         font-size: 15px;
       }

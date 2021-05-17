@@ -106,7 +106,7 @@ $mobile: 600px;
   @media (max-width: $desktop) {
     animation: slideInRight 0.5s;
     width: 90%;
-    padding: 0 5%;
+    padding: 5%;
   }
   &__title {
     margin: 20px 0;

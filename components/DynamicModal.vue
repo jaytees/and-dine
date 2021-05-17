@@ -84,7 +84,7 @@ $mobile: 600px;
       animation: fadeIn 0.5s;
       width: 90%;
       padding: 5%;
-      height: 100%;
+      height: 120%;
       margin: 0;
     }
   }
