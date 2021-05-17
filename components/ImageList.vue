@@ -125,7 +125,7 @@ $mobile: 600px;
       background-position: center;
       background-size: cover;
       bottom: 60px;
-      left: 80%;
+      left: 75%;
       background-color: var(--color-purple-1);
       width: 100px;
       height: 100px;
@@ -136,7 +136,7 @@ $mobile: 600px;
         left: 70%;
       }
       @media (max-width: $tablet) {
-        left: 70%;
+        left: 75%;
       }
     }
   }

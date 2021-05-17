@@ -94,7 +94,7 @@ export default {
     cursor: text;
     position: relative;
     display: block;
-    height: 42px;
+    height: 47px;
     line-height: 3;
     border-radius: 5px;
     background-color: var(--color-white-1);

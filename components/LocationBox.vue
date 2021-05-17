@@ -19,7 +19,7 @@
         width="50px"
         icon="search"
         color="pink"
-        height="45px"
+        height="50px"
         @clickEvent="addPostcodeCookie"
       />
     </div>

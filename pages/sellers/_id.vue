@@ -89,6 +89,7 @@
 </template>
 
 <script>
+import { decode } from 'html-entities'
 import { mapMutations, mapGetters, mapState, mapActions } from 'vuex'
 export default {
   name: 'Seller',
@@ -132,7 +133,7 @@ export default {
         const noTags = string.replace(/<[^>]+>/g, '')
         const noQuotes = noTags.replace(/[[\]"]+/g, '', '')
         const addSpaces = noQuotes.replace(/,/g, ', ')
-        return addSpaces.replace(/&nbsp;/g, '')
+        return decode(addSpaces.replace(/&nbsp;/g, ''))
       }
       return 'Coming soon!'
     },
@@ -199,6 +200,7 @@ $mobile: 600px;
       margin: 0 auto;
       @media (max-width: $tablet) {
         text-align: center;
+        font-size: 46px;
       }
     }
   }
@@ -214,8 +216,9 @@ $mobile: 600px;
   &__delivery {
     width: 80%;
     @media (max-width: $tablet) {
-      display: inline;
+      display: block;
       text-align: center;
+      padding: 15px 35px 0;
     }
   }
   &__modal {
@@ -241,7 +244,6 @@ $mobile: 600px;
       @media (max-width: $tablet) {
         display: block;
         text-align: center;
-        margin-top: 30px;
       }
       .quantity-operator {
         @media (max-width: $tablet) {
@@ -251,6 +253,7 @@ $mobile: 600px;
       .dynamic-button {
         position: absolute;
         right: 20px;
+        bottom: 20px;
         @media (max-width: $tablet) {
           position: inherit;
           margin: 20px;

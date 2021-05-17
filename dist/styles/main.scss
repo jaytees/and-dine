@@ -4,6 +4,11 @@ $mobile: 600px;
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;700;900&display=swap');
 
+html,
+body {
+  overflow-x: hidden;
+}
+
 html {
   --color-white-1: #ffffff;
   --color-black-1: #3b444b;
@@ -46,7 +51,7 @@ h1 {
 h2 {
   color: var(--color-pink-1);
   font-size: 34px;
-  font-weight: 600;
+  font-weight: 900;
   margin: 10px 0;
   font-family: 'Poppins', sans-serif;
 }

@@ -60,6 +60,7 @@ $mobile: 600px;
   }
   &__backdrop {
     position: fixed;
+    overflow: unset;
     top: 0;
     right: 0;
     bottom: 0;
@@ -103,7 +104,7 @@ $mobile: 600px;
     margin-bottom: 2%;
   }
   &__body {
-    overflow: auto;
+    overflow: unset;
     display: flex;
     flex-direction: column;
     align-items: stretch;

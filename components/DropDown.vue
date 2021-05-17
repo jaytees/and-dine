@@ -84,7 +84,7 @@ export default {
     cursor: pointer;
     position: relative;
     display: block;
-    height: 45px;
+    height: 50px;
     line-height: 3;
     border-radius: 5px;
     background-color: var(--color-white-1);

@@ -56,7 +56,7 @@ $mobile: 600px;
   svg {
     color: var(--color-pink-1);
     cursor: pointer;
-    font-size: 30px;
+    font-size: 35px;
     &:hover {
       opacity: 0.9;
     }

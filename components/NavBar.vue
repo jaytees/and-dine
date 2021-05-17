@@ -6,8 +6,8 @@
     <nuxt-link class="navbar__logo-white" to="/">
       <img src="~/assets/images/logo.png" />
     </nuxt-link>
-    <div class="navbar__items--icons-mobile">
-      <fa :icon="['fas', 'shopping-cart']" @click="returnCartClick" />
+    <div class="navbar__items--icons-mobile" @click="returnCartClick">
+      <fa :icon="['fas', 'shopping-cart']" />
       <h3 v-if="showCount">{{ itemCount }}</h3>
       <fa
         class="burger"
@@ -34,8 +34,8 @@
           </nuxt-link>
         </div>
       </li>
-      <li class="navbar__items--icons-desktop">
-        <fa :icon="['fas', 'shopping-cart']" @click="returnCartClick" />
+      <li class="navbar__items--icons-desktop" @click="returnCartClick">
+        <fa :icon="['fas', 'shopping-cart']" />
         <h3 v-if="showCount">{{ itemCount }}</h3>
       </li>
     </ul>
@@ -158,7 +158,6 @@ $mobile: 600px;
         text-decoration: none;
         color: var(--color-pink-1);
         font-size: 16px;
-        font-weight: 600;
         cursor: pointer;
         &:hover {
           color: var(--color-white-1);
@@ -169,6 +168,16 @@ $mobile: 600px;
       }
     }
     &--icons-desktop {
+      &:hover {
+        opacity: 0.9;
+        svg {
+          color: var(--color-white-1);
+        }
+        h3 {
+          background-color: var(--color-white-1);
+          color: var(--color-pink-1);
+        }
+      }
       @media (max-width: $tablet) {
         display: none;
       }
@@ -178,24 +187,31 @@ $mobile: 600px;
         margin: 0 5px;
         font-size: 24px;
         color: var(--color-pink-1);
-        &:hover {
-          color: var(--color-white-1);
-          opacity: 0.9;
-        }
       }
       h3 {
         position: absolute;
         top: 27px;
-        right: 9.5%;
-        background-color: var(--color-white-1);
+        right: 9%;
+        background-color: var(--color-pink-1);
+        color: var(--color-white-1);
         border-radius: 50%;
-        width: 17px;
+        width: 24px;
         text-align: center;
         border: 2px solid;
         font-size: 15px;
       }
     }
     &--icons-mobile {
+      &:hover {
+        opacity: 0.9;
+        svg {
+          color: var(--color-pink-1);
+        }
+        h3 {
+          background-color: var(--color-pink-1);
+          color: var(--color-white-1);
+        }
+      }
       @media (min-width: $tablet) {
         display: none;
       }
@@ -205,19 +221,16 @@ $mobile: 600px;
         margin: 0 5px;
         font-size: 24px;
         color: var(--color-pink-1);
-        &:hover {
-          opacity: 0.9;
-        }
       }
       h3 {
         position: absolute;
         top: 12px;
-        right: 14%;
+        right: 12%;
         color: var(--color-white-1);
         background-color: var(--color-pink-1);
         border-radius: 50%;
         border: 2px solid var(--color-white-1);
-        width: 17px;
+        width: 24px;
         text-align: center;
         font-size: 15px;
       }

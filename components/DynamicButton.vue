@@ -88,6 +88,7 @@ export default {
   border-radius: 5px;
   border: none;
   text-align: center;
+  line-height: 20px;
   cursor: pointer;
   transition: transform 0.2s;
   &:hover {

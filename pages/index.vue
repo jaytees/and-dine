@@ -72,7 +72,7 @@ $mobile: 600px;
     &--left {
       animation: fadeIn 0.5s;
       width: 50%;
-      padding: 5%;
+      padding: 0 5%;
       @media (max-width: $desktop) {
         width: 90%;
         padding: 100px 5% 30px;
@@ -95,9 +95,9 @@ $mobile: 600px;
     &--right {
       animation: fadeIn 0.5s;
       width: 50%;
-      padding: 5%;
+      padding: 0 5%;
       @media (max-width: $desktop) {
-        padding: 5%;
+        padding: 0 5%;
         width: 90%;
       }
     }

@@ -67,7 +67,7 @@
         width="100%"
         text="Subscribe"
         color="pink"
-        height="45px"
+        height="50px"
         :disabled="!disableButton"
         @clickEvent="composeEmail"
       />
