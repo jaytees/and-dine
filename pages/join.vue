@@ -2,7 +2,9 @@
   <section v-if="productTypeNames" class="join">
     <div class="join__hero">
       <div class="join__hero--left">
-        <join-form :product-types="productTypeNames" />
+        <client-only>
+          <join-form :product-types="productTypeNames" />
+        </client-only>
       </div>
       <div class="join__hero--right">
         <h1 class="main-title">Cook with us.</h1>

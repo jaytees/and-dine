@@ -94,6 +94,8 @@ export default {
   //   },
   // },
 
+  // serverMiddleware: [{ path: '/api/subscribe', handler: '~/api/index.js' }],
+
   modules: [
     '@nuxtjs/axios',
     '@nuxtjs/proxy',
