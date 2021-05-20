@@ -1,7 +1,7 @@
 <template>
   <div class="join-form">
     <img class="join-form__logo" src="~/assets/images/popup-pink.png" />
-    <h3 v-if="showSuccess">Thanks for joining, we will contact you shorty</h3>
+    <h3 v-if="response.message">{{ response.message }}</h3>
     <div v-else>
       <h3 class="join-form__title">About you</h3>
       <h4 class="join-form__body">
@@ -69,7 +69,7 @@
         color="pink"
         height="50px"
         :disabled="!disableButton"
-        @clickEvent="composeEmail"
+        @clickEvent="subscribe"
       />
     </div>
   </div>
@@ -87,36 +87,40 @@ export default {
     },
   },
   data: () => ({
-    showPostcodeError: false,
-    firstName: '',
-    lastName: '',
-    email: '',
-    phoneNumber: '',
-    postcode: '',
-    cuisine: '',
-    showSuccess: false,
+    formData: {
+      firstName: '',
+      lastName: '',
+      email: '',
+      phoneNumber: '',
+      postcode: '',
+      cuisine: '',
+    },
+    response: {
+      status: '',
+      message: false,
+    },
   }),
   computed: {
     isValidPostcode() {
       const postcodeRegEx = /[A-Z]{1,2}[0-9]{1,2} ?[0-9][A-Z]{2}/i
-      return postcodeRegEx.test(this.postcode)
+      return postcodeRegEx.test(this.formData.postcode)
     },
     isValidEmail() {
       const emailRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-      return emailRegex.test(this.email)
+      return emailRegex.test(this.formData.email)
     },
     isValidPhoneNumber() {
       const phoneNumberRegex = /^(?:(?:00)?44|0)7(?:[45789]\d{2}|624)\d{6}$/
-      return phoneNumberRegex.test(this.phoneNumber)
+      return phoneNumberRegex.test(this.formData.phoneNumber)
     },
     areFieldsPopulated() {
       return (
-        this.firstName !== '' &&
-        this.lastName !== '' &&
-        this.email !== '' &&
-        this.phoneNumber !== '' &&
-        this.postcode !== '' &&
-        this.cuisine !== ''
+        this.formData.firstName !== '' &&
+        this.formData.lastName !== '' &&
+        this.formData.email !== '' &&
+        this.formData.phoneNumber !== '' &&
+        this.formData.postcode !== '' &&
+        this.formData.cuisine !== ''
       )
     },
     disableButton() {
@@ -131,22 +135,37 @@ export default {
   methods: {
     ...mapActions(['sendEmail']),
     updateFirstName(firstName) {
-      this.firstName = firstName
+      this.formData.firstName = firstName
     },
     updateLastName(lastName) {
-      this.lastName = lastName
+      this.formData.lastName = lastName
     },
     updateEmail(email) {
-      this.email = email
+      this.formData.email = email
     },
     updatePhoneNumber(phoneNumber) {
-      this.phoneNumber = phoneNumber
+      this.formData.phoneNumber = phoneNumber
     },
     updatePostcode(postcode) {
-      this.postcode = postcode
+      this.formData.postcode = postcode
     },
     updateCuisine(cuisine) {
-      this.cuisine = cuisine
+      this.formData.cuisine = cuisine
+    },
+    async subscribe() {
+      const formData = { ...this.formData }
+      try {
+        const { data, status } = await this.$axios.post(
+          '/api/subscribe',
+          formData
+        )
+        this.response.status = status
+        this.response.message = `Thanks, ${data.formData.email} is subscribed!`
+        this.form = { ...this.cachedForm }
+        this.$refs.subscribe.reset()
+      } catch (err) {
+        console.log(err)
+      }
     },
     composeEmail() {
       const emailInfo = {

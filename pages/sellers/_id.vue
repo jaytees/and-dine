@@ -21,7 +21,7 @@
         v-for="(product, index) in productsById"
         :key="`seller__${index}`"
         :image-title="product.product_name"
-        :image-subtitle="`£${product.price}`"
+        :image-subtitle="`£${parseFloat(product.price).toFixed(2)}`"
         :background-image="product.images[0].img_lg"
         @clickEvent="openProductModal(product)"
       />
@@ -56,7 +56,7 @@
           />
           <dynamic-button
             color="pink"
-            :text="`Add to cart - £${overallPrice}`"
+            :text="`Add to cart - £${parseFloat(overallPrice).toFixed(2)}`"
             @clickEvent="addItem(chosenProduct.product_name)"
           />
         </div>
@@ -110,7 +110,9 @@ export default {
       return this.sellerById.length > 0
     },
     overallPrice() {
-      return this.chosenProduct.price * this.productQuantity
+      return (
+        parseFloat(this.chosenProduct.price).toFixed(2) * this.productQuantity
+      )
     },
     cartHasItems() {
       return this.checkoutInfo && this.checkoutInfo.lineItems.length > 0

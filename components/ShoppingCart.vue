@@ -33,9 +33,10 @@
           />
         </div>
       </div>
-      <h3 class="shopping-cart__total">
-        Total: £{{ checkoutInfo.totalPrice }}
+      <h3 v-if="isSmallOrder" class="shopping-cart__total">
+        Small order fee: £{{ smallOrderFee }}
       </h3>
+      <h3 class="shopping-cart__total">Total: £{{ totalWithFee }}</h3>
       <dynamic-button
         color="pink"
         text="Checkout"
@@ -59,14 +60,36 @@ export default {
     showItems() {
       return this.checkoutInfo && this.checkoutInfo.lineItems.length > 0
     },
+    isSmallOrder() {
+      return this.checkoutInfo.totalPrice < 15
+    },
+    smallOrderFee() {
+      return (
+        this.isSmallOrder &&
+        parseFloat(15 - this.checkoutInfo.totalPrice).toFixed(2)
+      )
+    },
+    totalWithFee() {
+      if (this.isSmallOrder)
+        return (
+          parseFloat(this.checkoutInfo.totalPrice) +
+          parseFloat(this.smallOrderFee)
+        ).toFixed(2)
+      return this.checkoutInfo.totalPrice
+    },
   },
   methods: {
-    ...mapActions(['removeFromCart', 'updateItemQuantity']),
+    ...mapActions(['removeFromCart', 'updateItemQuantity', 'addDiscount']),
     returnCartClick() {
       this.$emit('returnCartClick', true)
     },
-    goToCheckout() {
-      location.replace(this.checkoutInfo.webUrl)
+    async goToCheckout() {
+      const payload = {
+        checkoutId: this.checkoutInfo.id,
+        discountCode: 'small-order',
+      }
+      this.isSmallOrder && this.addDiscount(payload)
+      await location.replace(this.checkoutInfo.webUrl)
     },
     removeItem(itemId) {
       this.removeFromCart({

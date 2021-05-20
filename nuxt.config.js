@@ -44,7 +44,7 @@ export default {
   env: {
     STOREFRONT_URL:
       process.env.NODE_ENV !== 'production'
-        ? '/api/proxy/'
+        ? 'https://mvmapi.webkul.com/api/v2/'
         : 'https://mvmapi.webkul.com/api/v2/',
     STOREFRONT_REFRESH_TOKEN:
       'ZDgyMmE2NTk5NzNlZDgyMDk4MmNlMTZjNGUxODg2ZWU3ZGQzZjg1ODgyNTZiM2JjMGEyMGYzNWUzYjVkNDQ3MA',
@@ -55,6 +55,11 @@ export default {
     SHOPIFY_DOMAIN: 'anddine.myshopify.com',
     SHOPIFY_ACCESS_TOKEN: 'd4ba832cfe834593d2b1e99447a4c3f4',
     GOOGLE_MAPS_KEY: 'AIzaSyAPy8EG0Vnj9VQX59FVLOc9abCLOx4vaHk',
+    MAILCHIMP_API_KEY: '02d02a91ab778f5992225144904ec65f-us1',
+    MAILCHIMP_CLIENT_ID: '579802540657',
+    MAILCHIMP_CLIENT_SECRET:
+      '6f6e7d8508b0805c61462bc9a371d5512383a9e3d66fabbe5b',
+    MAILCHIMP_AUDIENCE_ID: '5c8512abdc',
   },
 
   generate: {
@@ -63,31 +68,33 @@ export default {
 
   axios: {
     proxy: false,
-    proxyHeaders: true,
+    proxyHeaders: false,
     baseURL:
       process.env.NODE_ENV !== 'production'
         ? 'http://localhost:3000'
         : 'https://develop.d2nz46kp2z46p7.amplifyapp.com',
-    headers: {
-      common: {
-        Accept: 'application/json, text/plain, */*',
-      },
-      delete: {},
-      get: {},
-      head: {},
-      post: {},
-      put: {},
-      patch: {},
-    },
+    // headers: {
+    //   common: {
+    //     Accept: 'application/json, text/plain, */*',
+    //   },
+    //   delete: {},
+    //   get: {},
+    //   head: {},
+    //   post: {},
+    //   put: {},
+    //   patch: {},
+    // },
   },
 
-  proxy: {
-    '/api/proxy/': {
-      target: 'https://mvmapi.webkul.com/api/v2/',
-      pathRewrite: { '^/api/proxy/': '' },
-      changeOrigin: true,
-    },
-  },
+  // proxy: {
+  //   '/api/proxy/': {
+  //     target: 'https://mvmapi.webkul.com/api/v2/',
+  //     pathRewrite: { '^/api/proxy/': '' },
+  //     changeOrigin: true,
+  //   },
+  // },
+
+  serverMiddleware: [{ path: '/api/subscribe', handler: '~/api/mailchimp.js' }],
 
   modules: [
     '@nuxtjs/axios',

@@ -97,6 +97,14 @@ export const actions = {
         commit('SET_CHECKOUT_INFO', checkout)
       })
   },
+  async addDiscount({ commit }, payload) {
+    debugger
+    await this.$shopify.checkout
+      .addDiscount(payload.checkoutId, payload.discountCode)
+      .then((checkout) => {
+        commit('SET_CHECKOUT_INFO', checkout)
+      })
+  },
   async sendEmail(info) {
     await this.$axios.$post('/mail/send', {
       from: info.name,

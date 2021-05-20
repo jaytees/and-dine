@@ -16,7 +16,7 @@
         <nuxt-link :to="`/sellers/${seller.id}`">
           <image-list
             :image-title="seller.sp_store_name"
-            :image-subtitle="seller.city"
+            :image-subtitle="getObjVal(seller.custom_fields)"
             :profile-image="seller.store_logo"
             :background-image="seller.shop_logo"
           />
@@ -34,6 +34,7 @@ export default {
   data: () => ({
     showPostcodeError: false,
     postcodeValue: '',
+    cuisine: '12485',
   }),
   computed: {
     ...mapState(['sellers']),
@@ -41,6 +42,10 @@ export default {
   methods: {
     goToPage(link) {
       this.$router.push(`sellers/${link.toString()}`)
+    },
+    getObjVal(obj) {
+      const parsed = JSON.parse(obj)
+      return obj && parsed['12485'].value
     },
   },
 }

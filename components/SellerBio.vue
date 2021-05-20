@@ -32,8 +32,8 @@ export default {
     },
     productType: {
       type: String,
-      default: '',
-      required: true,
+      default: 'Food',
+      required: false,
     },
     sellerDescription: {
       type: String,

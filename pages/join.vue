@@ -59,7 +59,7 @@ $mobile: 600px;
       background-position: top;
     }
     &--right {
-      animation: bounceIn 0.5s;
+      animation: fadeIn 0.5s;
       width: 50%;
       padding: 0 5%;
       @media (max-width: $desktop) {
