@@ -4,6 +4,7 @@
     class="dynamic-slot"
     :href="href"
     :class="color"
+    :type="submit ? 'submit' : 'button'"
     @click="!disabled && returnClick()"
   >
     <slot name="button-body" />
@@ -13,6 +14,7 @@
     :style="`width: ${width}; height:${height}`"
     class="dynamic-button"
     :href="href"
+    :type="submit ? 'submit' : 'button'"
     :class="disabled ? 'disabled' : color"
     @click="!disabled && returnClick()"
   >
@@ -61,6 +63,11 @@ export default {
       required: false,
     },
     disabled: {
+      type: Boolean,
+      default: false,
+      required: false,
+    },
+    submit: {
       type: Boolean,
       default: false,
       required: false,

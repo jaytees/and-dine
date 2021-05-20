@@ -2,30 +2,28 @@
   <div class="join-form">
     <img class="join-form__logo" src="~/assets/images/popup-pink.png" />
     <h3 v-if="response.message">{{ response.message }}</h3>
-    <div v-else>
+    <form v-else @submit.prevent="subscribe()">
       <h3 class="join-form__title">About you</h3>
       <h4 class="join-form__body">
         Please fill in the details below and our team will be in touch soon.
       </h4>
       <h4 class="join-form__required">All fields are required*</h4>
-      <div class="join-form__half">
-        <text-input
-          title="First name"
-          class="join-form__half--field"
-          width="90%"
-          place-holder="Enter your first name..."
-          :is-required="true"
-          @inputValue="updateFirstName"
-        />
-        <text-input
-          title="Last name"
-          class="join-form__half--field"
-          width="90%"
-          place-holder="Enter your last name..."
-          :is-required="true"
-          @inputValue="updateLastName"
-        />
-      </div>
+      <text-input
+        title="First name"
+        class="join-form__full--field"
+        width="95%"
+        place-holder="Enter your first name..."
+        :is-required="true"
+        @inputValue="updateFirstName"
+      />
+      <text-input
+        title="Last name"
+        class="join-form__full--field"
+        width="95%"
+        place-holder="Enter your last name..."
+        :is-required="true"
+        @inputValue="updateLastName"
+      />
       <div class="join-form__full"></div>
       <text-input
         title="Email"
@@ -68,10 +66,10 @@
         text="Subscribe"
         color="pink"
         height="50px"
+        :submit="true"
         :disabled="!disableButton"
-        @clickEvent="subscribe"
       />
-    </div>
+    </form>
   </div>
 </template>
 
@@ -167,19 +165,19 @@ export default {
         console.log(err)
       }
     },
-    composeEmail() {
-      const emailInfo = {
-        firstName: this.firstName,
-        lastName: this.lastName,
-        email: this.email,
-        phoneNumber: this.phoneNumber,
-        postcode: this.postcode,
-        cuisine: this.cuisine,
-      }
-      this.sendEmail(emailInfo)
-        .then(() => this.showSuccess)
-        .catch((err) => console.log(err))
-    },
+    // composeEmail() {
+    //   const emailInfo = {
+    //     firstName: this.firstName,
+    //     lastName: this.lastName,
+    //     email: this.email,
+    //     phoneNumber: this.phoneNumber,
+    //     postcode: this.postcode,
+    //     cuisine: this.cuisine,
+    //   }
+    //   this.sendEmail(emailInfo)
+    //     .then(() => this.showSuccess)
+    //     .catch((err) => console.log(err))
+    // },
   },
 }
 </script>
