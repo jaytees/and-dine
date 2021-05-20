@@ -53,6 +53,7 @@ export default {
     addPostcodeCookie() {
       if (this.isValidPostcode && this.isPostcodePopulated) {
         this.$cookies.set('customer_location', this.postcodeValue)
+        this.$emit('postcodeAdded', true)
         // const autocomplete = new this.$google.maps.places.Autocomplete(
         //   this.inputValue,
         //   {

@@ -1,19 +1,30 @@
 <template>
   <section class="home">
     <div class="home__hero">
-      <div class="home__hero--left fadeInDown">
+      <div class="home__hero--left">
         <h1 class="main-title">Real people, real food.</h1>
         <h3 class="main-body">
           A new way to experience authentic home cooking.
         </h3>
       </div>
-      <div class="home__hero--right fadeInDown">
-        <location-box />
+      <div class="home__hero--right">
+        <location-box
+          :class="poscodeHighlight && 'highlight'"
+          @postcodeAdded="removeHighlight"
+        />
       </div>
     </div>
     <div class="home__sellers">
       <div v-for="(seller, index) in sellers" :key="`seller__${index}`">
-        <nuxt-link :to="`/sellers/${seller.id}`">
+        <div v-if="!postcodeValue" @click="scrollToTop">
+          <image-list
+            :image-title="seller.sp_store_name"
+            :image-subtitle="getObjVal(seller.custom_fields)"
+            :profile-image="seller.store_logo"
+            :background-image="seller.shop_logo"
+          />
+        </div>
+        <nuxt-link v-else :to="`/sellers/${seller.id}`">
           <image-list
             :image-title="seller.sp_store_name"
             :image-subtitle="getObjVal(seller.custom_fields)"
@@ -30,14 +41,17 @@
 import { mapState } from 'vuex'
 export default {
   name: 'Home',
-  transition: 'fade-enter',
   data: () => ({
     showPostcodeError: false,
-    postcodeValue: '',
+    postcodeValue: false,
     cuisine: '12485',
+    poscodeHighlight: false,
   }),
   computed: {
     ...mapState(['sellers']),
+  },
+  mounted() {
+    this.postcodeValue = this.$cookies.get('customer_location')
   },
   methods: {
     goToPage(link) {
@@ -46,6 +60,20 @@ export default {
     getObjVal(obj) {
       const parsed = JSON.parse(obj)
       return obj && parsed['12485'].value
+    },
+    scrollToTop() {
+      this.poscodeHighlight = true
+      window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: 'smooth',
+      })
+    },
+    removeHighlight() {
+      if (this.$cookies.get('customer_location')) {
+        this.poscodeHighlight = false
+        this.postcodeValue = this.$cookies.get('customer_location')
+      }
     },
   },
 }
@@ -104,6 +132,11 @@ $mobile: 600px;
       @media (max-width: $desktop) {
         padding: 0 5%;
         width: 90%;
+      }
+      .highlight {
+        animation: bounceIn 1.5s;
+        border-radius: 5px;
+        border: 4px solid var(--color-pink-1);
       }
     }
   }

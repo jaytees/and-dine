@@ -1,14 +1,15 @@
 import express from 'express'
 import Mailchimp from 'mailchimp-api-v3'
 
-const apiKey = '02d02a91ab778f5992225144904ec65f-us1'
-const audienceId = '5c8512abdc'
+const apiKey = process.env.MAILCHIMP_API_KEY
+const audienceId = process.env.MAILCHIMP_AUDIENCE_KEY
 const mailchimp = new Mailchimp(apiKey)
 
 const app = express()
 app.use(express.json())
 
 app.post('/subscribe', async (req, res) => {
+  // eslint-disable-next-line
   const { email: email_address } = req.body
   try {
     const response = await mailchimp.request({
