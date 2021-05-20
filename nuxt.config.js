@@ -94,8 +94,6 @@ export default {
   //   },
   // },
 
-  serverMiddleware: [{ path: '/api/subscribe', handler: '~/api/mailchimp.js' }],
-
   modules: [
     '@nuxtjs/axios',
     '@nuxtjs/proxy',
