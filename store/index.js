@@ -98,7 +98,6 @@ export const actions = {
       })
   },
   async addDiscount({ commit }, payload) {
-    debugger
     await this.$shopify.checkout
       .addDiscount(payload.checkoutId, payload.discountCode)
       .then((checkout) => {

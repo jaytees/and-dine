@@ -1,30 +1,32 @@
 import express from 'express'
 import Mailchimp from 'mailchimp-api-v3'
 
-const API_KEY = '02d02a91ab778f5992225144904ec65f-us1'
-const AUDIENCE_ID = '5c8512abdc'
-const mailchimp = new Mailchimp(API_KEY)
+const apiKey = '02d02a91ab778f5992225144904ec65f-us1'
+const audienceId = '5c8512abdc'
+const mailchimp = new Mailchimp(apiKey)
 
 const app = express()
 app.use(express.json())
 
 app.post('/subscribe', async (req, res) => {
-  const { email } = req.body
-
+  const { email: email_address } = req.body
   try {
     const response = await mailchimp.request({
       method: 'post',
-      path: `/lists/${AUDIENCE_ID}/members`,
+      path: `/lists/${audienceId}/members`,
       body: {
-        email_address: email,
+        email_address,
         status: 'subscribed',
       },
     })
-    console.log(response)
-    res.status(response.statusCode).json(response.status)
-  } catch (error) {
-    res.status(error.status).send(error)
+    const { _links, ...result } = response
+    res.status(result.statusCode).json(result)
+  } catch (err) {
+    res.status(err.status).send(err.detail)
   }
 })
 
-module.exports = app
+export default {
+  path: '/api',
+  handler: app,
+}

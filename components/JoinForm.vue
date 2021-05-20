@@ -158,9 +158,7 @@ export default {
           formData
         )
         this.response.status = status
-        this.response.message = `Thanks, ${data.formData.email} is subscribed!`
-        this.form = { ...this.cachedForm }
-        this.$refs.subscribe.reset()
+        this.response.message = `Thanks, ${data.email_address} is subscribed!`
       } catch (err) {
         console.log(err)
       }
