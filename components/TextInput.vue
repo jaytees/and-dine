@@ -5,6 +5,7 @@
       <p v-if="isRequired">*</p></span
     >
     <input
+      :id="dynamicId"
       v-model="inputValue"
       :style="`width: ${width}`"
       class="text-container__input"
@@ -23,6 +24,11 @@
 export default {
   namme: 'TextInput',
   props: {
+    dynamicId: {
+      type: String,
+      default: '',
+      required: false,
+    },
     value: {
       type: String,
       default: '',

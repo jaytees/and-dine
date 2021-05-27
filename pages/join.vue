@@ -1,10 +1,8 @@
 <template>
-  <section v-if="productTypeNames" class="join">
+  <section class="join">
     <div class="join__hero">
       <div class="join__hero--left">
-        <client-only>
-          <join-form :product-types="productTypeNames" />
-        </client-only>
+        <join-form />
       </div>
       <div class="join__hero--right">
         <h1 class="main-title">Cook with us.</h1>
@@ -20,23 +18,6 @@
 <script>
 export default {
   name: 'Join',
-  async fetch() {
-    await this.$axios
-      .get(`${process.env.STOREFRONT_URL}products/types.json`, {
-        headers: {
-          Authorization: process.env.STOREFRONT_BEARER,
-        },
-      })
-      .then(
-        (res) =>
-          (this.productTypeNames = res.data.type.map((type) => type.type_name))
-      )
-      .catch((err) => console.log(err))
-  },
-  fetchOnServer: true,
-  data: () => ({
-    productTypeNames: false,
-  }),
 }
 </script>
 

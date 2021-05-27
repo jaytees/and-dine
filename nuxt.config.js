@@ -7,7 +7,12 @@ export default {
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'description', name: 'description', content: '' },
     ],
-    script: [],
+    script: [
+      {
+        src: 'https://code.jquery.com/jquery-3.3.1.slim.min.js',
+        type: 'text/javascript',
+      },
+    ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: 'favicon.ico' }],
   },
 
@@ -18,6 +23,7 @@ export default {
   plugins: [
     { src: '~/plugins/font-awesome', ssr: false },
     { src: '~/plugins/vue-meta', ssr: false },
+    { src: '~/plugins/vue-friendly-iframe', ssr: false },
   ],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)

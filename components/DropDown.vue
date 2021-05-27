@@ -5,6 +5,7 @@
       <p v-if="isRequired">*</p></span
     >
     <select
+      :id="dynamicId"
       v-model="selectedValue"
       :style="`width: ${width}`"
       class="dropdown-container__select"
@@ -25,6 +26,11 @@
 export default {
   name: 'DropDown',
   props: {
+    dynamicId: {
+      type: String,
+      default: '',
+      required: false,
+    },
     selected: {
       type: String,
       default: '',

@@ -1,6 +1,7 @@
 <template>
   <button
     v-if="isSlot"
+    :id="dynamicId"
     class="dynamic-slot"
     :href="href"
     :class="color"
@@ -11,6 +12,7 @@
   </button>
   <button
     v-else
+    :id="dynamicId"
     :style="`width: ${width}; height:${height}`"
     class="dynamic-button"
     :href="href"
@@ -27,6 +29,11 @@
 export default {
   name: 'DynamicButton',
   props: {
+    dynamicId: {
+      type: String,
+      default: '',
+      required: false,
+    },
     isSlot: {
       type: Boolean,
       default: false,
