@@ -40,7 +40,7 @@
     "nuxt-shopify": "^1.10.7",
     "postal-codes-js": "^2.5.2",
     "postcode": "^5.1.0",
-    "postcode-validator": "^3.2.0",
+    "postcode-validator": "^3.3.0",
     "request": "^2.88.2",
     "stylus-loader": "^4.3.2",
     "vue-friendly-iframe": "^0.20.0",

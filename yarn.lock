@@ -8258,9 +8258,10 @@ postal-codes-js@^2.5.2:
     detect-node "^2.0.4"
     path "^0.12.7"
 
-postcode-validator@^3.2.0:
-  version "3.2.0"
-  resolved "https://registry.yarnpkg.com/postcode-validator/-/postcode-validator-3.2.0.tgz#3a92a3e1b4b7aca607b7805d50c5134ce3d3c0d6"
+postcode-validator@^3.3.0:
+  version "3.3.0"
+  resolved "https://registry.yarnpkg.com/postcode-validator/-/postcode-validator-3.3.0.tgz#c8c6882aaaf633e69e09c14bd6d3e4c741ac1e93"
+  integrity sha512-wwwOBZVBDm6eAm2jXkMO5tupNmgpTWH8RH+5JgxYkHW15u2ZU0/eHN9iYsdtOfluxNusZjMa0O2e05E8AF+fyg==
 
 postcode@^5.1.0:
   version "5.1.0"

@@ -27,6 +27,7 @@
 </template>
 
 <script>
+import { postcodeValidator } from 'postcode-validator'
 export default {
   name: 'LocationBox',
   data: () => ({
@@ -35,8 +36,9 @@ export default {
   }),
   computed: {
     isValidPostcode() {
-      const postcodeRegEx = /[A-Z]{1,2}[0-9]{1,2} ?[0-9][A-Z]{2}/i
-      return postcodeRegEx.test(this.postcodeValue) && this.postcodeValue !== ''
+      return (
+        postcodeValidator(this.postcodeValue, 'GB') && this.postcodeValue !== ''
+      )
     },
     isPostcodePopulated() {
       return this.postcodeValue !== ''
