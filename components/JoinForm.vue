@@ -1,6 +1,6 @@
 <template>
   <div id="mc_embed_signup" class="join-form">
-    <img class="join-form__logo" src="~assets/images/popup-pink.png" />
+    <img class="join-form__logo" src="~/assets/images/popup-pink.png" />
     <h3 class="join-form__title">About you</h3>
     <h4 class="join-form__body">
       Please fill in the details below and our team will be in touch soon.

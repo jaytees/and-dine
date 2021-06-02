@@ -20,16 +20,16 @@
           <image-list
             :image-title="seller.sp_store_name"
             :image-subtitle="getObjVal(seller.custom_fields)"
-            :profile-image="seller.store_logo"
-            :background-image="seller.shop_logo"
+            :profile-image="seller.active ? seller.store_logo : ''"
+            :background-image="seller.active ? seller.shop_logo : ''"
           />
         </div>
-        <nuxt-link v-else :to="`/sellers/${seller.id}`">
+        <nuxt-link v-else :to="seller.active ? `/sellers/${seller.id}` : ''">
           <image-list
             :image-title="seller.sp_store_name"
             :image-subtitle="getObjVal(seller.custom_fields)"
-            :profile-image="seller.store_logo"
-            :background-image="seller.shop_logo"
+            :profile-image="seller.active ? seller.store_logo : ''"
+            :background-image="seller.active ? seller.shop_logo : ''"
           />
         </nuxt-link>
       </div>

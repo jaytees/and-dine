@@ -9,8 +9,10 @@
         class="location-box__search--field"
         width="95%"
         title="Postcode"
+        :value="postcodeValue || ''"
         :show-title="false"
-        :place-holder="postcodeValue || 'Enter your postcode...'"
+        :autocomplete="true"
+        :place-holder="'Enter your postcode...'"
         :show-error="!isValidPostcode && isPostcodePopulated"
         @inputValue="updatePostcode"
       />

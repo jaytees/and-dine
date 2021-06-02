@@ -60,7 +60,6 @@ $mobile: 600px;
     background-color: var(--color-purple-1);
     width: 200px;
     height: 200px;
-    display: inline-table;
     border-radius: 50%;
     background-position: bottom;
     background-size: cover;
@@ -72,6 +71,7 @@ $mobile: 600px;
   }
   &__profile-container {
     padding: 10px 2% 35px;
+    width: 80%;
     @media (max-width: $tablet) {
       padding: 35px 35px 0;
       h3 {

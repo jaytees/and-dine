@@ -35,7 +35,7 @@
         <div
           class="seller__modal--image"
           :style="
-            chosenProduct.images.length > 0
+            hasImages
               ? `background-image: url(${chosenProduct.images[0].img_lg})`
               : '~/assets/images/comingsoon.png'
           "
@@ -43,7 +43,7 @@
         <div class="seller__modal--content">
           <h2>{{ chosenProduct.product_name }}</h2>
           <p>{{ parseString(chosenProduct.product_description) }}</p>
-          <h3>Ingredients</h3>
+          <h3>Allergen Information</h3>
           <p>{{ parseString(chosenProduct.product_tag) }}</p>
           <h3>Cooking Instructions</h3>
           <p>{{ parseString(chosenProduct.product_policy) }}</p>
@@ -120,6 +120,18 @@ export default {
     storeNameCorrect() {
       return this.chosenStore === this.sellerById[0].sp_store_name
     },
+    hasImages() {
+      return this.chosenProduct.images.length > 0
+    },
+    isSmallOrder() {
+      return this.checkoutInfo.totalPrice < 15
+    },
+    smallOrderFee() {
+      return (
+        this.isSmallOrder &&
+        parseFloat(15 - this.checkoutInfo.totalPrice).toFixed(2)
+      )
+    },
   },
   mounted() {
     this.setChosenSellerId(this.sellerId)
@@ -170,7 +182,12 @@ export default {
           quantity: this.productQuantity,
           store: this.sellerById[0].sp_store_name,
         })
-        this.closeProductModal()
+        this.isSmallOrder &&
+          this.addToCart({
+            name: `Small order fee - £${this.smallOrderFee}`,
+            quantity: 1,
+            store: this.sellerById[0].sp_store_name,
+          }).then(() => this.closeProductModal())
       }
     },
   },
@@ -186,7 +203,6 @@ $mobile: 600px;
   &__hero {
     width: 100%;
     animation: fadeIn 0.5s;
-    background-image: url('~assets/images/hero.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;

@@ -36,6 +36,7 @@
     "nuxt": "^2.14.6",
     "nuxt-fontawesome": "^0.4.0",
     "nuxt-google-maps-module": "^1.6.0",
+    "nuxt-lazy-load": "^1.2.6",
     "nuxt-mail": "^3.0.3",
     "nuxt-shopify": "^1.10.7",
     "postal-codes-js": "^2.5.2",
@@ -44,6 +45,7 @@
     "request": "^2.88.2",
     "stylus-loader": "^4.3.2",
     "vue-friendly-iframe": "^0.20.0",
+    "vue-google-autocomplete": "^1.1.1",
     "vue-head": "^2.2.0",
     "vue-jsonp": "^2.0.0",
     "vue-loader": "^15.9.4",
@@ -51,6 +53,7 @@
     "vuex-persistedstate": "^4.0.0-beta.1"
   },
   "devDependencies": {
+    "@nuxt/image": "^0.4.14",
     "@nuxtjs/device": "^2.1.0",
     "@nuxtjs/eslint-config": "^3.1.0",
     "@nuxtjs/eslint-module": "^2.0.0",

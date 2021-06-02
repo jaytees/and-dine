@@ -17,6 +17,7 @@
         class="shopping-cart__items"
       >
         <quantity-operator
+          v-if="!item.title.includes('Small order fee')"
           :product-quantity="item.quantity"
           :item-id="item.id"
           class="shopping-cart__items--quantity"
@@ -27,16 +28,17 @@
             {{ item.title }}
           </h4>
           <fa
+            v-if="!item.title.includes('Small order fee')"
             :icon="['fas', 'times']"
             class="remove"
             @click="removeItem(item.id)"
           />
         </div>
       </div>
-      <h3 v-if="isSmallOrder" class="shopping-cart__total">
+      <!-- <h3 v-if="isSmallOrder" class="shopping-cart__total">
         Small order fee: £{{ smallOrderFee }}
-      </h3>
-      <h3 class="shopping-cart__total">Total: £{{ totalWithFee }}</h3>
+      </h3> -->
+      <h3 class="shopping-cart__total">Total: £{{ totalPrice }}</h3>
       <dynamic-button
         color="pink"
         text="Checkout"
@@ -52,44 +54,31 @@
 </template>
 
 <script>
-import { mapActions, mapState } from 'vuex'
+import { mapActions, mapState, mapGetters } from 'vuex'
 export default {
   name: 'ShoppingCart',
   computed: {
     ...mapState(['chosenStore', 'checkoutInfo']),
+    ...mapGetters(['sellerById']),
     showItems() {
       return this.checkoutInfo && this.checkoutInfo.lineItems.length > 0
     },
-    isSmallOrder() {
-      return this.checkoutInfo.totalPrice < 15
-    },
-    smallOrderFee() {
-      return (
-        this.isSmallOrder &&
-        parseFloat(15 - this.checkoutInfo.totalPrice).toFixed(2)
-      )
-    },
-    totalWithFee() {
-      if (this.isSmallOrder)
-        return (
-          parseFloat(this.checkoutInfo.totalPrice) +
-          parseFloat(this.smallOrderFee)
-        ).toFixed(2)
-      return this.checkoutInfo.totalPrice
+    totalPrice() {
+      return parseFloat(this.checkoutInfo.totalPrice).toFixed(2)
     },
   },
   methods: {
-    ...mapActions(['removeFromCart', 'updateItemQuantity', 'addDiscount']),
+    ...mapActions([
+      'addToCart',
+      'removeFromCart',
+      'updateItemQuantity',
+      'addDiscount',
+    ]),
     returnCartClick() {
       this.$emit('returnCartClick', true)
     },
-    async goToCheckout() {
-      const payload = {
-        checkoutId: this.checkoutInfo.id,
-        discountCode: 'small-order',
-      }
-      this.isSmallOrder && this.addDiscount(payload)
-      await location.replace(this.checkoutInfo.webUrl)
+    goToCheckout() {
+      location.replace(this.checkoutInfo.webUrl)
     },
     removeItem(itemId) {
       this.removeFromCart({
@@ -115,7 +104,7 @@ $mobile: 600px;
 .shopping-cart {
   animation: slideInRight 0.5s;
   height: 100%;
-  width: 26%;
+  width: 27%;
   position: fixed;
   z-index: 9999;
   top: 0;

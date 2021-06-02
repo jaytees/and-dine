@@ -4,7 +4,18 @@
       >{{ title }}
       <p v-if="isRequired">*</p></span
     >
+    <vue-google-autocomplete
+      v-if="autocomplete"
+      id="map"
+      :style="`width: ${width}`"
+      classname="form-control text-container__input"
+      :class="isUppercase && 'uppercase'"
+      :placeholder="placeHolder"
+      @placechanged="getAddressData"
+    >
+    </vue-google-autocomplete>
     <input
+      v-else
       :id="dynamicId"
       v-model="inputValue"
       :style="`width: ${width}`"
@@ -22,7 +33,7 @@
 
 <script>
 export default {
-  namme: 'TextInput',
+  name: 'TextInput',
   props: {
     dynamicId: {
       type: String,
@@ -74,9 +85,15 @@ export default {
       default: true,
       required: false,
     },
+    autocomplete: {
+      type: Boolean,
+      default: false,
+      required: false,
+    },
   },
   data: () => ({
     inputValue: '',
+    addressData: '',
   }),
   computed: {
     isTitleVisible() {
@@ -89,6 +106,10 @@ export default {
   methods: {
     returnValue() {
       this.$emit('inputValue', this.inputValue)
+    },
+    getAddressData(addressData, placeResultData, id) {
+      console.log(addressData)
+      this.address = addressData
     },
   },
 }

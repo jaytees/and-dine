@@ -12,6 +12,10 @@ export default {
         src: 'https://code.jquery.com/jquery-3.3.1.slim.min.js',
         type: 'text/javascript',
       },
+      {
+        src:
+          'https://maps.googleapis.com/maps/api/js?key=AIzaSyC_gWbzZHOo1xpc9eOgzgqUa44PGdGY4Pg&libraries=places',
+      },
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: 'favicon.ico' }],
   },
@@ -24,6 +28,7 @@ export default {
     { src: '~/plugins/font-awesome', ssr: false },
     { src: '~/plugins/vue-meta', ssr: false },
     { src: '~/plugins/vue-friendly-iframe', ssr: false },
+    { src: '~/plugins/vue-google-maps', ssr: false },
   ],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
@@ -33,6 +38,7 @@ export default {
   buildModules: [
     // https://go.nuxtjs.dev/eslint
     '@nuxtjs/eslint-module',
+    '@nuxt/image',
   ],
 
   target: 'static',
@@ -60,7 +66,6 @@ export default {
       'Bearer YjZiNmRlZjE1ZGJiZWRlMTFmZGRmYzc0Njg0ZDIyMjYwYjcxMDQxZjEyNzA3ZGRhMzlhOTgzODAzNDE0NzYzYQ',
     SHOPIFY_DOMAIN: 'anddine.myshopify.com',
     SHOPIFY_ACCESS_TOKEN: 'd4ba832cfe834593d2b1e99447a4c3f4',
-    GOOGLE_MAPS_KEY: 'AIzaSyAPy8EG0Vnj9VQX59FVLOc9abCLOx4vaHk',
     MAILCHIMP_API_KEY: '0b223ff6d3a9eb9ba8111dfacf24278f-us1',
     MAILCHIMP_CLIENT_ID: '579802540657',
     MAILCHIMP_CLIENT_SECRET:
@@ -111,13 +116,8 @@ export default {
     '@nuxt/content',
     'nuxt-shopify',
     '@nuxt/http',
+    'nuxt-lazy-load',
     'cookie-universal-nuxt',
-    [
-      'nuxt-google-maps-module',
-      {
-        key: process.env.GOOGLE_MAPS_KEY,
-      },
-    ],
     [
       'nuxt-mail',
       {
