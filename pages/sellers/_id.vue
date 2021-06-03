@@ -181,13 +181,14 @@ export default {
           name,
           quantity: this.productQuantity,
           store: this.sellerById[0].sp_store_name,
+        }).then(() => {
+          this.isSmallOrder &&
+            this.addToCart({
+              name: `Small order fee - £${this.smallOrderFee}`,
+              quantity: 1,
+              store: this.sellerById[0].sp_store_name,
+            }).then(() => this.closeProductModal())
         })
-        this.isSmallOrder &&
-          this.addToCart({
-            name: `Small order fee - £${this.smallOrderFee}`,
-            quantity: 1,
-            store: this.sellerById[0].sp_store_name,
-          }).then(() => this.closeProductModal())
       }
     },
   },

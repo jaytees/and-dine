@@ -71,6 +71,7 @@ export default {
     MAILCHIMP_CLIENT_SECRET:
       '6f6e7d8508b0805c61462bc9a371d5512383a9e3d66fabbe5b',
     MAILCHIMP_AUDIENCE_ID: '5c8512abdc',
+    GOOGLE_API_KEY: 'AIzaSyC_gWbzZHOo1xpc9eOgzgqUa44PGdGY4Pg',
   },
 
   generate: {
@@ -146,6 +147,7 @@ export default {
               'faPlus',
               'faTimes',
               'faMinus',
+              'faLocationArrow',
             ],
           },
         ],

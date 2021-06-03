@@ -10,13 +10,13 @@
       <div class="home__hero--right">
         <location-box
           :class="poscodeHighlight && 'highlight'"
-          @postcodeAdded="removeHighlight"
+          @addressAdded="removeHighlight"
         />
       </div>
     </div>
     <div class="home__sellers">
       <div v-for="(seller, index) in sellers" :key="`seller__${index}`">
-        <div v-if="!postcodeValue" @click="scrollToTop">
+        <div v-if="!addressValue" @click="scrollToTop">
           <image-list
             :image-title="seller.sp_store_name"
             :image-subtitle="getObjVal(seller.custom_fields)"
@@ -42,8 +42,7 @@ import { mapState } from 'vuex'
 export default {
   name: 'Home',
   data: () => ({
-    showPostcodeError: false,
-    postcodeValue: false,
+    addressValue: false,
     cuisine: '12485',
     poscodeHighlight: false,
   }),
@@ -51,7 +50,7 @@ export default {
     ...mapState(['sellers']),
   },
   mounted() {
-    this.postcodeValue = this.$cookies.get('customer_location')
+    this.addressValue = this.$cookies.get('customer_location')
   },
   methods: {
     goToPage(link) {
@@ -72,7 +71,7 @@ export default {
     removeHighlight() {
       if (this.$cookies.get('customer_location')) {
         this.poscodeHighlight = false
-        this.postcodeValue = this.$cookies.get('customer_location')
+        this.addressValue = this.$cookies.get('customer_location')
       }
     },
   },
@@ -134,9 +133,8 @@ $mobile: 600px;
         width: 90%;
       }
       .highlight {
-        animation: bounceIn 1.5s;
+        animation: bounce 1s;
         border-radius: 5px;
-        border: 4px solid var(--color-pink-1);
       }
     }
   }

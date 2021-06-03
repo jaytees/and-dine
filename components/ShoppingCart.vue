@@ -35,9 +35,7 @@
           />
         </div>
       </div>
-      <!-- <h3 v-if="isSmallOrder" class="shopping-cart__total">
-        Small order fee: £{{ smallOrderFee }}
-      </h3> -->
+      <!-- <h3 class="shopping-cart__total">Shipping: £3.99</h3> -->
       <h3 class="shopping-cart__total">Total: £{{ totalPrice }}</h3>
       <dynamic-button
         color="pink"
@@ -84,6 +82,15 @@ export default {
       this.removeFromCart({
         lineItems: [itemId],
         checkoutId: this.checkoutInfo.id,
+      }).then(() => {
+        if (
+          this.checkoutInfo.lineItems.length === 1 &&
+          this.checkoutInfo.lineItems[0].title.includes('Small order fee')
+        )
+          this.removeFromCart({
+            lineItems: [this.checkoutInfo.lineItems[0].id],
+            checkoutId: this.checkoutInfo.id,
+          })
       })
     },
     updateQuantity(payload) {

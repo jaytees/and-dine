@@ -7,10 +7,13 @@
     <vue-google-autocomplete
       v-if="autocomplete"
       id="map"
+      ref="address"
+      :value="inputValue"
       :style="`width: ${width}`"
       classname="form-control text-container__input"
       :class="isUppercase && 'uppercase'"
       :placeholder="placeHolder"
+      country="gb"
       @placechanged="getAddressData"
     >
     </vue-google-autocomplete>
@@ -100,16 +103,25 @@ export default {
       return this.title !== '' && this.showTitle
     },
   },
+  watch: {
+    value(to, from) {
+      this.inputValue = to
+      this.returnValue()
+    },
+  },
   mounted() {
     this.inputValue = this.value
+    this.$refs.address.clear()
   },
   methods: {
     returnValue() {
       this.$emit('inputValue', this.inputValue)
     },
     getAddressData(addressData, placeResultData, id) {
-      console.log(addressData)
-      this.address = addressData
+      this.$emit('inputValue', {
+        lat: addressData.latitude,
+        long: addressData.longitude,
+      })
     },
   },
 }

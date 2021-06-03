@@ -9,62 +9,61 @@
         class="location-box__search--field"
         width="95%"
         title="Postcode"
-        :value="postcodeValue || ''"
+        :value="addressValue"
         :show-title="false"
         :autocomplete="true"
-        :place-holder="'Enter your postcode...'"
-        :show-error="!isValidPostcode && isPostcodePopulated"
-        @inputValue="updatePostcode"
+        :place-holder="'Start typing your address...'"
+        @inputValue="updateAddress"
       />
       <dynamic-button
         class="location-box__search--button"
-        width="50px"
-        icon="search"
+        width="70px"
+        icon="location-arrow"
         color="pink"
         height="50px"
-        @clickEvent="addPostcodeCookie"
+        @clickEvent="locatorButtonPressed"
       />
     </div>
   </div>
 </template>
 
 <script>
-import { postcodeValidator } from 'postcode-validator'
 export default {
   name: 'LocationBox',
   data: () => ({
-    showPostcodeError: false,
-    postcodeValue: '',
+    addressValue: '',
   }),
-  computed: {
-    isValidPostcode() {
-      return (
-        postcodeValidator(this.postcodeValue, 'GB') && this.postcodeValue !== ''
-      )
-    },
-    isPostcodePopulated() {
-      return this.postcodeValue !== ''
-    },
-  },
   mounted() {
     if (this.$cookies.get('customer_location'))
-      this.postcodeValue = this.$cookies.get('customer_location')
+      this.addressValue = this.$cookies.get('customer_location')
   },
   methods: {
-    updatePostcode(postcode) {
-      this.postcodeValue = postcode
+    updateAddress(obj) {
+      this.getStreetAddressFrom(obj.lat, obj.long)
     },
-    addPostcodeCookie() {
-      if (this.isValidPostcode && this.isPostcodePopulated) {
-        this.$cookies.set('customer_location', this.postcodeValue)
-        this.$emit('postcodeAdded', true)
-        // const autocomplete = new this.$google.maps.places.Autocomplete(
-        //   this.inputValue,
-        //   {
-        //     types: ['geocode'],
-        //   }
-        // )
-        // console.log(autocomplete)
+    locatorButtonPressed() {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          this.getStreetAddressFrom(
+            position.coords.latitude,
+            position.coords.longitude
+          )
+        },
+        (error) => {
+          console.log(error.message)
+        }
+      )
+    },
+    async getStreetAddressFrom(lat, long) {
+      try {
+        const { data } = await this.$axios.get(
+          `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${long}&key=${process.env.GOOGLE_API_KEY}`
+        )
+        this.addressValue = data.results[0].formatted_address
+        this.$cookies.set('customer_location', this.addressValue)
+        this.$emit('addressAdded', true)
+      } catch (error) {
+        console.log(error.message)
       }
     },
   },
