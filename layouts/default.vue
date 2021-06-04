@@ -33,7 +33,16 @@ export default {
   fetchOnServer: true,
   computed: {
     ...mapState(['navigationItems', 'checkoutInfo', 'cartIsOpen']),
-    ...mapGetters(['cartItemCount']),
+    ...mapGetters(['cartItemCount', 'sellerById']),
+    isSmallOrder() {
+      return this.checkoutInfo.totalPrice < 15
+    },
+    smallOrderFee() {
+      return (
+        this.isSmallOrder &&
+        parseFloat(15 - this.checkoutInfo.totalPrice).toFixed(2)
+      )
+    },
   },
   watch: {
     checkoutInfo(to, from) {
@@ -54,6 +63,13 @@ export default {
           this.removeFromCart({
             lineItems: [smallOrderItem[0].id],
             checkoutId: to.id,
+          })
+        }
+        if (to.totalPrice < 15) {
+          this.addToCart({
+            name: `Small order fee - £${this.smallOrderFee}`,
+            quantity: 1,
+            store: this.sellerById[0].sp_store_name,
           })
         }
       }
@@ -78,6 +94,7 @@ export default {
       'setupCheckout',
       'fetchCheckout',
       'removeFromCart',
+      'addToCart',
     ]),
     ...mapMutations({
       setShopifyProducts: 'SET_SHOPIFY_PRODUCTS',

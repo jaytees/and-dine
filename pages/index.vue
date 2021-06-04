@@ -134,7 +134,6 @@ $mobile: 600px;
       }
       .highlight {
         animation: bounce 1s;
-        border-radius: 5px;
       }
     }
   }

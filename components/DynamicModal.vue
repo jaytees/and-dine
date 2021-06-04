@@ -75,7 +75,7 @@ $mobile: 600px;
     width: 600px;
     padding: 2%;
     background-color: #ffffff;
-    border-radius: 5px;
+    border-radius: 15px;
     margin: 50px auto;
     display: flex;
     flex-direction: column;

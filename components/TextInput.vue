@@ -111,7 +111,6 @@ export default {
   },
   mounted() {
     this.inputValue = this.value
-    this.$refs.address.clear()
   },
   methods: {
     returnValue() {

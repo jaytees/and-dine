@@ -28,7 +28,7 @@ $mobile: 600px;
 
 .join-form {
   background-color: var(--color-white-1);
-  border-radius: 5px;
+  border-radius: 15px;
   padding: 30px;
   -webkit-box-shadow: 0px 5px 5px 0px var(--color-grey-2);
   -moz-box-shadow: 0px 5px 5px 0px var(--color-grey-2);

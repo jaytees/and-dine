@@ -133,7 +133,9 @@ export const getters = {
   cartItemCount: (state) => {
     let count = 0
     state.checkoutInfo &&
-      state.checkoutInfo.lineItems.forEach((item) => (count += item.quantity))
+      state.checkoutInfo.lineItems.forEach((item) => {
+        if (!item.title.includes('Small order fee')) count += item.quantity
+      })
     return count
   },
   cartItemNames: (state) => {

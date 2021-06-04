@@ -4,16 +4,15 @@
       <img src="~/assets/images/logo-pink.png" />
     </nuxt-link>
     <nuxt-link class="navbar__logo-white" to="/">
-      <img src="~/assets/images/logo.png" />
+      <img src="~/assets/images/logo-pink.png" />
     </nuxt-link>
-    <div class="navbar__items--icons-mobile" @click="returnCartClick">
-      <fa :icon="['fas', 'shopping-cart']" />
-      <h3 v-if="showCount">{{ itemCount }}</h3>
+    <div class="navbar__items--icons-mobile">
       <fa
         class="burger"
         :icon="['fas', 'bars']"
         @click="showMobileNav = !showMobileNav"
       />
+      <fa :icon="['fas', 'shopping-cart']" @click="returnCartClick" />
     </div>
     <ul class="navbar__items" :class="showMobileNav && 'show-nav'">
       <li
@@ -88,17 +87,19 @@ $mobile: 600px;
 .navbar {
   width: 80%;
   padding: 0 10%;
-  background-color: transparent;
+  background-color: var(--color-white-1);
   z-index: 999;
-  position: absolute;
+  position: inherit;
   font-family: 'Poppins', sans-serif;
   @media (max-width: $tablet) {
     width: 90%;
     padding: 20px 5%;
+    height: 30px;
     background-color: var(--color-white-1);
   }
   &__logo-pink,
   &__logo-white {
+    position: absolute;
     img {
       width: 110px;
       padding: 20px 0;
@@ -115,7 +116,7 @@ $mobile: 600px;
     }
   }
   &__logo-white {
-    display: inline;
+    margin-top: 10px;
     @media (max-width: $tablet) {
       display: none;
     }
@@ -171,7 +172,7 @@ $mobile: 600px;
       &:hover {
         opacity: 0.9;
         svg {
-          color: var(--color-white-1);
+          color: var(--color-pink-1);
         }
         h3 {
           background-color: var(--color-white-1);

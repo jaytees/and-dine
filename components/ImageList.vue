@@ -109,7 +109,7 @@ $mobile: 600px;
       background-position: center;
       background-size: cover;
       background-color: var(--color-purple-1);
-      border-radius: 5px;
+      border-radius: 15px;
       -webkit-box-shadow: 0px 5px 5px 0px var(--color-grey-2);
       -moz-box-shadow: 0px 5px 5px 0px var(--color-grey-2);
       box-shadow: 0px 5px 5px 0px var(--color-grey-2);

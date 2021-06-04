@@ -120,15 +120,10 @@ export default {
     'nuxt-lazy-load',
     'cookie-universal-nuxt',
     [
-      'nuxt-mail',
+      'nuxt-gmaps',
       {
-        message: {
-          to: 'charliebrafman@me.com',
-        },
-        smtp: {
-          host: 'smtp.mail.me.com',
-          port: 587,
-        },
+        key: process.env.GOOGLE_MAPS_KEY,
+        libraries: ['places'],
       },
     ],
     [
