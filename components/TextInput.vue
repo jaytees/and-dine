@@ -5,9 +5,9 @@
       <p v-if="isRequired">*</p></span
     >
     <input
-      v-if="autocomplete"
+      v-if="addressFinder"
       ref="searchTextField"
-      :value="inputValue"
+      :value="value"
       :style="`width: ${width}`"
       class="text-container__input"
       :class="isUppercase && 'uppercase'"
@@ -86,7 +86,7 @@ export default {
       default: true,
       required: false,
     },
-    autocomplete: {
+    addressFinder: {
       type: Boolean,
       default: false,
       required: false,
@@ -94,31 +94,33 @@ export default {
   },
   data: () => ({
     inputValue: '',
+    autocomplete: '',
   }),
   computed: {
     isTitleVisible() {
       return this.title !== '' && this.showTitle
     },
   },
-  watch: {
-    value(to) {
-      this.inputValue = to
-      this.returnValue()
-    },
-  },
   mounted() {
     this.inputValue = this.value
     const input = this.$refs.searchTextField
+    const options = {
+      componentRestrictions: { country: 'gb' },
+      types: ['geocode'],
+    }
     // eslint-disable-next-line
-    new google.maps.places.Autocomplete(input)
+    this.autocomplete = new google.maps.places.Autocomplete(input, options)
   },
   methods: {
     returnValue() {
       this.$emit('inputValue', this.inputValue)
     },
     getAddressData() {
-      this.inputValue = this.$refs.searchTextField.value
-      this.$emit('inputValue', this.inputValue)
+      this.autocomplete.addListener('place_changed', () => {
+        const place = this.autocomplete.getPlace()
+        this.inputValue = place.formatted_address
+        this.$emit('inputValue', place)
+      })
     },
   },
   head() {

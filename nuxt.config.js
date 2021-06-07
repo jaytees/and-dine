@@ -24,7 +24,6 @@ export default {
     { src: '~/plugins/font-awesome', ssr: false },
     { src: '~/plugins/vue-meta', ssr: false },
     { src: '~/plugins/vue-friendly-iframe', ssr: false },
-    { src: '~/plugins/vue-google-maps', ssr: false },
   ],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
@@ -81,17 +80,6 @@ export default {
       process.env.NODE_ENV !== 'production'
         ? 'http://localhost:3000'
         : 'https://develop.d2nz46kp2z46p7.amplifyapp.com',
-    // headers: {
-    //   common: {
-    //     Accept: 'application/json, text/plain, */*',
-    //   },
-    //   delete: {},
-    //   get: {},
-    //   head: {},
-    //   post: {},
-    //   put: {},
-    //   patch: {},
-    // },
   },
 
   // proxy: {
@@ -132,6 +120,7 @@ export default {
               'faTimes',
               'faMinus',
               'faLocationArrow',
+              'faSpinner',
             ],
           },
         ],

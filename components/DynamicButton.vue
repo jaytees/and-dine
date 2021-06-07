@@ -21,7 +21,7 @@
     @click="!disabled && returnClick()"
   >
     {{ text }}
-    <fa v-if="iconUsed" :icon="['fas', icon]" />
+    <fa v-if="iconUsed" :icon="['fas', icon]" :class="spinning && 'fa-spin'" />
   </button>
 </template>
 
@@ -75,6 +75,11 @@ export default {
       required: false,
     },
     submit: {
+      type: Boolean,
+      default: false,
+      required: false,
+    },
+    spinning: {
       type: Boolean,
       default: false,
       required: false,

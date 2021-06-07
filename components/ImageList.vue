@@ -3,20 +3,12 @@
     <div class="images__list" @click="returnClickEvent">
       <div
         class="images__list--background-image"
-        :style="
-          backgroundImage
-            ? `background-image: url(${backgroundImage})`
-            : '~/assets/images/comingsoon.png'
-        "
+        :style="backgroundImage && `background-image: url(${backgroundImage})`"
       ></div>
       <div v-if="profileImage">
         <div
           class="images__list--profile-image"
-          :style="
-            profileImage
-              ? `background-image: url(${profileImage})`
-              : '~/assets/images/comingsoon.png'
-          "
+          :style="profileImage && `background-image: url(${profileImage})`"
         ></div>
       </div>
       <h3 class="images__list--image-title">{{ imageTitle }}</h3>

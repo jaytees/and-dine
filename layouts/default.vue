@@ -32,7 +32,13 @@ export default {
   },
   fetchOnServer: true,
   computed: {
-    ...mapState(['navigationItems', 'checkoutInfo', 'cartIsOpen']),
+    ...mapState([
+      'navigationItems',
+      'checkoutInfo',
+      'cartIsOpen',
+      'chosenStore',
+      'checkoutInfo',
+    ]),
     ...mapGetters(['cartItemCount', 'sellerById']),
     isSmallOrder() {
       return this.checkoutInfo.totalPrice < 15
@@ -60,16 +66,17 @@ export default {
           const smallOrderItem = to.lineItems.filter((item) =>
             item.title.includes('Small order fee')
           )
-          this.removeFromCart({
-            lineItems: [smallOrderItem[0].id],
-            checkoutId: to.id,
-          })
+          smallOrderItem.length > 0 &&
+            this.removeFromCart({
+              lineItems: [smallOrderItem[0].id],
+              checkoutId: to.id,
+            })
         }
         if (to.lineItems.length > 0 && to.totalPrice < 15) {
           this.addToCart({
             name: `Small order fee - £${this.smallOrderFee}`,
             quantity: 1,
-            store: this.sellerById[0].sp_store_name,
+            store: this.chosenStore,
           })
         }
       }
@@ -86,6 +93,10 @@ export default {
     }
     await this.$shopify.product.fetchAll().then((products) => {
       this.setShopifyProducts(products)
+      if (this.$cookies.get('customer_location')) {
+        const location = this.$cookies.get('customer_location')
+        this.setShippingAddress(location)
+      }
     })
   },
   methods: {
@@ -95,6 +106,7 @@ export default {
       'fetchCheckout',
       'removeFromCart',
       'addToCart',
+      'updateAddress',
     ]),
     ...mapMutations({
       setShopifyProducts: 'SET_SHOPIFY_PRODUCTS',
@@ -102,6 +114,7 @@ export default {
       setCheckoutInfo: 'SET_CHECKOUT_INFO',
       setChosenStore: 'SET_CHOSEN_STORE',
       setCartStatus: 'SET_CART_STATUS',
+      setShippingAddress: 'SET_SHIPPING_ADDRESS',
     }),
     toggleCart() {
       this.setCartStatus(!this.cartIsOpen)

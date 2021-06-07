@@ -39,8 +39,10 @@
       <h3 class="shopping-cart__total">Total: £{{ totalPrice }}</h3>
       <dynamic-button
         color="pink"
-        text="Checkout"
+        :text="!loading ? 'Checkout' : ''"
         width="100%"
+        :icon="loading ? 'spinner' : ''"
+        :spinning="loading"
         @clickEvent="goToCheckout"
       />
     </div>
@@ -55,6 +57,9 @@
 import { mapActions, mapState, mapGetters } from 'vuex'
 export default {
   name: 'ShoppingCart',
+  data: () => ({
+    loading: false,
+  }),
   computed: {
     ...mapState(['chosenStore', 'checkoutInfo']),
     ...mapGetters(['sellerById']),
@@ -71,17 +76,21 @@ export default {
       'removeFromCart',
       'updateItemQuantity',
       'addDiscount',
+      'updateAddress',
     ]),
     returnCartClick() {
       this.$emit('returnCartClick', true)
     },
     goToCheckout() {
-      location.replace(this.checkoutInfo.webUrl)
+      this.loading = true
+      this.updateAddress().then(() => {
+        this.loading = false
+        location.replace(this.checkoutInfo.webUrl)
+      })
     },
     removeItem(itemId) {
       this.removeFromCart({
         lineItems: [itemId],
-        checkoutId: this.checkoutInfo.id,
       }).then(() => {
         if (
           this.checkoutInfo.lineItems.length === 1 &&
@@ -89,13 +98,11 @@ export default {
         )
           this.removeFromCart({
             lineItems: [this.checkoutInfo.lineItems[0].id],
-            checkoutId: this.checkoutInfo.id,
           })
       })
     },
     updateQuantity(payload) {
       this.updateItemQuantity({
-        checkoutId: this.checkoutInfo.id,
         lineItems: [{ id: payload.id, quantity: payload.quantity }],
       })
     },
@@ -138,6 +145,9 @@ $mobile: 600px;
       h3 {
         font-size: 20px !important;
       }
+      svg {
+        margin-top: 3px;
+      }
     }
     &--container {
       display: flex;
@@ -145,6 +155,9 @@ $mobile: 600px;
       right: 5%;
       .title {
         margin: 0 10px;
+      }
+      svg {
+        margin-top: 2px;
       }
       .remove {
         color: var(--color-pink-1);

@@ -11,6 +11,8 @@ export const state = () => ({
   ],
   checkoutInfo: false,
   shopifyProducts: false,
+  shippingAddress: false,
+  formattedAddress: '',
 })
 
 export const mutations = {
@@ -34,6 +36,32 @@ export const mutations = {
   },
   SET_CART_STATUS(state, payload) {
     state.cartIsOpen = payload
+  },
+  SET_SHIPPING_ADDRESS(state, payload) {
+    state.formattedAddress = payload.formatted_address
+    const shippingAddress = {
+      address1: `${
+        payload.types[0] !== 'postal_code'
+          ? `${payload.address_components[0].long_name} ${payload.address_components[1].long_name}`
+          : payload.address_components[1].long_name
+      }`,
+      address2: payload.address_components[2].long_name,
+      city:
+        payload.address_components.length > 7
+          ? payload.address_components[4].long_name
+          : payload.address_components[3].long_name,
+      company: null,
+      country: 'United Kingdom',
+      firstName: 'First Name',
+      lastName: 'Last Name',
+      phone: '00000000000',
+      province: 'United Kingdom',
+      zip:
+        payload.types[0] !== 'postal_code'
+          ? payload.address_components[6].long_name
+          : payload.address_components[0].long_name,
+    }
+    state.shippingAddress = shippingAddress
   },
 }
 
@@ -62,18 +90,18 @@ export const actions = {
       })
       .catch((err) => console.log(err))
   },
-  async removeFromCart({ commit }, payload) {
+  async removeFromCart({ commit, state }, payload) {
     await this.$shopify.checkout
-      .removeLineItems(payload.checkoutId, payload.lineItems)
+      .removeLineItems(state.checkoutInfo.id, payload.lineItems)
       .then((checkout) => {
         commit('SET_CHECKOUT_INFO', checkout)
         this.$cookies.set('checkout_id', checkout.id)
       })
       .catch((err) => console.log(err))
   },
-  async updateItemQuantity({ commit }, payload) {
+  async updateItemQuantity({ commit, state }, payload) {
     await this.$shopify.checkout
-      .updateLineItems(payload.checkoutId, payload.lineItems)
+      .updateLineItems(state.checkoutInfo.id, payload.lineItems)
       .then((checkout) => {
         commit('SET_CHECKOUT_INFO', checkout)
         this.$cookies.set('checkout_id', checkout.id)
@@ -96,20 +124,23 @@ export const actions = {
       .then((checkout) => {
         commit('SET_CHECKOUT_INFO', checkout)
       })
+      .catch((err) => console.log(err))
   },
-  async addDiscount({ commit }, payload) {
+  async addDiscount({ commit, state }, payload) {
     await this.$shopify.checkout
-      .addDiscount(payload.checkoutId, payload.discountCode)
+      .addDiscount(state.checkoutInfo.id, payload.discountCode)
       .then((checkout) => {
         commit('SET_CHECKOUT_INFO', checkout)
       })
+      .catch((err) => console.log(err))
   },
-  async sendEmail(info) {
-    await this.$axios.$post('/mail/send', {
-      from: info.name,
-      subject: 'New customer sign-up',
-      text: `Hello my name is ${info.firstName} ${info.lastName} and I would like to start cooking with you! My details are as follows: Email: ${info.email} <br/> Number: ${info.number} <br /> Postcode: ${info.postcode} <br /> Cuisine: ${info.cuisine} <br /> Thanks!`,
-    })
+  async updateAddress({ commit, state }) {
+    await this.$shopify.checkout
+      .updateShippingAddress(state.checkoutInfo.id, state.shippingAddress)
+      .then((checkout) => {
+        commit('SET_CHECKOUT_INFO', checkout)
+      })
+      .catch((err) => console.log(err))
   },
 }
 

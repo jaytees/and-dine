@@ -56,7 +56,13 @@
           />
           <dynamic-button
             color="pink"
-            :text="`Add to cart - £${parseFloat(overallPrice).toFixed(2)}`"
+            :text="
+              !loading
+                ? `Add to cart - £${parseFloat(overallPrice).toFixed(2)}`
+                : ''
+            "
+            :icon="loading ? 'spinner' : ''"
+            :spinning="loading"
             @clickEvent="addItem(chosenProduct.product_name)"
           />
         </div>
@@ -99,6 +105,7 @@ export default {
     showStoreModal: false,
     chosenProduct: false,
     productQuantity: 1,
+    loading: false,
   }),
   computed: {
     ...mapGetters(['sellerById', 'productsById', 'cartItemNames']),
@@ -174,6 +181,7 @@ export default {
       this.productQuantity = payload.quantity
     },
     addItem(name) {
+      this.loading = true
       if (this.cartHasItems && !this.storeNameCorrect) {
         this.openStoreModal()
       } else {
@@ -182,12 +190,14 @@ export default {
           quantity: this.productQuantity,
           store: this.sellerById[0].sp_store_name,
         }).then(() => {
-          this.isSmallOrder &&
-            this.addToCart({
-              name: `Small order fee - £${this.smallOrderFee}`,
-              quantity: 1,
-              store: this.sellerById[0].sp_store_name,
-            }).then(() => this.closeProductModal())
+          this.loading = false
+          this.isSmallOrder
+            ? this.addToCart({
+                name: `Small order fee - £${this.smallOrderFee}`,
+                quantity: 1,
+                store: this.sellerById[0].sp_store_name,
+              }).then(() => this.closeProductModal())
+            : this.closeProductModal()
         })
       }
     },

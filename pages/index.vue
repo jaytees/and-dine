@@ -10,26 +10,36 @@
       <div class="home__hero--right">
         <location-box
           :class="poscodeHighlight && 'highlight'"
-          @addressAdded="removeHighlight"
+          :formatted-address="formattedAddress"
+          @addressChanged="updateShippingAddress"
         />
       </div>
     </div>
     <div class="home__sellers">
       <div v-for="(seller, index) in sellers" :key="`seller__${index}`">
-        <div v-if="!addressValue" @click="scrollToTop">
+        <div v-if="!formattedAddress" @click="scrollToTop">
           <image-list
+            v-if="seller.active"
             :image-title="seller.sp_store_name"
-            :image-subtitle="getObjVal(seller.custom_fields)"
-            :profile-image="seller.active ? seller.store_logo : ''"
-            :background-image="seller.active ? seller.shop_logo : ''"
+            :image-subtitle="getObjVal(seller.custom_fields, '12485')"
+            :profile-image="seller.store_logo"
+            :background-image="seller.shop_logo"
           />
         </div>
-        <nuxt-link v-else :to="seller.active ? `/sellers/${seller.id}` : ''">
+        <nuxt-link
+          v-else
+          :to="
+            getObjVal(seller.custom_fields, '12910') === 'Yes'
+              ? `/sellers/${seller.id}`
+              : ''
+          "
+        >
           <image-list
+            v-if="seller.active"
             :image-title="seller.sp_store_name"
-            :image-subtitle="getObjVal(seller.custom_fields)"
-            :profile-image="seller.active ? seller.store_logo : ''"
-            :background-image="seller.active ? seller.shop_logo : ''"
+            :image-subtitle="getObjVal(seller.custom_fields, '12485')"
+            :profile-image="seller.store_logo"
+            :background-image="seller.shop_logo"
           />
         </nuxt-link>
       </div>
@@ -38,27 +48,26 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapMutations } from 'vuex'
 export default {
   name: 'Home',
   data: () => ({
-    addressValue: false,
     cuisine: '12485',
     poscodeHighlight: false,
   }),
   computed: {
-    ...mapState(['sellers']),
-  },
-  mounted() {
-    this.addressValue = this.$cookies.get('customer_location')
+    ...mapState(['sellers', 'formattedAddress', 'checkoutInfo']),
   },
   methods: {
+    ...mapMutations({
+      setShippingAddress: 'SET_SHIPPING_ADDRESS',
+    }),
     goToPage(link) {
       this.$router.push(`sellers/${link.toString()}`)
     },
-    getObjVal(obj) {
+    getObjVal(obj, id) {
       const parsed = JSON.parse(obj)
-      return obj && parsed['12485'].value
+      return obj && parsed[id] && parsed[id].value
     },
     scrollToTop() {
       this.poscodeHighlight = true
@@ -68,10 +77,13 @@ export default {
         behavior: 'smooth',
       })
     },
+    updateShippingAddress(location) {
+      this.removeHighlight()
+      this.setShippingAddress(location)
+    },
     removeHighlight() {
-      if (this.$cookies.get('customer_location')) {
+      if (this.formattedAddress) {
         this.poscodeHighlight = false
-        this.addressValue = this.$cookies.get('customer_location')
       }
     },
   },
@@ -88,7 +100,7 @@ $mobile: 600px;
     animation: fadeIn 0.5s;
     padding: 200px 5%;
     width: 90%;
-    background-image: url('~/assets/images/hero.jpg');
+    background-image: url('~/assets/images/hero.png');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;

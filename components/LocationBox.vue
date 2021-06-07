@@ -9,16 +9,17 @@
         class="location-box__search--field"
         width="95%"
         title="Postcode"
-        :value="addressValue"
+        :value="formattedAddress"
         :show-title="false"
-        :autocomplete="true"
+        :address-finder="true"
         :place-holder="'Start typing your address...'"
         @inputValue="updateAddress"
       />
       <dynamic-button
         class="location-box__search--button"
         width="70px"
-        icon="location-arrow"
+        :icon="loading ? 'spinner' : 'location-arrow'"
+        :spinning="loading"
         color="pink"
         height="50px"
         @clickEvent="locatorButtonPressed"
@@ -30,19 +31,22 @@
 <script>
 export default {
   name: 'LocationBox',
-  data: () => ({
-    addressValue: '',
-  }),
-  mounted() {
-    if (this.$cookies.get('customer_location'))
-      this.addressValue = this.$cookies.get('customer_location')
+  props: {
+    formattedAddress: {
+      type: String,
+      default: '',
+      required: false,
+    },
   },
+  data: () => ({
+    loading: false,
+  }),
   methods: {
     updateAddress(address) {
-      this.$cookies.set('customer_location', address)
-      this.$emit('addressAdded', true)
+      this.setLocation(address)
     },
     locatorButtonPressed() {
+      this.loading = true
       navigator.geolocation.getCurrentPosition(
         (position) => {
           this.getStreetAddressFrom(
@@ -61,11 +65,15 @@ export default {
           `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${long}&key=${process.env.GOOGLE_API_KEY}`
         )
         this.addressValue = data.results[0].formatted_address
-        this.$cookies.set('customer_location', this.addressValue)
-        this.$emit('addressAdded', true)
+        this.setLocation(data.results[0])
+        this.loading = false
       } catch (error) {
         console.log(error.message)
       }
+    },
+    setLocation(value) {
+      this.$cookies.set('customer_location', value)
+      this.$emit('addressChanged', value)
     },
   },
 }
