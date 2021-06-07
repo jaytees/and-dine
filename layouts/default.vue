@@ -65,7 +65,7 @@ export default {
             checkoutId: to.id,
           })
         }
-        if (to.totalPrice < 15) {
+        if (to.lineItems.length > 0 && to.totalPrice < 15) {
           this.addToCart({
             name: `Small order fee - £${this.smallOrderFee}`,
             quantity: 1,

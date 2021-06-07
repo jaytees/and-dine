@@ -12,10 +12,6 @@ export default {
         src: 'https://code.jquery.com/jquery-3.3.1.slim.min.js',
         type: 'text/javascript',
       },
-      {
-        src:
-          'https://maps.googleapis.com/maps/api/js?key=AIzaSyC_gWbzZHOo1xpc9eOgzgqUa44PGdGY4Pg&libraries=places',
-      },
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: 'favicon.ico' }],
   },
@@ -119,13 +115,6 @@ export default {
     '@nuxt/http',
     'nuxt-lazy-load',
     'cookie-universal-nuxt',
-    [
-      'nuxt-gmaps',
-      {
-        key: process.env.GOOGLE_MAPS_KEY,
-        libraries: ['places'],
-      },
-    ],
     [
       'nuxt-fontawesome',
       {

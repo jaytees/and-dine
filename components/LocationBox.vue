@@ -38,8 +38,9 @@ export default {
       this.addressValue = this.$cookies.get('customer_location')
   },
   methods: {
-    updateAddress(obj) {
-      this.getStreetAddressFrom(obj.lat, obj.long)
+    updateAddress(address) {
+      this.$cookies.set('customer_location', address)
+      this.$emit('addressAdded', true)
     },
     locatorButtonPressed() {
       navigator.geolocation.getCurrentPosition(

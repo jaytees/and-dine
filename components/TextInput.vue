@@ -4,19 +4,17 @@
       >{{ title }}
       <p v-if="isRequired">*</p></span
     >
-    <vue-google-autocomplete
+    <input
       v-if="autocomplete"
-      id="map"
-      ref="address"
+      ref="searchTextField"
       :value="inputValue"
       :style="`width: ${width}`"
-      classname="form-control text-container__input"
+      class="text-container__input"
       :class="isUppercase && 'uppercase'"
       :placeholder="placeHolder"
-      country="gb"
-      @placechanged="getAddressData"
-    >
-    </vue-google-autocomplete>
+      @change="getAddressData"
+    />
+
     <input
       v-else
       :id="dynamicId"
@@ -96,7 +94,6 @@ export default {
   },
   data: () => ({
     inputValue: '',
-    addressData: '',
   }),
   computed: {
     isTitleVisible() {
@@ -104,24 +101,34 @@ export default {
     },
   },
   watch: {
-    value(to, from) {
+    value(to) {
       this.inputValue = to
       this.returnValue()
     },
   },
   mounted() {
     this.inputValue = this.value
+    const input = this.$refs.searchTextField
+    // eslint-disable-next-line
+    new google.maps.places.Autocomplete(input)
   },
   methods: {
     returnValue() {
       this.$emit('inputValue', this.inputValue)
     },
-    getAddressData(addressData, placeResultData, id) {
-      this.$emit('inputValue', {
-        lat: addressData.latitude,
-        long: addressData.longitude,
-      })
+    getAddressData() {
+      this.inputValue = this.$refs.searchTextField.value
+      this.$emit('inputValue', this.inputValue)
     },
+  },
+  head() {
+    return {
+      script: [
+        {
+          src: `https://maps.googleapis.com/maps/api/js?key=${process.env.GOOGLE_API_KEY}&libraries=places`,
+        },
+      ],
+    }
   },
 }
 </script>
