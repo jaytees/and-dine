@@ -27,7 +27,12 @@ $tablet: 768px;
 $mobile: 600px;
 
 .join {
+  margin-bottom: 100px;
+  @media (max-width: $tablet) {
+    margin-bottom: 250px;
+  }
   &__hero {
+    animation: fadeIn 0.5s;
     padding: 200px 5%;
     width: 90%;
     background-image: url('~/assets/images/hero-join.png');
@@ -41,7 +46,7 @@ $mobile: 600px;
       width: 90%;
       display: -webkit-box;
       display: -moz-box;
-      display: box;
+      display: flex;
       -webkit-box-orient: vertical;
       -moz-box-orient: vertical;
       box-orient: vertical;
@@ -79,8 +84,8 @@ $mobile: 600px;
       @media (max-width: $desktop) {
         -webkit-box-ordinal-group: 2;
         animation: fadeIn 0.5s;
-        padding: 0 5%;
-        width: 90%;
+        padding: 0;
+        width: 100%;
       }
     }
   }

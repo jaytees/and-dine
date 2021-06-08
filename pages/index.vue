@@ -96,6 +96,11 @@ $tablet: 768px;
 $mobile: 600px;
 
 .home {
+  margin-bottom: 180px;
+  display: inline-grid;
+  @media (max-width: $tablet) {
+    margin-bottom: 250px;
+  }
   &__hero {
     animation: fadeIn 0.5s;
     padding: 200px 5%;
@@ -119,11 +124,8 @@ $mobile: 600px;
       padding: 0 5%;
       @media (max-width: $desktop) {
         width: 90%;
-        padding: 100px 5% 30px;
+        padding: 50px 5%;
         text-align: center;
-        .main-title {
-          font-size: 46px;
-        }
       }
       .main-title,
       .main-body {
@@ -141,8 +143,8 @@ $mobile: 600px;
       width: 50%;
       padding: 0 5%;
       @media (max-width: $desktop) {
-        padding: 0 5%;
-        width: 90%;
+        padding: 0;
+        width: 100%;
       }
       .highlight {
         animation: bounce 1s;

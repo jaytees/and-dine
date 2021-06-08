@@ -21,7 +21,6 @@ export default {
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
   plugins: [
-    { src: '~/plugins/font-awesome', ssr: false },
     { src: '~/plugins/vue-meta', ssr: false },
     { src: '~/plugins/vue-friendly-iframe', ssr: false },
   ],
@@ -121,7 +120,12 @@ export default {
               'faMinus',
               'faLocationArrow',
               'faSpinner',
+              'faCopyright',
             ],
+          },
+          {
+            set: '@fortawesome/free-brands-svg-icons',
+            icons: ['faFacebook', 'faInstagram', 'faTwitter'],
           },
         ],
       },

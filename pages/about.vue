@@ -44,7 +44,12 @@ $tablet: 768px;
 $mobile: 600px;
 
 .about {
+  margin-bottom: 150px;
+  @media (max-width: $tablet) {
+    margin-bottom: 300px;
+  }
   &__hero {
+    animation: fadeIn 0.5s;
     width: 100%;
     background-image: url('~/assets/images/hero-about.png');
     background-size: cover;
@@ -53,6 +58,9 @@ $mobile: 600px;
     display: flex;
     z-index: -999;
     height: 500px;
+    @media (max-width: $tablet) {
+      height: 300px;
+    }
   }
   &__title {
     color: var(--color-pink-1);
@@ -72,6 +80,7 @@ $mobile: 600px;
       -moz-box-orient: vertical;
       box-orient: vertical;
       width: 100%;
+      padding: 0;
     }
     &--image,
     &--text {
@@ -91,7 +100,7 @@ $mobile: 600px;
       img,
       p {
         @media (max-width: $tablet) {
-          width: 90%;
+          width: 100%;
         }
       }
     }

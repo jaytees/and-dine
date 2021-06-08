@@ -126,6 +126,9 @@ $mobile: 600px;
   background-color: var(--color-white-1);
   transition: 0.5s;
   padding: 2%;
+  -webkit-box-shadow: 0px 0px 2px 2px var(--color-grey-2);
+  -moz-box-shadow: 0px 0px 2px 2px var(--color-grey-2);
+  box-shadow: 0px 0px 2px 2px var(--color-grey-2);
   @media (max-width: $desktop) {
     animation: slideInRight 0.5s;
     width: 90%;

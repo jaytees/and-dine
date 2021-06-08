@@ -11,6 +11,7 @@
       @returnCartClick="toggleCart"
     />
     <nuxt />
+    <footer-bar />
   </div>
 </template>
 

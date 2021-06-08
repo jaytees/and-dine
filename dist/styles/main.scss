@@ -94,9 +94,10 @@ a {
 }
 
 .container {
+  -webkit-overflow-scrolling: touch;
+  overflow-y: scroll;
   padding: 0;
   position: relative;
-  margin: 0 auto;
   float: left;
   transition: all 0.5s cubic-bezier(0.55, 0, 0.1, 1);
 }

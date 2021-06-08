@@ -144,6 +144,7 @@ export default {
     height: 47px;
     line-height: 3;
     border-radius: 5px;
+    border: 1px solid var(--color-grey-1);
     background-color: var(--color-white-1);
     appearance: none;
     padding: 0 10px;

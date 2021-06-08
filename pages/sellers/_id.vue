@@ -211,6 +211,11 @@ $tablet: 768px;
 $mobile: 600px;
 
 .seller {
+  margin-bottom: 200px;
+  display: inline-block;
+  @media (max-width: $tablet) {
+    margin-bottom: 350px;
+  }
   &__hero {
     width: 100%;
     animation: fadeIn 0.5s;
@@ -224,6 +229,7 @@ $mobile: 600px;
     @media (max-width: $tablet) {
       display: block;
       background-position: top;
+      padding: 50px 0;
     }
     &--title {
       margin: 0 auto;

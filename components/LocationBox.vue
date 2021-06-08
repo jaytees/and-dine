@@ -97,6 +97,9 @@ $mobile: 600px;
     color: var(--color-black-1);
     margin: 30px 0;
     font-size: 18px;
+    @media (max-width: $desktop) {
+      text-align: center;
+    }
   }
   &__search {
     display: flex;

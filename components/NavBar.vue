@@ -90,8 +90,11 @@ $mobile: 600px;
   background-color: var(--color-white-1);
   z-index: 999;
   position: inherit;
+  -webkit-box-shadow: 0px 0px 2px 0px var(--color-grey-2);
+  -moz-box-shadow: 0px 0px 2px 0px var(--color-grey-2);
+  box-shadow: 0px 0px 2px 0px var(--color-grey-2);
   @media (max-width: $tablet) {
-    width: 90%;
+    width: 95%;
     padding: 20px 5%;
     height: 30px;
     background-color: var(--color-white-1);
@@ -133,7 +136,7 @@ $mobile: 600px;
       display: none;
       width: 100%;
       background-color: var(--color-white-1);
-      padding: 20px;
+      padding: 20px 5%;
     }
     &--tab-wrapper {
       cursor: pointer;
@@ -202,6 +205,9 @@ $mobile: 600px;
       }
     }
     &--icons-mobile {
+      cursor: pointer;
+      float: right;
+      padding-right: 15px;
       &:hover {
         opacity: 0.9;
         svg {
@@ -215,8 +221,6 @@ $mobile: 600px;
       @media (min-width: $tablet) {
         display: none;
       }
-      cursor: pointer;
-      float: right;
       svg {
         margin: 0 5px;
         font-size: 24px;
