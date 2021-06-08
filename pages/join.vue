@@ -46,11 +46,12 @@ $mobile: 600px;
       width: 90%;
       display: -webkit-box;
       display: -moz-box;
-      display: flex;
+      display: box;
       -webkit-box-orient: vertical;
       -moz-box-orient: vertical;
       box-orient: vertical;
       background-position: top;
+      flex-wrap: wrap;
     }
     &--right {
       animation: fadeIn 0.5s;
