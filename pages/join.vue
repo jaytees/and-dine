@@ -30,7 +30,7 @@ $mobile: 600px;
   &__hero {
     padding: 200px 5%;
     width: 90%;
-    background-image: url('~/assets/images/pasta-background.jpg');
+    background-image: url('~/assets/images/hero-join.png');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -61,7 +61,7 @@ $mobile: 600px;
       .main-body {
         font-size: 24px;
         margin-top: 15px;
-        font-family: 'Poppins', sans-serif;
+        font-family: 'GalanoGrotesque-Medium', sans-serif;
         text-shadow: 2px 2px 8px var(--color-grey-1);
       }
     }

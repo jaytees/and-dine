@@ -88,9 +88,6 @@ $mobile: 600px;
   background-color: var(--color-white-1);
   border-radius: 15px;
   padding: 30px;
-  -webkit-box-shadow: 0px 5px 5px 0px var(--color-grey-2);
-  -moz-box-shadow: 0px 5px 5px 0px var(--color-grey-2);
-  box-shadow: 0px 5px 5px 0px var(--color-grey-2);
   &__logo {
     width: 200px;
     margin: 0 auto;

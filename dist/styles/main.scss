@@ -2,7 +2,8 @@ $desktop: 1024px;
 $tablet: 768px;
 $mobile: 600px;
 
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;700;900&display=swap');
+@import url(//db.onlinewebfonts.com/c/4c1751846a9bd1d352bd512be673bbc7?family=GalanoGrotesque-Medium);
+@import url(//db.onlinewebfonts.com/c/463e96684a261fe795b31a68de0aa0f4?family=GalanoGrotesque-Bold);
 
 html,
 body {
@@ -27,7 +28,7 @@ html {
 
   background-color: var(--color-white-1);
   position: initial;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'GalanoGrotesque-Medium', sans-serif;
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
   -moz-osx-font-smoothing: grayscale;
@@ -42,26 +43,26 @@ body {
 
 h1 {
   font-size: 64px;
-  font-weight: 900;
+  font-weight: 600;
   margin: 0 0 10px 0;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'GalanoGrotesque-Bold', sans-serif;
   text-shadow: 2px 2px 8px var(--color-grey-1);
 }
 
 h2 {
   color: var(--color-pink-1);
   font-size: 34px;
-  font-weight: 900;
+  font-weight: 300;
   margin: 10px 0;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'GalanoGrotesque-Bold', sans-serif;
 }
 
 h3 {
   color: var(--color-pink-1);
   font-size: 20px;
   margin: 0 0 5px 0;
-  font-weight: 900;
-  font-family: 'Poppins', sans-serif;
+  font-weight: 300;
+  font-family: 'GalanoGrotesque-Bold', sans-serif;
 }
 
 h4 {
@@ -69,7 +70,7 @@ h4 {
   font-size: 16px;
   margin: 0 0 10px 0;
   font-weight: 300;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'GalanoGrotesque-Bold', sans-serif;
 }
 
 p {
@@ -77,14 +78,14 @@ p {
   font-weight: 300;
   color: var(--color-grey-1);
   margin: 0;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'GalanoGrotesque-Medium', sans-serif;
 }
 
 button,
 a {
   font-weight: 900;
   margin: 0;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'GalanoGrotesque-Bold', sans-serif;
 }
 
 .container {

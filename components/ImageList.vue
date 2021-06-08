@@ -102,9 +102,6 @@ $mobile: 600px;
       background-size: cover;
       background-color: var(--color-purple-1);
       border-radius: 15px;
-      -webkit-box-shadow: 0px 5px 5px 0px var(--color-grey-2);
-      -moz-box-shadow: 0px 5px 5px 0px var(--color-grey-2);
-      box-shadow: 0px 5px 5px 0px var(--color-grey-2);
       @media (max-width: $desktop) {
         height: 300px;
       }

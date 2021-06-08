@@ -52,9 +52,6 @@ $mobile: 600px;
   z-index: 9999;
   overflow-x: hidden;
   overflow-y: auto;
-  -webkit-box-shadow: 0px 5px 5px 0px var(--color-grey-2);
-  -moz-box-shadow: 0px 5px 5px 0px var(--color-grey-2);
-  box-shadow: 0px 5px 5px 0px var(--color-grey-2);
   @media (max-width: $tablet) {
     width: 100%;
   }
@@ -84,8 +81,8 @@ $mobile: 600px;
       animation: fadeIn 0.5s;
       width: 90%;
       padding: 5%;
-      height: 120%;
       margin: 0;
+      border-radius: 0px;
     }
   }
   &__close {

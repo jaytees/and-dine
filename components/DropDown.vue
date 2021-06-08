@@ -98,7 +98,7 @@ export default {
     padding: 0 10px;
     color: var(--color-grey-1);
     border: 2px solid;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'GalanoGrotesque-Medium', sans-serif;
   }
   &__title {
     padding: 10px 0;

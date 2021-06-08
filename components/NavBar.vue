@@ -90,7 +90,6 @@ $mobile: 600px;
   background-color: var(--color-white-1);
   z-index: 999;
   position: inherit;
-  font-family: 'Poppins', sans-serif;
   @media (max-width: $tablet) {
     width: 90%;
     padding: 20px 5%;
@@ -116,7 +115,7 @@ $mobile: 600px;
     }
   }
   &__logo-white {
-    margin-top: 10px;
+    margin-top: 5px;
     @media (max-width: $tablet) {
       display: none;
     }

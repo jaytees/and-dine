@@ -230,6 +230,7 @@ $mobile: 600px;
       @media (max-width: $tablet) {
         text-align: center;
         font-size: 46px;
+        padding: 0 20px;
       }
     }
   }
@@ -255,9 +256,6 @@ $mobile: 600px;
       height: 300px;
       background-position: center;
       background-size: cover;
-      -webkit-box-shadow: 0px 5px 5px 0px var(--color-grey-2);
-      -moz-box-shadow: 0px 5px 5px 0px var(--color-grey-2);
-      box-shadow: 0px 5px 5px 0px var(--color-grey-2);
       border-radius: 5px;
     }
     &--content {

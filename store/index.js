@@ -23,7 +23,7 @@ export const mutations = {
     state.shopifyProducts = payload
   },
   SET_SELLERS(state, payload) {
-    state.sellers = payload
+    state.sellers = payload.reverse()
   },
   SET_CHOSEN_SELLER_ID(state, payload) {
     state.chosenSellerId = payload

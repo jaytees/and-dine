@@ -148,7 +148,7 @@ export default {
     appearance: none;
     padding: 0 10px;
     color: var(--color-grey-1);
-    font-family: 'Poppins', sans-serif;
+    font-family: 'GalanoGrotesque-Medium', sans-serif;
   }
   &__title,
   &__error {
