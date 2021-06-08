@@ -2,7 +2,7 @@
   <section class="home">
     <div class="home__hero">
       <div class="home__hero--left">
-        <h1 class="main-title">Real people, real food.</h1>
+        <h1 class="main-title">Real People, Real Food.</h1>
         <h3 class="main-body">
           A new way to experience authentic home cooking.
         </h3>
@@ -128,12 +128,12 @@ $mobile: 600px;
       .main-title,
       .main-body {
         color: var(--color-white-1);
+        text-shadow: 2px 2px 8px var(--color-grey-1);
       }
       .main-body {
         font-size: 24px;
         margin-top: 15px;
         font-family: 'GalanoGrotesque-Medium', sans-serif;
-        text-shadow: 2px 2px 8px var(--color-grey-1);
       }
     }
     &--right {

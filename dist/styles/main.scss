@@ -46,7 +46,9 @@ h1 {
   font-weight: 600;
   margin: 0 0 10px 0;
   font-family: 'GalanoGrotesque-Bold', sans-serif;
-  text-shadow: 2px 2px 8px var(--color-grey-1);
+  @media (max-width: $tablet) {
+    font-size: 50px;
+  }
 }
 
 h2 {
@@ -55,6 +57,9 @@ h2 {
   font-weight: 300;
   margin: 10px 0;
   font-family: 'GalanoGrotesque-Bold', sans-serif;
+  @media (max-width: $tablet) {
+    font-size: 24px;
+  }
 }
 
 h3 {

@@ -37,8 +37,14 @@ $mobile: 600px;
     display: flex;
     z-index: -999;
     @media (max-width: $desktop) {
+      padding: 50px 5%;
       width: 90%;
-      display: block;
+      display: -webkit-box;
+      display: -moz-box;
+      display: box;
+      -webkit-box-orient: vertical;
+      -moz-box-orient: vertical;
+      box-orient: vertical;
       background-position: top;
     }
     &--right {
@@ -46,9 +52,10 @@ $mobile: 600px;
       width: 50%;
       padding: 0 5%;
       @media (max-width: $desktop) {
+        -webkit-box-ordinal-group: 1;
         animation: fadeIn 0.5s;
         width: 90%;
-        padding: 100px 5% 30px;
+        padding: 50px 5%;
         text-align: center;
         .main-title {
           font-size: 46px;
@@ -57,12 +64,12 @@ $mobile: 600px;
       .main-title,
       .main-body {
         color: var(--color-white-1);
+        text-shadow: 2px 2px 8px var(--color-grey-1);
       }
       .main-body {
         font-size: 24px;
         margin-top: 15px;
         font-family: 'GalanoGrotesque-Medium', sans-serif;
-        text-shadow: 2px 2px 8px var(--color-grey-1);
       }
     }
     &--left {
@@ -70,6 +77,7 @@ $mobile: 600px;
       width: 50%;
       padding: 0 5%;
       @media (max-width: $desktop) {
+        -webkit-box-ordinal-group: 2;
         animation: fadeIn 0.5s;
         padding: 0 5%;
         width: 90%;
