@@ -108,6 +108,7 @@ export default {
     const options = {
       componentRestrictions: { country: 'gb' },
       types: ['geocode'],
+      fields: ['address_component', 'formatted_address'],
     }
     // eslint-disable-next-line
     this.autocomplete = new this.$google.maps.places.Autocomplete(

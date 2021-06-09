@@ -39,7 +39,7 @@ export const mutations = {
   },
   SET_SHIPPING_ADDRESS(state, payload) {
     state.formattedAddress = payload.formatted_address
-    if (payload) {
+    if (payload && payload.address_components.length > 5) {
       const shippingAddress = {
         address1: `${
           payload.types[0] !== 'postal_code'
