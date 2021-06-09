@@ -50,6 +50,15 @@
         soon.
       </h3>
     </div>
+    <dynamic-modal
+      v-if="!isLondon && showModal"
+      class="home__modal"
+      @closeModal="closeModal"
+    >
+      <template v-slot:body>
+        <join-form :customer="true" />
+      </template>
+    </dynamic-modal>
   </section>
 </template>
 
@@ -60,11 +69,19 @@ export default {
   data: () => ({
     cuisine: '12485',
     poscodeHighlight: false,
+    showModal: true,
   }),
   computed: {
     ...mapState(['sellers', 'formattedAddress', 'checkoutInfo']),
     isLondon() {
-      return this.formattedAddress.includes('London')
+      return (
+        this.formattedAddress.includes('London') || this.formattedAddress === ''
+      )
+    },
+  },
+  watch: {
+    isLondon(to) {
+      if (!to) this.showModal = true
     },
   },
   methods: {
@@ -94,6 +111,9 @@ export default {
       if (this.formattedAddress) {
         this.poscodeHighlight = false
       }
+    },
+    closeModal() {
+      this.showModal = false
     },
   },
 }
@@ -168,5 +188,23 @@ $mobile: 600px;
     margin: 0 auto;
     width: 100%;
   }
+  // &__modal {
+  //   text-align: center;
+  //   &--image {
+  //     margin: 0 auto;
+  //     width: 200px;
+  //   }
+  //   &--content {
+  //     margin: 20px 0;
+  //     border-top: 1px solid var(--color-grey-2);
+  //     border-bottom: 1px solid var(--color-grey-2);
+  //     p {
+  //       margin: 10px 0;
+  //     }
+  //   }
+  //   &--body {
+  //     margin: 20px 0;
+  //   }
+  // }
 }
 </style>

@@ -89,10 +89,10 @@ $mobile: 600px;
   padding: 0 10%;
   background-color: var(--color-white-1);
   z-index: 999;
-  position: inherit;
+  position: absolute;
   -webkit-box-shadow: 0px 0px 2px 0px var(--color-grey-2);
   -moz-box-shadow: 0px 0px 2px 0px var(--color-grey-2);
-  box-shadow: 0px 0px 2px 0px var(--color-grey-2);
+  box-shadow: 0px 0px 2px 2px var(--color-grey-2);
   @media (max-width: $tablet) {
     width: 95%;
     padding: 20px 5%;
@@ -118,7 +118,6 @@ $mobile: 600px;
     }
   }
   &__logo-white {
-    margin-top: 5px;
     @media (max-width: $tablet) {
       display: none;
     }
@@ -131,7 +130,7 @@ $mobile: 600px;
     float: right;
     display: flex;
     list-style-type: none;
-    padding: 20px 0;
+    padding: 10px 0;
     @media (max-width: $tablet) {
       display: none;
       width: 100%;
@@ -151,9 +150,11 @@ $mobile: 600px;
         &:hover,
         .selected-link {
           background-color: var(--color-pink-1);
-          color: var(--color-white-1);
           @media (max-width: $tablet) {
             opacity: 0.9;
+          }
+          a {
+            color: var(--color-white-1);
           }
         }
       }
@@ -162,9 +163,6 @@ $mobile: 600px;
         color: var(--color-pink-1);
         font-size: 16px;
         cursor: pointer;
-        &:hover {
-          color: var(--color-white-1);
-        }
         @media (max-width: $tablet) {
           color: var(--color-pink-1);
         }

@@ -21,7 +21,7 @@
         :icon="loading ? 'spinner' : 'location-arrow'"
         :spinning="loading"
         color="pink"
-        height="50px"
+        height="48px"
         @clickEvent="locatorButtonPressed"
       />
     </div>
