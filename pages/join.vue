@@ -31,6 +31,7 @@ $mobile: 600px;
     margin-bottom: 250px;
   }
   &__hero {
+    margin-top: 70px;
     animation: fadeIn 0.5s;
     padding: 200px 5%;
     width: 90%;

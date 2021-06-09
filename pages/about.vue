@@ -49,6 +49,7 @@ $mobile: 600px;
     margin-bottom: 300px;
   }
   &__hero {
+    margin-top: 70px;
     animation: fadeIn 0.5s;
     width: 100%;
     background-image: url('~/assets/images/hero-about.png');

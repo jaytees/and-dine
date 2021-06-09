@@ -226,6 +226,7 @@ $mobile: 600px;
     padding: 200px 0;
     display: flex;
     z-index: -999;
+    margin-top: 70px;
     color: var(--color-white-1);
     @media (max-width: $tablet) {
       display: block;
