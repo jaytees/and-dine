@@ -105,6 +105,9 @@ $mobile: 600px;
     display: flex;
     flex-direction: column;
     align-items: stretch;
+    @media (max-width: $tablet) {
+      height: 100vh;
+    }
   }
   &--footer {
     padding: 2%;

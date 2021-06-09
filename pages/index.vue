@@ -45,7 +45,7 @@
       </div>
     </div>
     <div v-else class="home__sellers">
-      <h3>
+      <h3 class="home__sellers--sorry">
         Sorry we are not delivering to this area yet, please check in again
         soon.
       </h3>
@@ -189,24 +189,11 @@ $mobile: 600px;
     position: relative;
     margin: 0 auto;
     width: 100%;
+    &--sorry {
+      padding: 20px 5%;
+      text-align: center;
+      width: 80%;
+    }
   }
-  // &__modal {
-  //   text-align: center;
-  //   &--image {
-  //     margin: 0 auto;
-  //     width: 200px;
-  //   }
-  //   &--content {
-  //     margin: 20px 0;
-  //     border-top: 1px solid var(--color-grey-2);
-  //     border-bottom: 1px solid var(--color-grey-2);
-  //     p {
-  //       margin: 10px 0;
-  //     }
-  //   }
-  //   &--body {
-  //     margin: 20px 0;
-  //   }
-  // }
 }
 </style>
