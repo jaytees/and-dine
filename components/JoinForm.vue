@@ -379,6 +379,10 @@ $mobile: 600px;
     cursor: pointer;
     font-family: 'GalanoGrotesque-Bold', sans-serif;
     font-size: 20px;
+    &:hover {
+      opacity: 0.9;
+      transform: scale(1.02);
+    }
   }
 }
 </style>

@@ -102,7 +102,7 @@ export default {
 .dynamic-button {
   padding: 14px 10px;
   color: #ffffff;
-  font-weight: 600;
+  font-weight: 300;
   font-size: 18px;
   border-radius: 5px;
   border: none;

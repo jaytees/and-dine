@@ -109,6 +109,10 @@ $mobile: 600px;
         width: 70px;
         padding: 0;
       }
+      &:hover {
+        opacity: 0.9;
+        transform: scale(1.1);
+      }
     }
   }
   &__logo-pink {
@@ -191,7 +195,7 @@ $mobile: 600px;
       }
       h3 {
         position: absolute;
-        top: 27px;
+        top: 15px;
         right: 9%;
         background-color: var(--color-pink-1);
         color: var(--color-white-1);
