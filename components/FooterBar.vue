@@ -56,7 +56,7 @@ $mobile: 600px;
 .footer {
   width: 90%;
   padding: 10px 5%;
-  background-color: var(--color-grey-2);
+  background-color: var(--color-pink-1);
   z-index: 999;
   position: absolute;
   display: flex;
@@ -92,6 +92,11 @@ $mobile: 600px;
           font-weight: 300;
           text-decoration: none;
           cursor: pointer;
+          &:hover {
+            opacity: 0.9;
+            transform: scale(1.1);
+            text-decoration: underline;
+          }
         }
         h3 {
           @media (max-width: $tablet) {

@@ -1,5 +1,4 @@
 export default {
-  // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
     title: 'and-dine',
     meta: [
@@ -16,24 +15,16 @@ export default {
     link: [{ rel: 'icon', type: 'image/x-icon', href: 'favicon.ico' }],
   },
 
-  // Global CSS (https://go.nuxtjs.dev/config-css)
   css: ['~/static/styles/main.scss', '~/static/styles/animate.scss'],
 
-  // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
   plugins: [
     { src: '~/plugins/vue-meta', ssr: false },
     { src: '~/plugins/vue-friendly-iframe', ssr: false },
   ],
 
-  // Auto import components (https://go.nuxtjs.dev/config-components)
   components: true,
 
-  // Modules for dev and build (recommended) (https://go.nuxtjs.dev/config-modules)
-  buildModules: [
-    // https://go.nuxtjs.dev/eslint
-    '@nuxtjs/eslint-module',
-    '@nuxt/image',
-  ],
+  buildModules: ['@nuxtjs/eslint-module', '@nuxt/image'],
 
   target: 'static',
 
@@ -102,6 +93,15 @@ export default {
     '@nuxt/http',
     'nuxt-lazy-load',
     'cookie-universal-nuxt',
+    [
+      'nuxt-google-maps-module',
+      {
+        defer: false,
+        async: false,
+        key: 'AIzaSyC_gWbzZHOo1xpc9eOgzgqUa44PGdGY4Pg',
+        libraries: ['places'],
+      },
+    ],
     [
       'nuxt-fontawesome',
       {

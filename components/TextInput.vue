@@ -6,6 +6,7 @@
     >
     <input
       v-if="addressFinder"
+      :id="dynamicId"
       ref="searchTextField"
       :value="value"
       :style="`width: ${width}`"
@@ -109,7 +110,10 @@ export default {
       types: ['geocode'],
     }
     // eslint-disable-next-line
-    this.autocomplete = new google.maps.places.Autocomplete(input, options)
+    this.autocomplete = new this.$google.maps.places.Autocomplete(
+      input,
+      options
+    )
   },
   methods: {
     returnValue() {
@@ -122,15 +126,6 @@ export default {
         this.$emit('inputValue', place)
       })
     },
-  },
-  head() {
-    return {
-      script: [
-        {
-          src: `https://maps.googleapis.com/maps/api/js?key=${process.env.GOOGLE_API_KEY}&libraries=places`,
-        },
-      ],
-    }
   },
 }
 </script>

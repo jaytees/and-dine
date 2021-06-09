@@ -15,7 +15,7 @@
         />
       </div>
     </div>
-    <div class="home__sellers">
+    <div v-if="isLondon" class="home__sellers">
       <div v-for="(seller, index) in sellers" :key="`seller__${index}`">
         <div v-if="!formattedAddress" @click="scrollToTop">
           <image-list
@@ -44,6 +44,12 @@
         </nuxt-link>
       </div>
     </div>
+    <div v-else class="home__sellers">
+      <h3>
+        Sorry we are not delivering to this area yet, please check in again
+        soon.
+      </h3>
+    </div>
   </section>
 </template>
 
@@ -57,6 +63,9 @@ export default {
   }),
   computed: {
     ...mapState(['sellers', 'formattedAddress', 'checkoutInfo']),
+    isLondon() {
+      return this.formattedAddress.includes('London')
+    },
   },
   methods: {
     ...mapMutations({
@@ -96,10 +105,11 @@ $tablet: 768px;
 $mobile: 600px;
 
 .home {
-  margin-bottom: 180px;
-  display: inline-grid;
+  display: inline-block;
+  width: 100%;
+  margin-bottom: 200px;
   @media (max-width: $tablet) {
-    margin-bottom: 250px;
+    margin-bottom: 300px;
   }
   &__hero {
     animation: fadeIn 0.5s;

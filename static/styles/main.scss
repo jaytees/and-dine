@@ -2,8 +2,35 @@ $desktop: 1024px;
 $tablet: 768px;
 $mobile: 600px;
 
-@import url(//db.onlinewebfonts.com/c/4c1751846a9bd1d352bd512be673bbc7?family=GalanoGrotesque-Medium);
-@import url(//db.onlinewebfonts.com/c/463e96684a261fe795b31a68de0aa0f4?family=GalanoGrotesque-Bold);
+@font-face {
+  font-family: 'GalanoGrotesque-Bold';
+  src: url('//db.onlinewebfonts.com/t/463e96684a261fe795b31a68de0aa0f4.eot');
+  src: url('//db.onlinewebfonts.com/t/463e96684a261fe795b31a68de0aa0f4.eot?#iefix')
+      format('embedded-opentype'),
+    url('//db.onlinewebfonts.com/t/463e96684a261fe795b31a68de0aa0f4.woff2')
+      format('woff2'),
+    url('//db.onlinewebfonts.com/t/463e96684a261fe795b31a68de0aa0f4.woff')
+      format('woff'),
+    url('//db.onlinewebfonts.com/t/463e96684a261fe795b31a68de0aa0f4.ttf')
+      format('truetype'),
+    url('//db.onlinewebfonts.com/t/463e96684a261fe795b31a68de0aa0f4.svg#GalanoGrotesque-Bold')
+      format('svg');
+}
+
+@font-face {
+  font-family: 'GalanoGrotesque-Medium';
+  src: url('//db.onlinewebfonts.com/t/4c1751846a9bd1d352bd512be673bbc7.eot');
+  src: url('//db.onlinewebfonts.com/t/4c1751846a9bd1d352bd512be673bbc7.eot?#iefix')
+      format('embedded-opentype'),
+    url('//db.onlinewebfonts.com/t/4c1751846a9bd1d352bd512be673bbc7.woff2')
+      format('woff2'),
+    url('//db.onlinewebfonts.com/t/4c1751846a9bd1d352bd512be673bbc7.woff')
+      format('woff'),
+    url('//db.onlinewebfonts.com/t/4c1751846a9bd1d352bd512be673bbc7.ttf')
+      format('truetype'),
+    url('//db.onlinewebfonts.com/t/4c1751846a9bd1d352bd512be673bbc7.svg#GalanoGrotesque-Medium')
+      format('svg');
+}
 
 html,
 body {
@@ -94,8 +121,6 @@ a {
 }
 
 .container {
-  -webkit-overflow-scrolling: touch;
-  overflow-y: scroll;
   padding: 0;
   position: relative;
   float: left;

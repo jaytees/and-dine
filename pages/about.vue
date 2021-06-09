@@ -44,7 +44,7 @@ $tablet: 768px;
 $mobile: 600px;
 
 .about {
-  margin-bottom: 150px;
+  margin-bottom: 200px;
   @media (max-width: $tablet) {
     margin-bottom: 300px;
   }

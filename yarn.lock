@@ -7803,6 +7803,7 @@ nuxt-fontawesome@^0.4.0:
 nuxt-gmaps@^1.2.10:
   version "1.2.10"
   resolved "https://registry.yarnpkg.com/nuxt-gmaps/-/nuxt-gmaps-1.2.10.tgz#c32aca891e63eb227835e9f1c2edfa3bf86c0ca6"
+  integrity sha512-IeYXeR6cJpVfSDa0+IYht7r7IZNCL5uK6oWH8e1JY95+NbJBBH6Nas9BmR+9ZIkCw6aFrUwXEkOFgg8RefjlJw==
   dependencies:
     google-maps-api-loader "^1.1.1"
     node-js-marker-clusterer "^1.0.0"
@@ -7810,6 +7811,7 @@ nuxt-gmaps@^1.2.10:
 nuxt-google-maps-module@^1.6.0:
   version "1.6.0"
   resolved "https://registry.yarnpkg.com/nuxt-google-maps-module/-/nuxt-google-maps-module-1.6.0.tgz#491231f1427257d2463e8c48813348d9e811abe2"
+  integrity sha512-bVYAy74pK1cwDnZVeHU5AdtXujaXZ/mAZKyIzhRnFKkR7HMPNgKzXjtfdstyZb7k0BaYeCKOKXYFvN4goo+7Ng==
 
 nuxt-lazy-load@^1.2.6:
   version "1.2.6"

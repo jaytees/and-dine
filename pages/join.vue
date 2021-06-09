@@ -27,7 +27,6 @@ $tablet: 768px;
 $mobile: 600px;
 
 .join {
-  margin-bottom: 100px;
   @media (max-width: $tablet) {
     margin-bottom: 250px;
   }

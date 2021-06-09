@@ -211,10 +211,11 @@ $tablet: 768px;
 $mobile: 600px;
 
 .seller {
-  margin-bottom: 200px;
+  margin-bottom: 100px;
   display: inline-block;
+  margin-bottom: 200px;
   @media (max-width: $tablet) {
-    margin-bottom: 350px;
+    margin-bottom: 300px;
   }
   &__hero {
     width: 100%;
