@@ -202,6 +202,18 @@ export default {
       }
     },
   },
+  head() {
+    return {
+      title: 'Seller',
+      meta: [
+        {
+          hid: '&Dine Seller Page',
+          name: 'Real People, Real Food.',
+          content: 'A new way to experience authentic home cooking.',
+        },
+      ],
+    }
+  },
 }
 </script>
 

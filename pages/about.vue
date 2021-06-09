@@ -35,6 +35,19 @@
 <script>
 export default {
   name: 'About',
+  head() {
+    return {
+      title: 'About Us',
+      meta: [
+        {
+          hid: '&Dine About Us',
+          name: 'Real People, Real Food.',
+          content:
+            '&Dine is a marketplace platform connecting talented home chefs with customers to process and deliver orders of authentic home made meals.',
+        },
+      ],
+    }
+  },
 }
 </script>
 

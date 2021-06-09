@@ -118,6 +118,18 @@ export default {
       this.showModal = false
     },
   },
+  head() {
+    return {
+      title: 'Home',
+      meta: [
+        {
+          hid: '&Dine Homepage',
+          name: 'Real People, Real Food.',
+          content: 'A new way to experience authentic home cooking.',
+        },
+      ],
+    }
+  },
 }
 </script>
 

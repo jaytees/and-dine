@@ -8,7 +8,7 @@
         <h1 class="main-title">Cook with us.</h1>
         <h3 class="main-body">
           Sell from your kitchen and earn extra income, with hours that suit.
-          Partner with us today. you.
+          Partner with us today.
         </h3>
       </div>
     </div>
@@ -18,6 +18,19 @@
 <script>
 export default {
   name: 'Join',
+  head() {
+    return {
+      title: 'Join',
+      meta: [
+        {
+          hid: '&Dine Join Page',
+          name: 'Cook with us.',
+          content: `Sell from your kitchen and earn extra income, with hours that suit.
+          Partner with us today.`,
+        },
+      ],
+    }
+  },
 }
 </script>
 
