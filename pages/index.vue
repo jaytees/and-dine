@@ -75,7 +75,9 @@ export default {
     ...mapState(['sellers', 'formattedAddress', 'checkoutInfo']),
     isLondon() {
       return (
-        this.formattedAddress.includes('London') || this.formattedAddress === ''
+        (this.formattedAddress !== '' &&
+          this.formattedAddress.includes('London')) ||
+        this.formattedAddress === ''
       )
     },
   },

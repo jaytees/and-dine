@@ -39,29 +39,31 @@ export const mutations = {
   },
   SET_SHIPPING_ADDRESS(state, payload) {
     state.formattedAddress = payload.formatted_address
-    const shippingAddress = {
-      address1: `${
-        payload.types[0] !== 'postal_code'
-          ? `${payload.address_components[0].long_name} ${payload.address_components[1].long_name}`
-          : payload.address_components[1].long_name
-      }`,
-      address2: payload.address_components[2].long_name,
-      city:
-        payload.address_components.length > 7
-          ? payload.address_components[4].long_name
-          : payload.address_components[3].long_name,
-      company: null,
-      country: 'United Kingdom',
-      firstName: 'First Name',
-      lastName: 'Last Name',
-      phone: '00000000000',
-      province: 'United Kingdom',
-      zip:
-        payload.types[0] !== 'postal_code'
-          ? payload.address_components[6].long_name
-          : payload.address_components[0].long_name,
+    if (payload) {
+      const shippingAddress = {
+        address1: `${
+          payload.types[0] !== 'postal_code'
+            ? `${payload.address_components[0].long_name} ${payload.address_components[1].long_name}`
+            : payload.address_components[1].long_name
+        }`,
+        address2: payload.address_components[2].long_name,
+        city:
+          payload.address_components.length > 7
+            ? payload.address_components[4].long_name
+            : payload.address_components[3].long_name,
+        company: null,
+        country: 'United Kingdom',
+        firstName: 'First Name',
+        lastName: 'Last Name',
+        phone: '00000000000',
+        province: 'United Kingdom',
+        zip:
+          payload.types[0] !== 'postal_code'
+            ? payload.address_components[6].long_name
+            : payload.address_components[0].long_name,
+      }
+      state.shippingAddress = shippingAddress
     }
-    state.shippingAddress = shippingAddress
   },
 }
 

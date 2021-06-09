@@ -16,7 +16,7 @@
           <h4 class="join-form__body">
             We're working on it... We will notify you as soon as we arrive!
           </h4>
-          <h4 class="join-form__required">All fields are required*</h4>
+          <h4 class="join-form__required">Required fields *</h4>
           <div class="mc-field-group">
             <label for="mce-FNAME">First Name </label>
             <input id="mce-FNAME" type="text" value="" name="FNAME" class="" />
@@ -285,7 +285,7 @@ export default {
     setupMailchimpSeller() {
       const chimpValidate = document.createElement('script')
       chimpValidate.src =
-        'http://s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js'
+        'https://s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js'
 
       if (this.customer) {
         const chimpCustomer = document.createElement('script')
@@ -320,7 +320,7 @@ $mobile: 600px;
 .join-form {
   background-color: var(--color-white-1);
   border-radius: 15px;
-  padding: 30px;
+  padding: 10px 30px;
   &__logo {
     width: 200px;
     margin: 0 auto;
