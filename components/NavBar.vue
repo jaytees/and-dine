@@ -71,6 +71,11 @@ export default {
       return this.itemCount > 0
     },
   },
+  watch: {
+    $route(to, from) {
+      if (to !== from) this.showMobileNav = false
+    },
+  },
   mounted() {
     this.navItems = this.navigation
   },
