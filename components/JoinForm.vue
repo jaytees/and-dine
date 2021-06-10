@@ -122,16 +122,16 @@
               class="required email"
             />
           </div>
-          <div class="mc-field-group">
-            <label for="mce-NUMBER"
+          <div class="mc-field-groups">
+            <label for="mce-PHONE"
               >Phone Number <span class="asterisk">*</span>
             </label>
             <input
-              id="mce-NUMBER"
+              id="mce-PHONE"
               type="text"
-              value=""
-              name="NUMBER"
+              name="PHONE"
               class="required"
+              value=""
             />
           </div>
           <div class="mc-field-group">
@@ -299,7 +299,7 @@ export default {
         const chimpSeller = document.createElement('script')
         chimpSeller.appendChild(
           document.createTextNode(
-            `(function($) {window.fnames = new Array(); window.ftypes = new Array();fnames[1]='FNAME';ftypes[1]='text';fnames[2]='LNAME';ftypes[2]='text';fnames[4]='NUMBER';ftypes[4]='text';fnames[0]='EMAIL';ftypes[0]='email';fnames[6]='MMERGE6';ftypes[6]='text';fnames[7]='MMERGE7';ftypes[7]='dropdown';fnames[3]='ADDRESS';ftypes[3]='address';fnames[5]='BIRTHDAY';ftypes[5]='birthday';}(jQuery));var $mcj = jQuery.noConflict(true);`
+            `(function($) {window.fnames = new Array(); window.ftypes = new Array();fnames[1]='FNAME';ftypes[1]='text';fnames[2]='LNAME';ftypes[2]='text';fnames[4]='PHONE';ftypes[4]='text';fnames[0]='EMAIL';ftypes[0]='email';fnames[6]='MMERGE6';ftypes[6]='text';fnames[7]='MMERGE7';ftypes[7]='dropdown';fnames[3]='ADDRESS';ftypes[3]='address';fnames[5]='BIRTHDAY';ftypes[5]='birthday';}(jQuery));var $mcj = jQuery.noConflict(true);`
           )
         )
         document.body.appendChild(chimpSeller)
