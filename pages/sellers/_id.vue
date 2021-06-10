@@ -1,12 +1,15 @@
 <template>
   <section v-if="sellerReady" class="seller">
     <div
-      class="seller__hero"
+      class="seller__hero animate__animated animate__fadeIn"
       :style="`background-image: url(${sellerById[0].store_banner})`"
     >
-      <h1 class="seller__hero--title">{{ sellerById[0].sp_store_name }}</h1>
+      <h1 class="seller__hero--title animate__animated animate__fadeInUp">
+        {{ sellerById[0].sp_store_name }}
+      </h1>
     </div>
     <seller-bio
+      data-aos="fade-right"
       class="seller__bio"
       :seller-logo="sellerById[0].store_logo"
       :seller-name="sellerById[0].sp_store_name"
@@ -20,6 +23,7 @@
       <image-list
         v-for="(product, index) in productsById"
         :key="`seller__${index}`"
+        data-aos="fade-up"
         :image-title="product.product_name"
         :image-subtitle="`£${parseFloat(product.price).toFixed(2)}`"
         :background-image="product.images[0].img_lg"
@@ -231,7 +235,6 @@ $mobile: 600px;
   }
   &__hero {
     width: 100%;
-    animation: fadeIn 0.5s;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -257,7 +260,6 @@ $mobile: 600px;
   &__bio,
   &__products,
   &__delivery {
-    animation: fadeIn 0.5s;
     padding: 50px 5% 0;
     position: relative;
     margin: 0 auto;

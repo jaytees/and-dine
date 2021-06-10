@@ -1,7 +1,7 @@
 <template>
   <div class="modal">
     <div class="modal__backdrop" @click="closeModal()" />
-    <div class="modal__dialog">
+    <div class="modal__dialog animate__animated animate__zoomIn">
       <div class="modal__header">
         <slot name="header" />
         <dynamic-button
@@ -67,7 +67,6 @@ $mobile: 600px;
     z-index: 1;
   }
   &__dialog {
-    animation: fadeIn 0.5s;
     position: relative;
     width: 600px;
     padding: 2%;
@@ -78,7 +77,6 @@ $mobile: 600px;
     flex-direction: column;
     z-index: 2;
     @media (max-width: $tablet) {
-      animation: fadeIn 0.5s;
       width: 90%;
       padding: 5%;
       margin: 0;

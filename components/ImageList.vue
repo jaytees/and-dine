@@ -79,16 +79,13 @@ $mobile: 600px;
     @media (max-width: $tablet) {
       padding: 0;
       width: 90%;
-      margin: 0;
+      margin: 20px 0;
+      display: inline-block;
     }
     &:hover {
       opacity: 0.9;
       transform: scale(1.02);
     }
-    @media (max-width: $tablet) {
-      display: inline-block;
-    }
-
     &--image-title {
       margin: 15px 0 0;
     }

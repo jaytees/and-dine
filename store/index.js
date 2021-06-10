@@ -42,7 +42,7 @@ export const mutations = {
     if (payload && payload.address_components.length > 5) {
       const shippingAddress = {
         address1: `${
-          payload.types[0] !== 'postal_code'
+          payload.address_components[0].types[0] !== 'postal_code'
             ? `${payload.address_components[0].long_name} ${payload.address_components[1].long_name}`
             : payload.address_components[1].long_name
         }`,
@@ -58,7 +58,7 @@ export const mutations = {
         phone: '00000000000',
         province: 'United Kingdom',
         zip:
-          payload.types[0] !== 'postal_code'
+          payload.address_components[0].types[0] !== 'postal_code'
             ? payload.address_components[6].long_name
             : payload.address_components[0].long_name,
       }

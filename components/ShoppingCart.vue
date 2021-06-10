@@ -1,5 +1,5 @@
 <template>
-  <div class="shopping-cart">
+  <div class="shopping-cart animate__animated animate__fadeInRight">
     <dynamic-button
       class="shopping-cart__close"
       :is-slot="true"
@@ -116,7 +116,6 @@ $tablet: 768px;
 $mobile: 600px;
 
 .shopping-cart {
-  animation: slideInRight 0.5s;
   height: 100%;
   width: 27%;
   position: fixed;
@@ -130,7 +129,6 @@ $mobile: 600px;
   -moz-box-shadow: 0px 0px 2px 2px var(--color-grey-2);
   box-shadow: 0px 0px 2px 2px var(--color-grey-2);
   @media (max-width: $desktop) {
-    animation: slideInRight 0.5s;
     width: 90%;
     padding: 5%;
   }

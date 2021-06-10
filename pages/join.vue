@@ -1,10 +1,10 @@
 <template>
   <section class="join">
-    <div class="join__hero">
-      <div class="join__hero--left">
+    <div class="join__hero animate__animated animate__fadeIn">
+      <div class="join__hero--left animate__animated animate__fadeInUp">
         <join-form />
       </div>
-      <div class="join__hero--right">
+      <div class="join__hero--right animate__animated animate__fadeInUp">
         <h1 class="main-title">Cook with us.</h1>
         <h3 class="main-body">
           Sell from your kitchen and earn extra income, with hours that suit.
@@ -45,7 +45,6 @@ $mobile: 600px;
   }
   &__hero {
     margin-top: 70px;
-    animation: fadeIn 0.5s;
     padding: 200px 5%;
     width: 90%;
     background-image: url('~/assets/images/hero-join.png');
@@ -67,12 +66,10 @@ $mobile: 600px;
       flex-wrap: wrap;
     }
     &--right {
-      animation: fadeIn 0.5s;
       width: 50%;
       padding: 0 5%;
       @media (max-width: $desktop) {
         -webkit-box-ordinal-group: 1;
-        animation: fadeIn 0.5s;
         width: 90%;
         padding: 50px 5%;
         text-align: center;
@@ -92,12 +89,10 @@ $mobile: 600px;
       }
     }
     &--left {
-      animation: fadeIn 0.5s;
       width: 50%;
       padding: 0 5%;
       @media (max-width: $desktop) {
         -webkit-box-ordinal-group: 2;
-        animation: fadeIn 0.5s;
         padding: 0;
         width: 100%;
       }

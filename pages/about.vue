@@ -1,6 +1,6 @@
 <template>
   <section class="about">
-    <div class="about__hero"></div>
+    <div class="about__hero animate__animated animate__fadeIn"></div>
     <h1 class="about__title">Real People, Real Food.</h1>
     <div class="about__column">
       <div class="about__column--text">
@@ -11,12 +11,12 @@
           a safe and trusted method of ordering.
         </p>
       </div>
-      <div class="about__column--image">
+      <div class="about__column--image" data-aos="fade-left">
         <img src="~assets/images/woman-about.png" />
       </div>
     </div>
     <div class="about__column">
-      <div class="about__column--image">
+      <div class="about__column--image" data-aos="fade-right">
         <img src="~assets/images/couple-about.png" />
       </div>
       <div class="about__column--text">
@@ -63,7 +63,6 @@ $mobile: 600px;
   }
   &__hero {
     margin-top: 70px;
-    animation: fadeIn 0.5s;
     width: 100%;
     background-image: url('~/assets/images/hero-about.png');
     background-size: cover;

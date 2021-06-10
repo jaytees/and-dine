@@ -16,14 +16,22 @@ export default {
         src: 'https://code.jquery.com/jquery-3.3.1.slim.min.js',
       },
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: 'favicon.ico' }],
+    link: [
+      { rel: 'icon', type: 'image/x-icon', href: 'favicon.ico' },
+      {
+        rel: 'stylesheet',
+        href:
+          'https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css',
+      },
+    ],
   },
 
-  css: ['~/static/styles/main.scss', '~/static/styles/animate.scss'],
+  css: ['~/static/styles/main.scss'],
 
   plugins: [
     { src: '~/plugins/vue-meta', ssr: false },
     { src: '~/plugins/vue-friendly-iframe', ssr: false },
+    { src: '~/plugins/vue-aos', ssr: false },
   ],
 
   components: true,
@@ -125,6 +133,9 @@ export default {
               'faLocationArrow',
               'faSpinner',
               'faCopyright',
+              'faPizzaSlice',
+              'faSearchLocation',
+              'faHouseUser',
             ],
           },
           {

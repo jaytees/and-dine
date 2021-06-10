@@ -14,7 +14,10 @@
       />
       <fa :icon="['fas', 'shopping-cart']" @click="returnCartClick" />
     </div>
-    <ul class="navbar__items" :class="showMobileNav && 'show-nav'">
+    <ul
+      class="navbar__items"
+      :class="showMobileNav && 'show-nav animate__animated animate__fadeInDown'"
+    >
       <li
         v-for="(item, index) in navItems"
         :key="`tab_${index}`"
@@ -128,7 +131,6 @@ $mobile: 600px;
   }
   .show-nav {
     display: block;
-    animation: fadeInDown 0.5s;
   }
   &__items {
     float: right;

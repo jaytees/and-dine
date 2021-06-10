@@ -1,54 +1,48 @@
 <template>
   <section class="home">
-    <div class="home__hero">
-      <div class="home__hero--left">
+    <div class="home__hero animate__animated animate__fadeIn">
+      <div class="home__hero--left animate__animated animate__fadeInUp">
         <h1 class="main-title">Real People, Real Food.</h1>
         <h3 class="main-body">
           A new way to experience authentic home cooking.
         </h3>
       </div>
-      <div class="home__hero--right">
+      <div class="home__hero--right animate__animated animate__fadeInUp">
         <location-box
-          :class="poscodeHighlight && 'highlight'"
           :formatted-address="formattedAddress"
           @addressChanged="updateShippingAddress"
         />
       </div>
     </div>
-    <div v-if="isLondon" class="home__sellers">
-      <div v-for="(seller, index) in sellers" :key="`seller__${index}`">
-        <div v-if="!formattedAddress" @click="scrollToTop">
-          <image-list
-            v-if="seller.active"
-            :image-title="seller.sp_store_name"
-            :image-subtitle="getObjVal(seller.custom_fields, '12485')"
-            :profile-image="seller.store_logo"
-            :background-image="seller.shop_logo"
-          />
-        </div>
-        <nuxt-link
-          v-else
-          :to="
-            getObjVal(seller.custom_fields, '12910') === 'Yes'
-              ? `/sellers/${seller.id}`
-              : ''
-          "
-        >
-          <image-list
-            v-if="seller.active"
-            :image-title="seller.sp_store_name"
-            :image-subtitle="getObjVal(seller.custom_fields, '12485')"
-            :profile-image="seller.store_logo"
-            :background-image="seller.shop_logo"
-          />
-        </nuxt-link>
-      </div>
+    <div v-if="!formattedAddress" class="home__steps" data-aos="fade-up">
+      <steps-box />
     </div>
-    <div v-else class="home__sellers">
-      <h3 class="home__sellers--sorry">
-        Sorry we are not delivering to this area yet, please check in again
-        soon.
-      </h3>
+    <div v-else>
+      <div v-if="isLondon" class="home__sellers" data-aos="fade-up">
+        <div v-for="(seller, index) in sellers" :key="`seller__${index}`">
+          <nuxt-link
+            :to="
+              getObjVal(seller.custom_fields, '12910') === 'Yes'
+                ? `/sellers/${seller.id}`
+                : ''
+            "
+          >
+            <image-list
+              v-if="seller.active"
+              :image-title="seller.sp_store_name"
+              :image-subtitle="getObjVal(seller.custom_fields, '12485')"
+              :profile-image="seller.store_logo"
+              :background-image="seller.shop_logo"
+            />
+          </nuxt-link>
+        </div>
+      </div>
+      <div v-else class="home__error">
+        <h4 class="home__error--sorry">
+          Sorry we are not delivering to this area yet, please check in again
+          soon.
+        </h4>
+      </div>
     </div>
     <dynamic-modal
       v-if="!isLondon && showModal"
@@ -68,7 +62,6 @@ export default {
   name: 'Home',
   data: () => ({
     cuisine: '12485',
-    poscodeHighlight: false,
     showModal: true,
   }),
   computed: {
@@ -97,22 +90,8 @@ export default {
       const parsed = JSON.parse(obj)
       return obj && parsed[id] && parsed[id].value
     },
-    scrollToTop() {
-      this.poscodeHighlight = true
-      window.scrollTo({
-        top: 0,
-        left: 0,
-        behavior: 'smooth',
-      })
-    },
     updateShippingAddress(location) {
-      this.removeHighlight()
       this.setShippingAddress(location)
-    },
-    removeHighlight() {
-      if (this.formattedAddress) {
-        this.poscodeHighlight = false
-      }
     },
     closeModal() {
       this.showModal = false
@@ -141,13 +120,12 @@ $mobile: 600px;
 .home {
   display: inline-block;
   width: 100%;
-  margin-bottom: 200px;
+  margin-bottom: 130px;
   @media (max-width: $tablet) {
-    margin-bottom: 300px;
+    margin-bottom: 280px;
   }
   &__hero {
     margin-top: 70px;
-    animation: fadeIn 0.5s;
     padding: 200px 5%;
     width: 90%;
     background-image: url('~/assets/images/hero.png');
@@ -164,7 +142,6 @@ $mobile: 600px;
       background-position: top;
     }
     &--left {
-      animation: fadeIn 0.5s;
       width: 50%;
       padding: 0 5%;
       @media (max-width: $desktop) {
@@ -184,24 +161,25 @@ $mobile: 600px;
       }
     }
     &--right {
-      animation: fadeIn 0.5s;
       width: 50%;
       padding: 0 5%;
       @media (max-width: $desktop) {
         padding: 0;
         width: 100%;
       }
-      .highlight {
-        animation: bounce 1s;
-      }
     }
   }
-  &__sellers {
-    animation: fadeIn 0.5s;
+  &__sellers,
+  &__steps,
+  &__error {
     padding: 50px 5%;
     position: relative;
     margin: 0 auto;
     width: 100%;
+    display: inline-block;
+  }
+  &__error {
+    background-color: var(--color-purple-2);
     &--sorry {
       padding: 20px 5%;
       text-align: center;

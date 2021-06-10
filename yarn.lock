@@ -2200,6 +2200,11 @@ animate.css@^3.7.2:
   resolved "https://registry.yarnpkg.com/animate.css/-/animate.css-3.7.2.tgz#e73e0d50e92cb1cfef1597d9b38a9481020e08ea"
   integrity sha512-0bE8zYo7C0KvgOYrSVfrzkbYk6IOTVPNqkiHg2cbyF4Pq/PXzilz4BRWA3hwEUBoMp5VBgrC29lQIZyhRWdBTw==
 
+animate.css@^4.1.1:
+  version "4.1.1"
+  resolved "https://registry.yarnpkg.com/animate.css/-/animate.css-4.1.1.tgz#614ec5a81131d7e4dc362a58143f7406abd68075"
+  integrity sha512-+mRmCTv6SbCmtYJCN4faJMNFVNN5EuCTTprDTAo7YzIGji2KADmakjVA3+8mVDkZ2Bf09vayB35lSQIex2+QaQ==
+
 ansi-align@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/ansi-align/-/ansi-align-3.0.0.tgz#b536b371cf687caaef236c18d3e21fe3797467cb"
@@ -2269,6 +2274,15 @@ anymatch@^3.0.0, anymatch@~3.1.1:
   dependencies:
     normalize-path "^3.0.0"
     picomatch "^2.0.4"
+
+aos@^3.0.0-beta.6:
+  version "3.0.0-beta.6"
+  resolved "https://registry.yarnpkg.com/aos/-/aos-3.0.0-beta.6.tgz#75148e3be4bb1add53f5a1828623bf82b67691e9"
+  integrity sha512-VLWrpq8bfAWcetynVHMMrqdC+89Qq/Ym6UBJbHB4crIwp3RR8uq1dNGgsFzoDl03S43rlVMK+na3r5+oUCZsYw==
+  dependencies:
+    classlist-polyfill "^1.2.0"
+    lodash.debounce "^4.0.8"
+    lodash.throttle "^4.1.1"
 
 aproba@^1.0.3, aproba@^1.1.1:
   version "1.2.0"
@@ -3166,6 +3180,11 @@ class-utils@^0.3.5:
     define-property "^0.2.5"
     isobject "^3.0.0"
     static-extend "^0.1.1"
+
+classlist-polyfill@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/classlist-polyfill/-/classlist-polyfill-1.2.0.tgz#935bc2dfd9458a876b279617514638bcaa964a2e"
+  integrity sha1-k1vC39lFiodrJ5YXUUY4vKqWSi4=
 
 clean-css@^4.2.1, clean-css@^4.2.3:
   version "4.2.3"
@@ -6796,6 +6815,11 @@ lodash.templatesettings@^4.0.0:
   resolved "https://registry.yarnpkg.com/lodash.templatesettings/-/lodash.templatesettings-4.2.0.tgz#e481310f049d3cf6d47e912ad09313b154f0fb33"
   dependencies:
     lodash._reinterpolate "^3.0.0"
+
+lodash.throttle@^4.1.1:
+  version "4.1.1"
+  resolved "https://registry.yarnpkg.com/lodash.throttle/-/lodash.throttle-4.1.1.tgz#c23e91b710242ac70c37f1e1cda9274cc39bf2f4"
+  integrity sha1-wj6RtxAkKscMN/HhzaknTMOb8vQ=
 
 lodash.truncate@^4.4.2:
   version "4.4.2"
@@ -11293,6 +11317,16 @@ vm-browserify@^1.0.1:
 void-elements@^3.1.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/void-elements/-/void-elements-3.1.0.tgz#614f7fbf8d801f0bb5f0661f5b2f5785750e4f09"
+
+vue-animate-onscroll@^1.0.8:
+  version "1.0.8"
+  resolved "https://registry.yarnpkg.com/vue-animate-onscroll/-/vue-animate-onscroll-1.0.8.tgz#7ce2570f62435031b906f38847550c4a9a3e7f50"
+  integrity sha512-uyb/lTudNmWaxT8W0UQIk75EyzX7wYM64hm7gsMCVhGICQkb5j/ynIZ/ZnSApsqvruUg4t3UxT1MUhN4sDU11Q==
+
+vue-aos@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/vue-aos/-/vue-aos-2.1.0.tgz#220d0ad339a57225294688a36ae35851a7360a72"
+  integrity sha512-Lh/aiEHePrf1LX2nCKTfUGW9WyORkolAhMkWRHj3rk1evdQzkQr8ix6UYn/8/r8oQqFaEDC2UiPCMHFqK76rqA==
 
 vue-client-only@^2.0.0:
   version "2.0.0"

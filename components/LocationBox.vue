@@ -46,7 +46,6 @@ export default {
       this.setLocation(address)
     },
     locatorButtonPressed() {
-      this.loading = true
       navigator.geolocation.getCurrentPosition(
         (position) => {
           this.getStreetAddressFrom(
@@ -60,6 +59,7 @@ export default {
       )
     },
     async getStreetAddressFrom(lat, long) {
+      this.loading = true
       try {
         const { data } = await this.$axios.get(
           `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${long}&key=${process.env.GOOGLE_API_KEY}`
