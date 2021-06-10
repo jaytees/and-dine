@@ -111,18 +111,6 @@
             />
           </div>
           <div class="mc-field-group">
-            <label for="mce-NUMBER"
-              >Phone Number <span class="asterisk">*</span>
-            </label>
-            <input
-              id="mce-NUMBER"
-              type="text"
-              value=""
-              name="NUMBER"
-              class="required"
-            />
-          </div>
-          <div class="mc-field-group">
             <label for="mce-EMAIL"
               >Email Address <span class="asterisk">*</span>
             </label>
@@ -134,16 +122,16 @@
               class="required email"
             />
           </div>
-          <div class="mc-field-group size1of2">
-            <label for="mce-PHONE"
+          <div class="mc-field-group">
+            <label for="mce-NUMBER"
               >Phone Number <span class="asterisk">*</span>
             </label>
             <input
-              id="mce-PHONE"
+              id="mce-NUMBER"
               type="text"
-              name="PHONE"
-              class="required"
               value=""
+              name="NUMBER"
+              class="required"
             />
           </div>
           <div class="mc-field-group">
