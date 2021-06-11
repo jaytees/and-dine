@@ -19,23 +19,11 @@
           <h4 class="join-form__required">Required fields *</h4>
           <div class="mc-field-group">
             <label for="mce-FNAME">First Name </label>
-            <input
-              id="mce-FNAME"
-              type="text"
-              value=""
-              name="FNAME"
-              class="box-shadow"
-            />
+            <input id="mce-FNAME" type="text" value="" name="FNAME" class="" />
           </div>
           <div class="mc-field-group">
             <label for="mce-LNAME">Last Name </label>
-            <input
-              id="mce-LNAME"
-              type="text"
-              value=""
-              name="LNAME"
-              class="box-shadow"
-            />
+            <input id="mce-LNAME" type="text" value="" name="LNAME" class="" />
           </div>
           <div class="mc-field-group">
             <label for="mce-EMAIL"
@@ -46,7 +34,7 @@
               type="email"
               value=""
               name="EMAIL"
-              class="required email box-shadow"
+              class="required email"
             />
           </div>
           <div id="mce-responses" class="clear">
@@ -87,7 +75,7 @@
         action="https://anddine.us1.list-manage.com/subscribe/post?u=29173e9d989a5e2c822838e35&amp;id=5c8512abdc"
         method="post"
         name="mc-embedded-subscribe-form"
-        class="validate join-form box-shadow"
+        class="validate join-form"
         target="_blank"
         novalidate
       >
@@ -107,7 +95,7 @@
               type="text"
               value=""
               name="FNAME"
-              class="required box-shadow"
+              class="required"
             />
           </div>
           <div class="mc-field-group">
@@ -119,7 +107,7 @@
               type="text"
               value=""
               name="LNAME"
-              class="required box-shadow"
+              class="required"
             />
           </div>
           <div class="mc-field-group">
@@ -131,7 +119,7 @@
               type="email"
               value=""
               name="EMAIL"
-              class="required email box-shadow"
+              class="required email"
             />
           </div>
           <div class="mc-field-group">
@@ -142,7 +130,7 @@
               id="mce-PHONE"
               type="text"
               name="PHONE"
-              class="required box-shadow"
+              class="required"
               value=""
             />
           </div>
@@ -155,14 +143,14 @@
               type="text"
               value=""
               name="MMERGE6"
-              class="required box-shadow"
+              class="required"
             />
           </div>
           <div class="mc-field-group">
             <label for="mce-MMERGE7"
               >Cuisine <span class="asterisk">*</span>
             </label>
-            <select id="mce-MMERGE7" name="MMERGE7" class="required box-shadow">
+            <select id="mce-MMERGE7" name="MMERGE7" class="required">
               <option value=""></option>
               <option value="Afghan">Afghan</option>
               <option value="African">African</option>
@@ -268,7 +256,7 @@
               type="submit"
               value="Subscribe"
               name="subscribe"
-              class="button box-shadow"
+              class="button"
             />
           </div>
         </div>
