@@ -19,7 +19,7 @@
       <steps-box />
     </div>
     <div v-else>
-      <h1 class="home__title">Our chefs</h1>
+      <h1 v-if="isLondon" class="home__title">Our chefs</h1>
       <div v-if="isLondon" class="home__sellers">
         <div v-for="(seller, index) in sellers" :key="`seller__${index}`">
           <nuxt-link

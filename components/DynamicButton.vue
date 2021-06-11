@@ -128,8 +128,12 @@ export default {
   background-color: var(--color-orange-1);
 }
 .white {
-  color: var(--color-black-1);
-  background-color: #fff;
+  color: var(--color-pink-1);
+  background-color: var(--color-white-1);
+}
+.transparent {
+  color: var(--color-pink-1);
+  background-color: transparent;
 }
 .purple {
   background-color: var(--color-purple-1);

@@ -13,7 +13,7 @@
       class="text-container__input"
       :class="isUppercase && 'uppercase'"
       :placeholder="placeHolder"
-      @change="getAddressData"
+      @keydown="getAddressData"
     />
 
     <input
@@ -146,6 +146,9 @@ export default {
     padding: 0 10px;
     color: var(--color-grey-1);
     font-family: 'GalanoGrotesque-Medium', sans-serif;
+    display: block;
+    overflow: hidden;
+    padding-right: 20%;
   }
   &__title,
   &__error {
