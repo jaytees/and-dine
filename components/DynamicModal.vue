@@ -1,7 +1,9 @@
 <template>
   <div class="modal">
     <div class="modal__backdrop" @click="closeModal()" />
-    <div class="modal__dialog animate__animated animate__zoomIn">
+    <div
+      class="box-shadow modal__dialog animate__animated animate__zoomIn animate__faster"
+    >
       <div class="modal__header">
         <slot name="header" />
         <dynamic-button

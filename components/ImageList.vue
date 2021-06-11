@@ -2,12 +2,12 @@
   <div class="images">
     <div class="images__list" @click="returnClickEvent">
       <div
-        class="images__list--background-image"
+        class="images__list--background-image box-shadow"
         :style="backgroundImage && `background-image: url(${backgroundImage})`"
       ></div>
       <div v-if="profileImage">
         <div
-          class="images__list--profile-image"
+          class="images__list--profile-image box-shadow"
           :style="profileImage && `background-image: url(${profileImage})`"
         ></div>
       </div>

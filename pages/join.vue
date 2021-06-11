@@ -5,8 +5,8 @@
         <join-form />
       </div>
       <div class="join__hero--right animate__animated animate__fadeInUp">
-        <h1 class="main-title">Cook with us.</h1>
-        <h3 class="main-body">
+        <h1 class="main-title text-shadow">Cook with us.</h1>
+        <h3 class="main-body text-shadow">
           Sell from your kitchen and earn extra income, with hours that suit.
           Partner with us today.
         </h3>
@@ -80,7 +80,6 @@ $mobile: 600px;
       .main-title,
       .main-body {
         color: var(--color-white-1);
-        text-shadow: 2px 2px 8px var(--color-grey-1);
       }
       .main-body {
         font-size: 24px;

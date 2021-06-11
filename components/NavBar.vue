@@ -1,5 +1,5 @@
 <template>
-  <div class="navbar">
+  <div class="navbar box-shadow">
     <nuxt-link class="navbar__logo-pink" to="/">
       <img src="~/assets/images/logo-pink.png" />
     </nuxt-link>
@@ -98,9 +98,6 @@ $mobile: 600px;
   background-color: var(--color-white-1);
   z-index: 999;
   position: absolute;
-  -webkit-box-shadow: 0px 0px 2px 0px var(--color-grey-2);
-  -moz-box-shadow: 0px 0px 2px 0px var(--color-grey-2);
-  box-shadow: 0px 0px 2px 2px var(--color-grey-2);
   @media (max-width: $tablet) {
     width: 95%;
     padding: 20px 5%;

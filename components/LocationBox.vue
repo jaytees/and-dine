@@ -1,5 +1,5 @@
 <template>
-  <div class="location-box">
+  <div class="location-box box-shadow">
     <img class="location-box__logo" src="~/assets/images/popup-pink.png" />
     <p class="location-box__body">
       We're delivering London's best home cook's food straight to you door.

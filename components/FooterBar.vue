@@ -1,5 +1,5 @@
 <template>
-  <div class="footer">
+  <div class="footer box-shadow">
     <div class="footer__top">
       <div class="footer__top--head">
         <nuxt-link to="/">
@@ -63,9 +63,6 @@ $mobile: 600px;
   flex-direction: column;
   justify-content: center;
   bottom: 0;
-  -webkit-box-shadow: 2px 0px 0px 0px var(--color-grey-2);
-  -moz-box-shadow: 2px 0px 0px 0px var(--color-grey-2);
-  box-shadow: 2px 0px 0px 0px var(--color-grey-2);
   @media (max-width: $tablet) {
     padding: 20px 5%;
   }

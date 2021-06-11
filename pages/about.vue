@@ -12,12 +12,12 @@
         </p>
       </div>
       <div class="about__column--image" data-aos="fade-left">
-        <img src="~assets/images/woman-about.png" />
+        <img class="box-shadow" src="~assets/images/woman-about.png" />
       </div>
     </div>
     <div class="about__column">
       <div class="about__column--image" data-aos="fade-right">
-        <img src="~assets/images/couple-about.png" />
+        <img class="box-shadow" src="~assets/images/couple-about.png" />
       </div>
       <div class="about__column--text">
         <p>

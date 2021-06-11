@@ -10,7 +10,7 @@
       ref="searchTextField"
       :value="value"
       :style="`width: ${width}`"
-      class="text-container__input"
+      class="text-container__input box-shadow"
       :class="isUppercase && 'uppercase'"
       :placeholder="placeHolder"
       @change="getAddressData"
@@ -21,7 +21,7 @@
       :id="dynamicId"
       v-model="inputValue"
       :style="`width: ${width}`"
-      class="text-container__input"
+      class="text-container__input box-shadow"
       :class="isUppercase && 'uppercase'"
       :placeholder="placeHolder"
       type="text"
@@ -140,7 +140,7 @@ export default {
     height: 47px;
     line-height: 3;
     border-radius: 5px;
-    border: 1px solid var(--color-grey-1);
+    border: 1px solid var(--color-grey-2);
     background-color: var(--color-white-1);
     appearance: none;
     padding: 0 10px;

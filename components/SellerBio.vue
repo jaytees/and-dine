@@ -1,7 +1,7 @@
 <template>
   <div class="seller-bio">
     <div
-      class="seller-bio__profile-image"
+      class="seller-bio__profile-image box-shadow"
       :style="
         sellerLogo
           ? `background-image: url(${sellerLogo})`

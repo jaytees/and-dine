@@ -19,11 +19,23 @@
           <h4 class="join-form__required">Required fields *</h4>
           <div class="mc-field-group">
             <label for="mce-FNAME">First Name </label>
-            <input id="mce-FNAME" type="text" value="" name="FNAME" class="" />
+            <input
+              id="mce-FNAME"
+              type="text"
+              value=""
+              name="FNAME"
+              class="box-shadow"
+            />
           </div>
           <div class="mc-field-group">
             <label for="mce-LNAME">Last Name </label>
-            <input id="mce-LNAME" type="text" value="" name="LNAME" class="" />
+            <input
+              id="mce-LNAME"
+              type="text"
+              value=""
+              name="LNAME"
+              class="box-shadow"
+            />
           </div>
           <div class="mc-field-group">
             <label for="mce-EMAIL"
@@ -34,7 +46,7 @@
               type="email"
               value=""
               name="EMAIL"
-              class="required email"
+              class="required email box-shadow"
             />
           </div>
           <div id="mce-responses" class="clear">
@@ -75,7 +87,7 @@
         action="https://anddine.us1.list-manage.com/subscribe/post?u=29173e9d989a5e2c822838e35&amp;id=5c8512abdc"
         method="post"
         name="mc-embedded-subscribe-form"
-        class="validate join-form"
+        class="validate join-form box-shadow"
         target="_blank"
         novalidate
       >
@@ -95,7 +107,7 @@
               type="text"
               value=""
               name="FNAME"
-              class="required"
+              class="required box-shadow"
             />
           </div>
           <div class="mc-field-group">
@@ -107,7 +119,7 @@
               type="text"
               value=""
               name="LNAME"
-              class="required"
+              class="required box-shadow"
             />
           </div>
           <div class="mc-field-group">
@@ -119,10 +131,10 @@
               type="email"
               value=""
               name="EMAIL"
-              class="required email"
+              class="required email box-shadow"
             />
           </div>
-          <div class="mc-field-groups">
+          <div class="mc-field-group">
             <label for="mce-PHONE"
               >Phone Number <span class="asterisk">*</span>
             </label>
@@ -130,7 +142,7 @@
               id="mce-PHONE"
               type="text"
               name="PHONE"
-              class="required"
+              class="required box-shadow"
               value=""
             />
           </div>
@@ -143,14 +155,14 @@
               type="text"
               value=""
               name="MMERGE6"
-              class="required"
+              class="required box-shadow"
             />
           </div>
           <div class="mc-field-group">
             <label for="mce-MMERGE7"
               >Cuisine <span class="asterisk">*</span>
             </label>
-            <select id="mce-MMERGE7" name="MMERGE7" class="required">
+            <select id="mce-MMERGE7" name="MMERGE7" class="required box-shadow">
               <option value=""></option>
               <option value="Afghan">Afghan</option>
               <option value="African">African</option>
@@ -256,7 +268,7 @@
               type="submit"
               value="Subscribe"
               name="subscribe"
-              class="button"
+              class="button box-shadow"
             />
           </div>
         </div>
@@ -320,7 +332,7 @@ $mobile: 600px;
 .join-form {
   background-color: var(--color-white-1);
   border-radius: 15px;
-  padding: 10px 30px;
+  padding: 20px 30px;
   &__logo {
     width: 200px;
     margin: 0 auto;
@@ -342,14 +354,22 @@ $mobile: 600px;
     margin: 10px 0;
     input,
     select {
-      width: 100%;
-      height: 30px;
+      width: 99%;
+      height: 40px;
+      cursor: text;
+      position: relative;
+      display: block;
+      line-height: 3;
       border-radius: 5px;
       border: 1px solid var(--color-grey-2);
       background-color: var(--color-white-1);
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      padding: 0 0 0 1%;
+      color: var(--color-grey-1);
     }
     select {
-      height: 34px;
       width: 101%;
     }
     div.mce_inline_error {

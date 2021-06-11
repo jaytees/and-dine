@@ -2,8 +2,8 @@
   <section class="home">
     <div class="home__hero animate__animated animate__fadeIn">
       <div class="home__hero--left animate__animated animate__fadeInUp">
-        <h1 class="main-title">Real People, Real Food.</h1>
-        <h3 class="main-body">
+        <h1 class="main-title text-shadow">Real People, Real Food.</h1>
+        <h3 class="main-body text-shadow">
           A new way to experience authentic home cooking.
         </h3>
       </div>
@@ -14,11 +14,11 @@
         />
       </div>
     </div>
-    <div v-if="!formattedAddress" class="home__steps" data-aos="fade-up">
-      <steps-box />
+    <div v-if="!formattedAddress" class="home__steps">
+      <steps-box data-aos="fade-up" />
     </div>
     <div v-else>
-      <div v-if="isLondon" class="home__sellers" data-aos="fade-up">
+      <div v-if="isLondon" class="home__sellers">
         <div v-for="(seller, index) in sellers" :key="`seller__${index}`">
           <nuxt-link
             :to="
@@ -29,6 +29,7 @@
           >
             <image-list
               v-if="seller.active"
+              data-aos="fade-up"
               :image-title="seller.sp_store_name"
               :image-subtitle="getObjVal(seller.custom_fields, '12485')"
               :profile-image="seller.store_logo"
@@ -152,7 +153,6 @@ $mobile: 600px;
       .main-title,
       .main-body {
         color: var(--color-white-1);
-        text-shadow: 2px 2px 8px var(--color-grey-1);
       }
       .main-body {
         font-size: 24px;
