@@ -9,7 +9,7 @@
         ref="searchTextField"
         :value="formattedAddress"
         class="location-box__search--input"
-        placeholder="Start typing your address..."
+        placeholder="Enter your address..."
         @keydown="getAddressData"
       />
       <dynamic-button
