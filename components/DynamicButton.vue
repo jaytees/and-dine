@@ -14,7 +14,7 @@
     v-else
     :id="dynamicId"
     :style="`width: ${width}; height:${height}`"
-    class="dynamic-button box-shadow"
+    class="dynamic-button"
     :href="href"
     :type="submit ? 'submit' : 'button'"
     :class="disabled ? 'disabled' : color"

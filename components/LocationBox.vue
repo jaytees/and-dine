@@ -14,11 +14,11 @@
       />
       <dynamic-button
         class="location-box__search--location-button"
-        width="20px"
+        width="75px"
         :icon="locationLoading ? 'spinner' : 'location-arrow'"
         :spinning="locationLoading"
         color="transparent"
-        height="20px"
+        height="45px"
         @clickEvent="locatorButtonPressed"
       />
       <dynamic-button
@@ -161,14 +161,14 @@ $mobile: 600px;
       margin-left: 15px;
     }
     &--location-button {
-      margin: 0 25px 0 -50px;
+      margin: 0 -10px 0 -50px;
       box-shadow: none;
       z-index: 999;
       @media (max-width: $tablet) {
         margin: 0 15px 0 -40px;
       }
       @media (max-width: $desktop) {
-        margin: 0 20px 0 -50px;
+        margin: 0 -10px 0 -50px;
       }
     }
   }
