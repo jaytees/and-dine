@@ -168,7 +168,7 @@ $mobile: 600px;
         margin: 0 15px 0 -40px;
       }
       @media (max-width: $desktop) {
-        margin: 0 15px 0 -65px;
+        margin: 0 20px 0 -50px;
       }
     }
   }
