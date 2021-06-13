@@ -53,7 +53,11 @@
       @closeModal="closeModal"
     >
       <template v-slot:body>
-        <join-form :customer="true" />
+        <join-form
+          :customer="true"
+          title="Coming Soon"
+          body="We're working on it... We will notify you as soon as we arrive!"
+        />
       </template>
     </dynamic-modal>
   </section>

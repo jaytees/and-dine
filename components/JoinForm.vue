@@ -12,9 +12,9 @@
       >
         <div id="mc_embed_signup_scroll">
           <img class="join-form__logo" src="~/assets/images/falling-logo.png" />
-          <h3 class="join-form__title">Coming soon</h3>
+          <h3 class="join-form__title">{{ title }}</h3>
           <h4 class="join-form__body">
-            We're working on it... We will notify you as soon as we arrive!
+            {{ body }}
           </h4>
           <h4 class="join-form__required">Required fields *</h4>
           <div class="mc-field-group">
@@ -272,6 +272,16 @@ export default {
     customer: {
       type: Boolean,
       default: false,
+      required: false,
+    },
+    title: {
+      type: String,
+      default: '',
+      required: false,
+    },
+    body: {
+      type: String,
+      default: '',
       required: false,
     },
   },
