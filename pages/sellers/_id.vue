@@ -17,7 +17,7 @@
     />
     <div class="seller__delivery">
       <h3>Delivery Information</h3>
-      <p>Order by midnight on Wednesday for delivery Saturday</p>
+      <p>Order by midnight on Wednesday for delivery on Friday</p>
     </div>
     <div v-if="productsReady" class="seller__products">
       <image-list
