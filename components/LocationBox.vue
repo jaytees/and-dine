@@ -10,7 +10,7 @@
         :value="formattedAddress"
         class="location-box__search--input"
         placeholder="Enter your address..."
-        @keydown="getAddressData"
+        @change="getAddressData"
       />
       <dynamic-button
         class="location-box__search--location-button"

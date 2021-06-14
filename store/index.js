@@ -72,6 +72,7 @@ export const actions = {
     commit('SET_PRODUCTS', products)
   },
   async addToCart({ commit, state }, payload) {
+    debugger
     const variant =
       state.shopifyProducts &&
       state.shopifyProducts.filter((product) => product.title === payload.name)
