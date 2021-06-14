@@ -124,11 +124,7 @@ export const actions = {
     await this.$shopify.checkout
       .fetch(this.$cookies.get('checkout_id'))
       .then((checkout) => {
-        if (checkout.orderStatusUrl) {
-          this.setupCheckout()
-        } else {
-          commit('SET_CHECKOUT_INFO', checkout)
-        }
+        commit('SET_CHECKOUT_INFO', checkout)
       })
       .catch((err) => console.log(err))
   },

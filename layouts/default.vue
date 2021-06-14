@@ -54,6 +54,11 @@ export default {
   watch: {
     checkoutInfo(to, from) {
       if (to) {
+        if (to.orderStatusUrl || from.orderStatusUrl) {
+          this.$cookies.remove('chosen_store')
+          this.$cookies.remove('checkout_id')
+          this.setupCheckout()
+        }
         if (
           to.lineItems.length === 1 &&
           to.lineItems[0].title.includes('Small order fee')
