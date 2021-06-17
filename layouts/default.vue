@@ -37,7 +37,7 @@ export default {
       'navigationItems',
       'checkoutInfo',
       'cartIsOpen',
-      'chosenStore',
+      'chosenSellerName',
       'checkoutInfo',
     ]),
     ...mapGetters(['cartItemCount', 'sellerById']),
@@ -55,7 +55,7 @@ export default {
     checkoutInfo(to, from) {
       if (to) {
         if (to.orderStatusUrl || from.orderStatusUrl) {
-          this.$cookies.remove('chosen_store')
+          this.$cookies.remove('chosen_seller')
           this.$cookies.remove('checkout_id')
           this.setupCheckout()
         }
@@ -82,7 +82,7 @@ export default {
           this.addToCart({
             name: `Small order fee - £${this.smallOrderFee}`,
             quantity: 1,
-            store: this.chosenStore,
+            store: this.chosenSellerName,
           })
         }
       }
@@ -91,10 +91,10 @@ export default {
   async mounted() {
     if (this.$cookies.get('checkout_id')) {
       this.fetchCheckout()
-      this.$cookies.get('chosen_store') &&
-        this.setChosenStore(this.$cookies.get('chosen_store'))
+      this.$cookies.get('chosen_seller') &&
+        this.setChosenSellerName(this.$cookies.get('chosen_seller'))
     } else {
-      this.$cookies.remove('chosen_store')
+      this.$cookies.remove('chosen_seller')
       this.setupCheckout()
     }
     await this.$shopify.product.fetchAll().then((products) => {
@@ -118,7 +118,7 @@ export default {
       setShopifyProducts: 'SET_SHOPIFY_PRODUCTS',
       setSellers: 'SET_SELLERS',
       setCheckoutInfo: 'SET_CHECKOUT_INFO',
-      setChosenStore: 'SET_CHOSEN_STORE',
+      setChosenSellerName: 'SET_CHOSEN_SELLER_NAME',
       setCartStatus: 'SET_CART_STATUS',
       setShippingAddress: 'SET_SHIPPING_ADDRESS',
     }),

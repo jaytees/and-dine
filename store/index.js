@@ -2,7 +2,7 @@ export const state = () => ({
   products: false,
   sellers: false,
   chosenSellerId: false,
-  chosenStore: false,
+  chosenSellerName: false,
   cartIsOpen: false,
   navigationItems: [
     { id: 0, name: 'index', value: '', link: '/' },
@@ -25,14 +25,14 @@ export const mutations = {
   SET_SELLERS(state, payload) {
     state.sellers = payload.reverse()
   },
-  SET_CHOSEN_SELLER_ID(state, payload) {
-    state.chosenSellerId = payload
-  },
   SET_CHECKOUT_INFO(state, payload) {
     state.checkoutInfo = payload
   },
-  SET_CHOSEN_STORE(state, payload) {
-    state.chosenStore = payload
+  SET_CHOSEN_SELLER_NAME(state, payload) {
+    state.chosenSellerName = payload
+  },
+  SET_CHOSEN_SELLER_ID(state, payload) {
+    state.chosenSellerId = payload
   },
   SET_CART_STATUS(state, payload) {
     state.cartIsOpen = payload
@@ -72,7 +72,6 @@ export const actions = {
     commit('SET_PRODUCTS', products)
   },
   async addToCart({ commit, state }, payload) {
-    debugger
     const variant =
       state.shopifyProducts &&
       state.shopifyProducts.filter((product) => product.title === payload.name)
@@ -87,9 +86,9 @@ export const actions = {
       .addLineItems(state.checkoutInfo.id, lineItemsToAdd)
       .then((checkout) => {
         commit('SET_CHECKOUT_INFO', checkout)
-        commit('SET_CHOSEN_STORE', payload.store)
+        commit('SET_CHOSEN_SELLER_NAME', payload.store)
         this.$cookies.set('checkout_id', checkout.id)
-        this.$cookies.set('chosen_store', payload.store)
+        this.$cookies.set('chosen_seller', payload.store)
       })
       .catch((err) => console.log(err))
   },
@@ -111,8 +110,8 @@ export const actions = {
       })
   },
   removeCartItems({ commit }, store) {
-    commit('SET_CHOSEN_STORE', store)
-    this.$cookies.set('chosen_store', store)
+    commit('SET_CHOSEN_SELLER_NAME', store)
+    this.$cookies.set('chosen_seller', store)
     commit('SET_CHECKOUT_INFO', false)
   },
   async setupCheckout({ commit }) {

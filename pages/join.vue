@@ -1,5 +1,10 @@
 <template>
   <section class="join">
+    <social-head
+      title="Cook with us"
+      description="Sell from your kitchen and earn extra income, with hours that suit. Partner with us today."
+      image="~assets/images/logo-pink.png"
+    />
     <div class="join__hero animate__animated animate__fadeIn">
       <div class="join__hero--left animate__animated animate__fadeInUp">
         <join-form />
@@ -18,19 +23,6 @@
 <script>
 export default {
   name: 'Join',
-  head() {
-    return {
-      title: 'Join',
-      meta: [
-        {
-          hid: '&Dine Join Page',
-          name: 'Cook with us.',
-          content: `Sell from your kitchen and earn extra income, with hours that suit.
-          Partner with us today.`,
-        },
-      ],
-    }
-  },
 }
 </script>
 

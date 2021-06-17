@@ -1,6 +1,11 @@
 <template>
+  <!-- eslint-disable -->
   <div
-    class="shopping-cart animate__animated animate__fadeInRight animate__faster box-shadow"
+    class="
+      shopping-cart
+      animate__animated animate__fadeInRight animate__faster
+      box-shadow
+    "
   >
     <dynamic-button
       class="shopping-cart__close"
@@ -12,7 +17,9 @@
       </template>
     </dynamic-button>
     <div v-if="showItems">
-      <h3 class="shopping-cart__title">Your order with {{ chosenStore }}</h3>
+      <h3 class="shopping-cart__title">
+        Your order with {{ chosenSellerName }}
+      </h3>
       <div
         v-for="(item, index) in checkoutInfo.lineItems"
         :key="`item_${index}`"
@@ -37,7 +44,6 @@
           />
         </div>
       </div>
-      <!-- <h3 class="shopping-cart__total">Shipping: £3.99</h3> -->
       <h3 class="shopping-cart__total">Total: £{{ totalPrice }}</h3>
       <dynamic-button
         color="pink"
@@ -63,7 +69,7 @@ export default {
     loading: false,
   }),
   computed: {
-    ...mapState(['chosenStore', 'checkoutInfo']),
+    ...mapState(['chosenSellerName', 'checkoutInfo']),
     ...mapGetters(['sellerById']),
     showItems() {
       return this.checkoutInfo && this.checkoutInfo.lineItems.length > 0
@@ -73,13 +79,7 @@ export default {
     },
   },
   methods: {
-    ...mapActions([
-      'addToCart',
-      'removeFromCart',
-      'updateItemQuantity',
-      'addDiscount',
-      'updateAddress',
-    ]),
+    ...mapActions(['removeFromCart', 'updateItemQuantity', 'updateAddress']),
     returnCartClick() {
       this.$emit('returnCartClick', true)
     },

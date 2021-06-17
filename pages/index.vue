@@ -1,5 +1,10 @@
 <template>
   <section class="home">
+    <social-head
+      title="Real People, Real Food."
+      description="A new way to experience authentic home cooking."
+      image="~assets/images/logo-pink.png"
+    />
     <div class="home__hero animate__animated animate__fadeIn">
       <div class="home__hero--left animate__animated animate__fadeInUp">
         <h1 class="main-title text-shadow">Real People, Real Food.</h1>
@@ -25,7 +30,7 @@
           <nuxt-link
             :to="
               getObjVal(seller.custom_fields, '12910') === 'Yes'
-                ? `/sellers/${seller.id}`
+                ? `/sellers/${seller.store_name_handle}`
                 : ''
             "
           >
@@ -90,9 +95,6 @@ export default {
     ...mapMutations({
       setShippingAddress: 'SET_SHIPPING_ADDRESS',
     }),
-    goToPage(link) {
-      this.$router.push(`sellers/${link.toString()}`)
-    },
     getObjVal(obj, id) {
       const parsed = JSON.parse(obj)
       return obj && parsed[id] && parsed[id].value
@@ -103,18 +105,9 @@ export default {
     closeModal() {
       this.showModal = false
     },
-  },
-  head() {
-    return {
-      title: 'Home',
-      meta: [
-        {
-          hid: '&Dine Homepage',
-          name: 'Real People, Real Food.',
-          content: 'A new way to experience authentic home cooking.',
-        },
-      ],
-    }
+    hyphenateString(str) {
+      return str.replace(/\s+/g, '-').toLowerCase()
+    },
   },
 }
 </script>

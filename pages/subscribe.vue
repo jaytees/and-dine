@@ -1,5 +1,10 @@
 <template>
   <section class="subscribe">
+    <social-head
+      title="Get the latest updates."
+      description="Hear about the latest deals, offers and upcoming restaurants on the platform."
+      image="~assets/images/logo-pink.png"
+    />
     <div class="subscribe__hero animate__animated animate__fadeIn">
       <div class="subscribe__hero--left animate__animated animate__fadeInUp">
         <join-form :customer="true" />
@@ -18,19 +23,6 @@
 <script>
 export default {
   name: 'Subscribe',
-  head() {
-    return {
-      title: 'Subscribe',
-      meta: [
-        {
-          hid: '&Dine Subscribe Page',
-          name: 'Get the latest updates.',
-          content: `Sell from your kitchen and earn extra income, with hours that suit.
-          Partner with us today.`,
-        },
-      ],
-    }
-  },
 }
 </script>
 
