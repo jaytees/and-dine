@@ -3,7 +3,7 @@
     <social-head
       title="Real People, Real Food."
       description="A new way to experience authentic home cooking."
-      image="~assets/images/logo-pink.png"
+      image="~/assets/images/logo-pink.png"
     />
     <div class="home__hero animate__animated animate__fadeIn">
       <div class="home__hero--left animate__animated animate__fadeInUp">

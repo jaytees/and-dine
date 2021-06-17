@@ -3,7 +3,7 @@
     <social-head
       title="Get the latest updates."
       description="Hear about the latest deals, offers and upcoming restaurants on the platform."
-      image="~assets/images/logo-pink.png"
+      image="~/assets/images/logo-pink.png"
     />
     <div class="subscribe__hero animate__animated animate__fadeIn">
       <div class="subscribe__hero--left animate__animated animate__fadeInUp">

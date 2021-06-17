@@ -3,7 +3,7 @@
     <social-head
       title="Real People, Real Food."
       description="&Dine is a marketplace platform connecting talented home chefs with customers to process and deliver orders of authentic home made meals."
-      image="~assets/images/logo-pink.png"
+      image="~/assets/images/logo-pink.png"
     />
     <div class="about__hero animate__animated animate__fadeIn"></div>
     <h1 class="about__title">Real People, Real Food.</h1>

@@ -1,3 +1,4 @@
+import axios from 'axios'
 export default {
   head: {
     title: 'and-dine',
@@ -73,6 +74,20 @@ export default {
 
   generate: {
     fallback: true,
+    routes() {
+      return axios
+        .get(`https://mvmapi.webkul.com/api/v2/sellers.json`, {
+          headers: {
+            Authorization:
+              'Bearer YjZiNmRlZjE1ZGJiZWRlMTFmZGRmYzc0Njg0ZDIyMjYwYjcxMDQxZjEyNzA3ZGRhMzlhOTgzODAzNDE0NzYzYQ',
+          },
+        })
+        .then((res) => {
+          return res.data.sellers.map((user) => {
+            return '/sellers/' + user.store_name_handle
+          })
+        })
+    },
   },
 
   axios: {

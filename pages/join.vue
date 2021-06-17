@@ -3,7 +3,7 @@
     <social-head
       title="Cook with us"
       description="Sell from your kitchen and earn extra income, with hours that suit. Partner with us today."
-      image="~assets/images/logo-pink.png"
+      image="~/assets/images/logo-pink.png"
     />
     <div class="join__hero animate__animated animate__fadeIn">
       <div class="join__hero--left animate__animated animate__fadeInUp">
