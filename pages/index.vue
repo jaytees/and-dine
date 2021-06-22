@@ -105,9 +105,6 @@ export default {
     closeModal() {
       this.showModal = false
     },
-    hyphenateString(str) {
-      return str.replace(/\s+/g, '-').toLowerCase()
-    },
   },
 }
 </script>
@@ -182,7 +179,7 @@ $mobile: 600px;
     }
   }
   &__error {
-    background-color: var(--color-purple-2);
+    background-color: var(--color-white-2);
     &--sorry {
       padding: 20px 5%;
       text-align: center;

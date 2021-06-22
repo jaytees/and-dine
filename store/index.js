@@ -53,8 +53,7 @@ export const mutations = {
             : payload.address_components[3].long_name,
         company: null,
         country: 'United Kingdom',
-        firstName: 'First Name',
-        lastName: 'Last Name',
+        lastName: '-------',
         phone: '00000000000',
         province: 'United Kingdom',
         zip:

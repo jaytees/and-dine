@@ -86,8 +86,8 @@ export default {
     goToCheckout() {
       this.loading = true
       this.updateAddress().then(() => {
-        this.loading = false
         location.replace(this.checkoutInfo.webUrl)
+        this.loading = false
       })
     },
     removeItem(itemId) {

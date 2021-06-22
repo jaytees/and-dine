@@ -32,7 +32,7 @@
       <div class="footer__top--column">
         <div class="footer__top--column links">
           <h3>Join</h3>
-          <a href="mailto:hello@anddine.com">Email us</a>
+          <a href="mailto:hello@anddine.co.uk">Email us</a>
         </div>
       </div>
     </div>
