@@ -11,6 +11,15 @@
       @returnCartClick="toggleCart"
     />
     <nuxt />
+    <cookie-bar
+      v-if="!hasAcceptedCookies && !cookiesAccepted"
+      :class="
+        hasAcceptedCookies &&
+        cookiesAccepted &&
+        'animate__animated animate__fadeOut'
+      "
+      @cookiesAccepted="cookiesAccepted = true"
+    />
     <footer-bar />
   </div>
 </template>
@@ -32,6 +41,9 @@ export default {
       .catch((err) => console.log(err))
   },
   fetchOnServer: true,
+  data: () => ({
+    cookiesAccepted: false,
+  }),
   computed: {
     ...mapState([
       'navigationItems',
@@ -49,6 +61,18 @@ export default {
         this.isSmallOrder &&
         parseFloat(15 - this.checkoutInfo.totalPrice).toFixed(2)
       )
+    },
+    hasAcceptedCookies() {
+      return this.$cookies.get('cookies_accepted')
+    },
+    hasCheckoutId() {
+      return this.$cookies.get('checkout_id')
+    },
+    hasChosenSeller() {
+      return this.$cookies.get('chosen_seller')
+    },
+    hasCustomerLocation() {
+      return this.$cookies.get('customer_location')
     },
   },
   watch: {
@@ -89,9 +113,9 @@ export default {
     },
   },
   async mounted() {
-    if (this.$cookies.get('checkout_id')) {
+    if (this.hasCheckoutId && this.hasAcceptedCookies) {
       this.fetchCheckout()
-      this.$cookies.get('chosen_seller') &&
+      this.hasChosenSeller &&
         this.setChosenSellerName(this.$cookies.get('chosen_seller'))
     } else {
       this.$cookies.remove('chosen_seller')
@@ -99,7 +123,7 @@ export default {
     }
     await this.$shopify.product.fetchAll().then((products) => {
       this.setShopifyProducts(products)
-      if (this.$cookies.get('customer_location')) {
+      if (this.hasCustomerLocation && this.hasAcceptedCookies) {
         const location = this.$cookies.get('customer_location')
         this.setShippingAddress(location)
       }

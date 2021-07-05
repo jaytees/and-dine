@@ -118,6 +118,8 @@ $mobile: 600px;
       margin-bottom: -110px;
       border-radius: 50%;
       border: 4px solid var(--color-white-1);
+      -webkit-filter: grayscale(100%);
+      filter: grayscale(100%);
       @media (max-width: $desktop) {
         left: 70%;
       }

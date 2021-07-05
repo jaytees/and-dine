@@ -64,6 +64,8 @@ $mobile: 600px;
     background-position: bottom;
     background-size: cover;
     border: 4px solid var(--color-white-1);
+    -webkit-filter: grayscale(100%);
+    filter: grayscale(100%);
     @media (max-width: $tablet) {
       margin: 20px auto 0;
       display: block;

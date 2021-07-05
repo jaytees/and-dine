@@ -23,7 +23,14 @@ export const mutations = {
     state.shopifyProducts = payload
   },
   SET_SELLERS(state, payload) {
-    state.sellers = payload.reverse()
+    const inactive = payload.filter((item) =>
+      item.store_name_handle.includes('coming-soon')
+    )
+    const active = payload.filter(
+      (item) => !item.store_name_handle.includes('coming-soon')
+    )
+    const newArr = active.concat(inactive)
+    state.sellers = newArr
   },
   SET_CHECKOUT_INFO(state, payload) {
     state.checkoutInfo = payload

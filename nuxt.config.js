@@ -1,7 +1,7 @@
 import axios from 'axios'
 export default {
   head: {
-    title: 'and-dine',
+    title: '&Dine | Real People, Real Food',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -151,6 +151,8 @@ export default {
               'faPizzaSlice',
               'faSearchLocation',
               'faHouseUser',
+              'faAngleRight',
+              'faAngleDown',
             ],
           },
           {

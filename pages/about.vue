@@ -34,6 +34,8 @@
         </p>
       </div>
     </div>
+    <!-- <h2 class="about__title">FAQs</h2>
+    <faqs class="about__faqs" /> -->
   </section>
 </template>
 
@@ -114,6 +116,10 @@ $mobile: 600px;
         -webkit-box-ordinal-group: 2;
       }
     }
+  }
+  &__faqs {
+    padding: 20px 5%;
+    width: 90%;
   }
 }
 </style>

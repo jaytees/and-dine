@@ -1,8 +1,8 @@
 <template>
   <div class="location-box box-shadow">
-    <img class="location-box__logo" src="~/assets/images/popup-pink.png" />
+    <img class="location-box__logo" src="~/assets/images/logo-pink.png" />
     <p class="location-box__body">
-      We're delivering London's best home cook's food straight to you door.
+      We're delivering London's best home cook's food straight to your door.
     </p>
     <div class="location-box__search">
       <input

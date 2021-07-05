@@ -152,6 +152,7 @@ $mobile: 600px;
       right: 5%;
       .title {
         margin: 0 10px;
+        max-width: 260px;
       }
       svg {
         margin-top: 2px;
