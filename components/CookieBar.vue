@@ -1,7 +1,7 @@
 <template>
   <section class="cookie-bar box-shadow">
     <p class="cookie-bar__body">
-      Here at <a>&DIne</a> we use cookies to give you the best experience
+      Here at <a>&Dine</a> we use cookies to give you the best experience
       possible. For more information, read our
       <a class="cookie-bar__body--link" @click="openPolicy">Cookie Policy</a>
     </p>
