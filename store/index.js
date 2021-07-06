@@ -153,6 +153,9 @@ export const actions = {
 }
 
 export const getters = {
+  activeSellers: (state) => {
+    return state.sellers.filter((seller) => seller.active)
+  },
   productsById: (state) => {
     return (
       state.products &&

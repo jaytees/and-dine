@@ -26,7 +26,7 @@
     <div v-else>
       <h2 v-if="isLondon" class="home__title">Local favourites</h2>
       <div v-if="isLondon" class="home__sellers">
-        <div v-for="(seller, index) in sellers" :key="`seller__${index}`">
+        <div v-for="(seller, index) in activeSellers" :key="`seller__${index}`">
           <nuxt-link
             :to="
               getObjVal(seller.custom_fields, '12910') === 'Yes'
@@ -35,7 +35,6 @@
             "
           >
             <image-list
-              v-if="seller.active"
               data-aos="fade-up"
               :image-title="seller.sp_store_name"
               :image-subtitle="getObjVal(seller.custom_fields, '12485')"
@@ -69,7 +68,7 @@
 </template>
 
 <script>
-import { mapState, mapMutations } from 'vuex'
+import { mapState, mapMutations, mapGetters } from 'vuex'
 export default {
   name: 'Home',
   data: () => ({
@@ -78,6 +77,7 @@ export default {
   }),
   computed: {
     ...mapState(['sellers', 'formattedAddress', 'checkoutInfo']),
+    ...mapGetters(['activeSellers']),
     isLondon() {
       return (
         (this.formattedAddress !== '' &&
