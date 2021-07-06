@@ -15,7 +15,25 @@
                 : 'animate__animated animate__fadeInUp'
             "
           >
-            {{ faq.body }}
+            {{ faq.body_1 }}
+          </p>
+          <p
+            :class="
+              showFaq === i
+                ? 'show-faq animate__animated animate__fadeInDown '
+                : 'animate__animated animate__fadeInUp'
+            "
+          >
+            {{ faq.body_2 }}
+          </p>
+          <p
+            :class="
+              showFaq === i
+                ? 'show-faq animate__animated animate__fadeInDown '
+                : 'animate__animated animate__fadeInUp'
+            "
+          >
+            {{ faq.body_3 }}
           </p>
         </li>
       </ul>
@@ -30,21 +48,16 @@ export default {
     return {
       faqs: [
         {
-          title: 'How do I earn money with Just Eat?',
-          body: `Delco - As an independent contractor making deliveries via the Just Eat platform, you are paid for delivering food from our partner restaurants to our customers. You choose which orders you accept and are paid for all the orders you successfully deliver.`,
+          title: 'I have a food allergy. Should I order meals from &Dine?',
+          body_1: `All food purchased on &Dine is prepared in kitchens where nuts, gluten and other known allergens maybe present. Please note whilst home cooks take caution to prevent cross-contamination, any product may contain traces as entire menus are produced in the same kitchen.`,
+          body_2:
+            'Therefore, if you have a severe food allergy, we would recommend not ordering from &Dine at this time as you will be doing so at your own risk.',
         },
         {
-          title:
-            'Can I choose to be an independent contractor or salaried worker regardless of where I want to work?',
-          body: `We are rolling out our new salaried contract model across key cities, Birmingham, Brighton, Cambridge, Liverpool and London have already launched and we've got more coming soon. If our salaried contract model doesn't operate where you'd like to work (for example, Worthing), you can check to see if you can deliver for us as an independent contractor (this model operates in almost 200 locations). If you can't see your town or city listed, it means we don't require couriers in your location at the moment.`,
-        },
-        {
-          title: 'Do I need my own wheels?',
-          body: `Delco - As an independent contractor, you’re responsible for providing and maintaining your own equipment including a bicycle, an insured car or motorcycle and a mobile phone with a data plan. You’ll also need a full driving licence to operate as a car courier and at least a provisional driving licence + CBT to operate as a motorcycle courier.`,
-        },
-        {
-          title: 'I have questions, who can I contact?',
-          body: `Delco -  Send an email to couriers@just-eat.com. We'll get back to you within 5 days.`,
+          title: 'Can I return the &Dine delivery bags?',
+          body_1: `Our &Dine bags are designed to be reused! Once you have collected 3 or more delivery bags, feel free to sign up for a pick-up, which can be sent to hello@anddine.co.uk and receive discount on your next order. `,
+          body_2: `We are currently hosting bag pick-up's on a monthly basis. By emailing to arrange a pickup you will be notified when the next pick-up in your area is scheduled. You'll receive a food credit as soon as we pick up your bags. Please do not hand off bags or throw bags away. `,
+          body_3: `To receive your recycling credit and return the bags properly, please email us. Thanks so much!`,
         },
       ],
       showFaq: false,

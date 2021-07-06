@@ -34,8 +34,8 @@
         </p>
       </div>
     </div>
-    <!-- <h2 class="about__title">FAQs</h2>
-    <faqs class="about__faqs" /> -->
+    <h2 class="about__title">FAQs</h2>
+    <faqs class="about__faqs" />
   </section>
 </template>
 
