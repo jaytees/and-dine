@@ -19,12 +19,12 @@
         />
       </div>
     </div>
-    <h1 v-if="!formattedAddress" class="home__title">Get started</h1>
+    <h2 v-if="!formattedAddress" class="home__title">Get started</h2>
     <div v-if="!formattedAddress" class="home__steps" data-aos="fade-up">
       <steps-box />
     </div>
     <div v-else>
-      <h1 v-if="isLondon" class="home__title">Local favourites</h1>
+      <h2 v-if="isLondon" class="home__title">Local favourites</h2>
       <div v-if="isLondon" class="home__sellers">
         <div v-for="(seller, index) in sellers" :key="`seller__${index}`">
           <nuxt-link
@@ -187,9 +187,13 @@ $mobile: 600px;
     }
   }
   &__title {
-    color: var(--color-pink-1);
-    margin: 40px auto -20px;
-    text-align: center;
+    margin: 40px 7% 0;
+    width: 80%;
+    text-align: left;
+    @media (max-width: $desktop) {
+      text-align: center;
+      margin: 40px 10% 0;
+    }
   }
 }
 </style>
