@@ -12,13 +12,8 @@
     />
     <nuxt />
     <cookie-bar
-      v-if="!hasAcceptedCookies && !cookiesAccepted"
-      :class="
-        hasAcceptedCookies &&
-        cookiesAccepted &&
-        'animate__animated animate__fadeOut'
-      "
-      @cookiesAccepted="cookiesAccepted = true"
+      v-if="!cookiesAccepted"
+      :class="cookiesAccepted ? 'animate__animated animate__fadeOut' : ''"
     />
     <footer-bar />
   </div>
@@ -41,9 +36,6 @@ export default {
       .catch((err) => console.log(err))
   },
   fetchOnServer: true,
-  data: () => ({
-    cookiesAccepted: false,
-  }),
   computed: {
     ...mapState([
       'navigationItems',
@@ -51,6 +43,7 @@ export default {
       'cartIsOpen',
       'chosenSellerName',
       'checkoutInfo',
+      'cookiesAccepted',
     ]),
     ...mapGetters(['cartItemCount', 'sellerById']),
     isSmallOrder() {
@@ -114,6 +107,7 @@ export default {
   },
   async mounted() {
     if (this.hasCheckoutId && this.hasAcceptedCookies) {
+      this.setCookiesAccepted(true)
       this.fetchCheckout()
       this.hasChosenSeller &&
         this.setChosenSellerName(this.$cookies.get('chosen_seller'))
@@ -145,6 +139,7 @@ export default {
       setChosenSellerName: 'SET_CHOSEN_SELLER_NAME',
       setCartStatus: 'SET_CART_STATUS',
       setShippingAddress: 'SET_SHIPPING_ADDRESS',
+      setCookiesAccepted: 'SET_COOKIES_ACCEPTED',
     }),
     toggleCart() {
       this.setCartStatus(!this.cartIsOpen)

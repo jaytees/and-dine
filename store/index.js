@@ -13,6 +13,7 @@ export const state = () => ({
   shopifyProducts: false,
   shippingAddress: false,
   formattedAddress: '',
+  cookiesAccepted: false,
 })
 
 export const mutations = {
@@ -70,6 +71,9 @@ export const mutations = {
     //   }
     //   state.shippingAddress = shippingAddress
     // }
+  },
+  SET_COOKIES_ACCEPTED(state, payload) {
+    state.cookiesAccepted = payload
   },
 }
 

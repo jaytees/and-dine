@@ -126,6 +126,8 @@
 </template>
 
 <script>
+import { mapMutations } from 'vuex'
+
 export default {
   name: 'CookieBar',
   data: () => ({
@@ -133,9 +135,14 @@ export default {
     showCookieModal: true,
   }),
   methods: {
+    ...mapMutations({
+      setCookiesAccepted: 'SET_COOKIES_ACCEPTED',
+    }),
     acceptCookies() {
       this.$cookies.set('cookies_accepted', true)
-      this.$emit('cookiesAccepted', true)
+      this.setCookiesAccepted(true)
+      this.closeCookieModal()
+      this.closeModal()
     },
     openPolicy() {
       this.showModal = true
