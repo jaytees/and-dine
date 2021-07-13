@@ -22,7 +22,10 @@
     />
     <div class="seller__delivery">
       <h3>Delivery Information</h3>
-      <p>Order by midnight on Wednesday for delivery on Friday</p>
+      <p v-if="sellerHandle === 'lazy-susan'">
+        Order by midnight on Sunday for delivery on Tuesday
+      </p>
+      <p v-else>Order by midnight on Wednesday for delivery on Friday</p>
     </div>
     <div v-if="productsReady" class="seller__products">
       <image-list
