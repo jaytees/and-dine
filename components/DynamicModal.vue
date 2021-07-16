@@ -105,13 +105,10 @@ $mobile: 600px;
     margin-bottom: 2%;
   }
   &__body {
-    overflow: unset;
+    overflow: scroll;
     display: flex;
     flex-direction: column;
     align-items: stretch;
-    @media (max-width: $tablet) {
-      height: 100vh;
-    }
   }
   &--footer {
     padding: 2%;
