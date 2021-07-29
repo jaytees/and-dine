@@ -111,30 +111,30 @@ import { decode } from 'html-entities'
 import { mapMutations, mapGetters, mapState, mapActions } from 'vuex'
 export default {
   name: 'Seller',
-  async fetch() {
-    await this.$axios
-      .get(`${process.env.STOREFRONT_URL}feature-apps/seller-timing.json`, {
-        params: {
-          access_token: process.env.STOREFRONT_ACCESS_TOKEN,
-          refresh_token: process.env.STOREFRONT_REFRESH_TOKEN,
-        },
-      })
-      .then((res) => {
-        const slots = JSON.parse(
-          res.data.slots.filter(
-            (slot) => slot.seller_name === this.sellerName
-          )[0].time_slot_json
-        )
-        const slotArr = Object.values(slots)
-        const slotsWithDays = slotArr.map((slot, i) => ({
-          ...slot['2'],
-          day: this.days[i],
-        }))
-        console.log(slotsWithDays)
-      })
-      .catch((err) => console.log(err))
-  },
-  fetchOnServer: true,
+  // async fetch() {
+  //   await this.$axios
+  //     .get(`${process.env.STOREFRONT_URL}feature-apps/seller-timing.json`, {
+  //       params: {
+  //         access_token: process.env.STOREFRONT_ACCESS_TOKEN,
+  //         refresh_token: process.env.STOREFRONT_REFRESH_TOKEN,
+  //       },
+  //     })
+  //     .then((res) => {
+  //       const slots = JSON.parse(
+  //         res.data.slots.filter(
+  //           (slot) => slot.seller_name === this.sellerName
+  //         )[0].time_slot_json
+  //       )
+  //       const slotArr = Object.values(slots)
+  //       const slotsWithDays = slotArr.map((slot, i) => ({
+  //         ...slot['2'],
+  //         day: this.days[i],
+  //       }))
+  //       console.log(slotsWithDays)
+  //     })
+  //     .catch((err) => console.log(err))
+  // },
+  // fetchOnServer: true,
   asyncData: ({ params }) => ({
     sellerHandle: params.handle,
     showProductModal: false,

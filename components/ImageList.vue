@@ -71,6 +71,7 @@ $mobile: 600px;
     width: 26%;
     margin: 0;
     transition: transform 0.2s;
+    height: 425px;
     @media (max-width: $desktop) {
       padding: 0 2%;
       width: 40%;

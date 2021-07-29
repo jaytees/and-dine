@@ -229,6 +229,21 @@
               <option value="Other">Other</option>
             </select>
           </div>
+          <div class="mc-field-group">
+            <label for="mce-MMERGE8"
+              >How did you hear about us? <span class="asterisk">*</span>
+            </label>
+            <select id="mce-MMERGE8" name="MMERGE8" class="required">
+              <option value=""></option>
+              <option value="Google">Google</option>
+              <option value="Instagram">Instagram</option>
+              <option value="Facebook">Facebook</option>
+              <option value="Chef">Chef</option>
+              <option value="Word of mouth">Word of mouth</option>
+              <option value="Online ad">Online ad</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
           <div id="mce-responses" class="clear">
             <div
               id="mce-error-response"
@@ -309,7 +324,7 @@ export default {
         const chimpSeller = document.createElement('script')
         chimpSeller.appendChild(
           document.createTextNode(
-            `(function($) {window.fnames = new Array(); window.ftypes = new Array();fnames[1]='FNAME';ftypes[1]='text';fnames[2]='LNAME';ftypes[2]='text';fnames[4]='PHONE';ftypes[4]='text';fnames[0]='EMAIL';ftypes[0]='email';fnames[6]='MMERGE6';ftypes[6]='text';fnames[7]='MMERGE7';ftypes[7]='dropdown';fnames[3]='ADDRESS';ftypes[3]='address';fnames[5]='BIRTHDAY';ftypes[5]='birthday';}(jQuery));var $mcj = jQuery.noConflict(true);`
+            `(function($) {window.fnames = new Array(); window.ftypes = new Array();fnames[1]='FNAME';ftypes[1]='text';fnames[2]='LNAME';ftypes[2]='text';fnames[4]='PHONE';ftypes[4]='text';fnames[0]='EMAIL';ftypes[0]='email';fnames[6]='MMERGE6';ftypes[6]='text';fnames[7]='MMERGE7';ftypes[7]='dropdown';fnames[3]='ADDRESS';ftypes[3]='address';fnames[5]='BIRTHDAY';ftypes[5]='birthday';fnames[8]='MMERGE8';ftypes[8]='dropdown';}(jQuery));var $mcj = jQuery.noConflict(true);`
           )
         )
         document.body.appendChild(chimpSeller)

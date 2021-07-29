@@ -90,6 +90,13 @@ export default {
     isLondon(to) {
       if (!to) this.showModal = true
     },
+    formattedAddress(to) {
+      if (to)
+        window.scrollTo({
+          top: '3000',
+          behavior: 'smooth',
+        })
+    },
   },
   methods: {
     ...mapMutations({
