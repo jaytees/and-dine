@@ -238,9 +238,11 @@ export const getters = {
   productsById: (state) => {
     return (
       state.products &&
-      state.products.filter(
-        (product) => product.seller_id === parseInt(state.chosenSellerId)
-      )
+      state.products
+        .filter(
+          (product) => product.seller_id === parseInt(state.chosenSellerId)
+        )
+        .reverse()
     )
   },
   productsByCollection: (state) => {

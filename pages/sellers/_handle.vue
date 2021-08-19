@@ -29,7 +29,7 @@
     </div>
     <div v-if="productsReady" class="seller__products">
       <image-list
-        v-for="(product, index) in productsById.reverse()"
+        v-for="(product, index) in productsById"
         :key="`seller__${index}`"
         data-aos="fade-up"
         :image-title="product.product_name"
