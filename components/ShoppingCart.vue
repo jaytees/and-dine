@@ -25,15 +25,23 @@
         :key="`item_${index}`"
         class="shopping-cart__items"
       >
-        <quantity-operator
-          v-if="!item.title.includes('Small order fee')"
-          :product-quantity="item.quantity"
-          :item-id="item.id"
-          class="shopping-cart__items--quantity"
-          @returnQuantity="updateQuantity"
-        />
+        <div v-if="cartLoading && !item.title.includes('Small order fee')">
+          <fa :icon="['fas', 'spinner']" class="fa fa-spinner fa-spin" />
+        </div>
+        <div v-else>
+          <quantity-operator
+            v-if="!item.title.includes('Small order fee')"
+            :product-quantity="item.quantity"
+            :item-id="item.id"
+            class="shopping-cart__items--quantity"
+            @returnQuantity="updateQuantity"
+          />
+        </div>
         <div class="shopping-cart__items--container">
-          <h4 class="title">
+          <h4
+            v-if="!cartLoading || !item.title.includes('Small order fee')"
+            class="title"
+          >
             {{ item.title }}
           </h4>
           <fa
@@ -44,8 +52,12 @@
           />
         </div>
       </div>
-      <h3 class="shopping-cart__total">Total: £{{ totalPrice }}</h3>
+      <h3 v-if="!cartLoading" class="shopping-cart__total">
+        Total: £{{ totalPrice }}
+      </h3>
       <dynamic-button
+        :disabled="cartLoading"
+        :style="cartLoading && 'margin-top: 40px;'"
         color="pink"
         :text="!loading ? 'Checkout' : ''"
         width="100%"
@@ -69,7 +81,7 @@ export default {
     loading: false,
   }),
   computed: {
-    ...mapState(['chosenSellerName', 'checkoutInfo']),
+    ...mapState(['chosenSellerName', 'checkoutInfo', 'cartLoading']),
     ...mapGetters(['sellerById']),
     showItems() {
       return this.checkoutInfo && this.checkoutInfo.lineItems.length > 0
@@ -79,7 +91,13 @@ export default {
     },
   },
   methods: {
-    ...mapActions(['removeFromCart', 'updateItemQuantity', 'updateAddress']),
+    ...mapActions([
+      'removeFromCart',
+      'updateItemQuantity',
+      'updateAddress',
+      'removeSmallOrderFee',
+      'addSmallOrderFee',
+    ]),
     returnCartClick() {
       this.$emit('returnCartClick', true)
     },
@@ -91,21 +109,21 @@ export default {
       })
     },
     removeItem(itemId) {
-      this.removeFromCart({
-        lineItems: [itemId],
-      }).then(() => {
-        if (
-          this.checkoutInfo.lineItems.length === 1 &&
-          this.checkoutInfo.lineItems[0].title.includes('Small order fee')
-        )
-          this.removeFromCart({
-            lineItems: [this.checkoutInfo.lineItems[0].id],
-          })
+      this.removeSmallOrderFee().then(() => {
+        this.removeFromCart({
+          lineItems: [itemId],
+        }).then(() => {
+          this.addSmallOrderFee()
+        })
       })
     },
     updateQuantity(payload) {
-      this.updateItemQuantity({
-        lineItems: [{ id: payload.id, quantity: payload.quantity }],
+      this.removeSmallOrderFee().then(() => {
+        this.updateItemQuantity({
+          lineItems: [{ id: payload.id, quantity: payload.quantity }],
+        }).then(() => {
+          this.addSmallOrderFee()
+        })
       })
     },
   },

@@ -1,9 +1,13 @@
 export const state = () => ({
   products: false,
+  collections: false,
   sellers: false,
   chosenSellerId: false,
   chosenSellerName: false,
+  chosenSellerHandle: false,
+  chosenCollectionName: false,
   cartIsOpen: false,
+  cartLoading: false,
   navigationItems: [
     { id: 0, name: 'index', value: '', link: '/' },
     { id: 1, name: 'about', value: 'ABOUT US', link: '/about' },
@@ -19,6 +23,9 @@ export const state = () => ({
 export const mutations = {
   SET_PRODUCTS(state, payload) {
     state.products = payload
+  },
+  SET_COLLECTIONS(state, payload) {
+    state.collections = payload
   },
   SET_SHOPIFY_PRODUCTS(state, payload) {
     state.shopifyProducts = payload
@@ -39,8 +46,14 @@ export const mutations = {
   SET_CHOSEN_SELLER_NAME(state, payload) {
     state.chosenSellerName = payload
   },
+  SET_CHOSEN_SELLER_HANDLE(state, payload) {
+    state.chosenSellerHandle = payload
+  },
   SET_CHOSEN_SELLER_ID(state, payload) {
     state.chosenSellerId = payload
+  },
+  SET_CHOSEN_COLLECTION_NAME(state, payload) {
+    state.chosenCollectionName = payload
   },
   SET_CART_STATUS(state, payload) {
     state.cartIsOpen = payload
@@ -75,16 +88,30 @@ export const mutations = {
   SET_COOKIES_ACCEPTED(state, payload) {
     state.cookiesAccepted = payload
   },
+  SET_CART_LOADING(state, payload) {
+    state.cartLoading = payload
+  },
 }
 
 export const actions = {
   setProducts({ commit }, products) {
     commit('SET_PRODUCTS', products)
   },
-  async addToCart({ commit, state }, payload) {
-    const variant =
-      state.shopifyProducts &&
-      state.shopifyProducts.filter((product) => product.title === payload.name)
+  setCollections({ commit }, collections) {
+    commit('SET_COLLECTIONS', collections)
+  },
+  async fetchCollections({ commit }) {
+    await this.$shopify.collection
+      .fetchAllWithProducts()
+      .then((collections) => {
+        commit('SET_COLLECTIONS', collections)
+        // console.log(collections[0].products)
+      })
+  },
+  async addToCart({ commit, state, getters }, payload) {
+    const variant = getters.productsByCollection.filter(
+      (product) => product.title === payload.name
+    )
     const lineItemsToAdd = [
       {
         variantId: variant[0].variants[0].id,
@@ -102,6 +129,15 @@ export const actions = {
       })
       .catch((err) => console.log(err))
   },
+  async updateItemQuantity({ commit, state }, payload) {
+    await this.$shopify.checkout
+      .updateLineItems(state.checkoutInfo.id, payload.lineItems)
+      .then((checkout) => {
+        commit('SET_CHECKOUT_INFO', checkout)
+        this.$cookies.set('checkout_id', checkout.id)
+      })
+      .catch((err) => console.log(err))
+  },
   async removeFromCart({ commit, state }, payload) {
     await this.$shopify.checkout
       .removeLineItems(state.checkoutInfo.id, payload.lineItems)
@@ -111,13 +147,44 @@ export const actions = {
       })
       .catch((err) => console.log(err))
   },
-  async updateItemQuantity({ commit, state }, payload) {
-    await this.$shopify.checkout
-      .updateLineItems(state.checkoutInfo.id, payload.lineItems)
-      .then((checkout) => {
-        commit('SET_CHECKOUT_INFO', checkout)
-        this.$cookies.set('checkout_id', checkout.id)
-      })
+  async addSmallOrderFee({ commit, state, getters }) {
+    if (getters.smallOrderFee) {
+      const variant = getters.productsByCollection.filter(
+        (product) =>
+          product.title === `Small order fee - £${getters.smallOrderFee}`
+      )
+      const lineItemsToAdd = [
+        {
+          variantId: variant[0].variants[0].id,
+          quantity: 1,
+          customAttributes: [{ key: '', value: '' }],
+        },
+      ]
+      await this.$shopify.checkout
+        .addLineItems(state.checkoutInfo.id, lineItemsToAdd)
+        .then((checkout) => {
+          commit('SET_CHECKOUT_INFO', checkout)
+          this.$cookies.set('checkout_id', checkout.id)
+          this.commit('SET_CART_LOADING', false)
+        })
+        .catch((err) => console.log(err))
+    } else {
+      this.commit('SET_CART_LOADING', false)
+    }
+  },
+  async removeSmallOrderFee({ state, commit }) {
+    this.commit('SET_CART_LOADING', true)
+    const smallOrderItems = state.checkoutInfo.lineItems.filter((item) =>
+      item.title.includes('Small order fee')
+    )
+    if (smallOrderItems.length > 0)
+      await this.$shopify.checkout
+        .removeLineItems(state.checkoutInfo.id, smallOrderItems[0].id)
+        .then((checkout) => {
+          commit('SET_CHECKOUT_INFO', checkout)
+          this.$cookies.set('checkout_id', checkout.id)
+        })
+        .catch((err) => console.log(err))
   },
   removeCartItems({ commit }, store) {
     commit('SET_CHOSEN_SELLER_NAME', store)
@@ -154,6 +221,14 @@ export const actions = {
       })
       .catch((err) => console.log(err))
   },
+  updateChosenSeller({ commit }, payload) {
+    commit('SET_CHOSEN_SELLER_NAME', payload.name)
+    commit('SET_CHOSEN_SELLER_HANDLE', payload.handle)
+  },
+  updateChosenProducts({ commit }, payload) {
+    commit('SET_CHOSEN_SELLER_ID', payload.id)
+    commit('SET_CHOSEN_COLLECTION_NAME', payload.handle)
+  },
 }
 
 export const getters = {
@@ -166,6 +241,29 @@ export const getters = {
       state.products.filter(
         (product) => product.seller_id === parseInt(state.chosenSellerId)
       )
+    )
+  },
+  productsByCollection: (state) => {
+    return (
+      state.collections &&
+      state.collections.filter(
+        (collection) => collection.handle === state.chosenCollectionName
+      )[0].products
+    )
+  },
+  smallOrderFee: (state) => {
+    return (
+      state.checkoutInfo.totalPrice < 15 &&
+      state.checkoutInfo.lineItems.length > 0 &&
+      parseFloat(15 - state.checkoutInfo.totalPrice).toFixed(2)
+    )
+  },
+  smallOrderFees: (state) => {
+    return (
+      state.collections &&
+      state.collections.filter(
+        (collection) => collection.handle === 'small-order-fees'
+      )[0].products
     )
   },
   sellerById: (state) => {

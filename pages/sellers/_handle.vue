@@ -185,28 +185,28 @@ export default {
     hasImages() {
       return this.chosenProduct.images.length > 0
     },
-    isSmallOrder() {
-      return this.checkoutInfo.totalPrice < 15
-    },
-    smallOrderFee() {
-      return (
-        this.isSmallOrder &&
-        parseFloat(15 - this.checkoutInfo.totalPrice).toFixed(2)
-      )
-    },
   },
   mounted() {
     const seller = this.sellers.filter(
       (seller) => seller.store_name_handle === this.sellerHandle
     )
-    this.setChosenSellerId(seller[0].id)
+    this.updateChosenProducts({
+      handle: this.sellerHandle,
+      id: seller[0].id,
+    })
   },
   methods: {
     ...mapMutations({
       setCartStatus: 'SET_CART_STATUS',
-      setChosenSellerId: 'SET_CHOSEN_SELLER_ID',
     }),
-    ...mapActions(['addToCart', 'removeCartItems', 'setupCheckout']),
+    ...mapActions([
+      'addToCart',
+      'removeCartItems',
+      'setupCheckout',
+      'removeSmallOrderFee',
+      'addSmallOrderFee',
+      'updateChosenProducts',
+    ]),
     parseString(string) {
       if (string) {
         const noTags = string.replace(/<[^>]+>/g, '')
@@ -243,19 +243,16 @@ export default {
       if (this.cartHasItems && !this.storeNameCorrect) {
         this.openStoreModal()
       } else {
-        this.addToCart({
-          name,
-          quantity: this.productQuantity,
-          store: this.sellerById[0].sp_store_name,
-        }).then(() => {
-          this.loading = false
-          this.isSmallOrder
-            ? this.addToCart({
-                name: `Small order fee - £${this.smallOrderFee}`,
-                quantity: 1,
-                store: this.sellerById[0].sp_store_name,
-              }).then(() => this.closeProductModal())
-            : this.closeProductModal()
+        this.removeSmallOrderFee().then(() => {
+          this.addToCart({
+            name,
+            quantity: this.productQuantity,
+            store: this.sellerById[0].sp_store_name,
+          }).then(() => {
+            this.addSmallOrderFee()
+            this.loading = false
+            this.closeProductModal()
+          })
         })
       }
     },

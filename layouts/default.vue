@@ -44,17 +44,9 @@ export default {
       'chosenSellerName',
       'checkoutInfo',
       'cookiesAccepted',
+      'chosenSellerHandle',
     ]),
     ...mapGetters(['cartItemCount', 'sellerById']),
-    isSmallOrder() {
-      return this.checkoutInfo.totalPrice < 15
-    },
-    smallOrderFee() {
-      return (
-        this.isSmallOrder &&
-        parseFloat(15 - this.checkoutInfo.totalPrice).toFixed(2)
-      )
-    },
     hasAcceptedCookies() {
       return this.$cookies.get('cookies_accepted')
     },
@@ -76,41 +68,23 @@ export default {
           this.$cookies.remove('checkout_id')
           this.setupCheckout()
         }
-        if (
-          to.lineItems.length === 1 &&
-          to.lineItems[0].title.includes('Small order fee')
-        )
-          this.removeFromCart({
-            lineItems: [to.lineItems[0].id],
-            checkoutId: to.id,
-          })
-
-        if (to.totalPrice > 15) {
-          const smallOrderItem = to.lineItems.filter((item) =>
-            item.title.includes('Small order fee')
-          )
-          smallOrderItem.length > 0 &&
-            this.removeFromCart({
-              lineItems: [smallOrderItem[0].id],
-              checkoutId: to.id,
-            })
-        }
-        if (to.lineItems.length > 0 && to.totalPrice < 15) {
-          this.addToCart({
-            name: `Small order fee - £${this.smallOrderFee}`,
-            quantity: 1,
-            store: this.chosenSellerName,
-          })
-        }
       }
     },
   },
   async mounted() {
+    this.fetchCollections()
     if (this.hasCheckoutId && this.hasAcceptedCookies) {
       this.setCookiesAccepted(true)
       this.fetchCheckout()
-      this.hasChosenSeller &&
-        this.setChosenSellerName(this.$cookies.get('chosen_seller'))
+      if (this.hasChosenSeller) {
+        this.updateChosenSeller({
+          name: this.$cookies.get('chosen_seller'),
+          handle: this.$cookies
+            .get('chosen_seller')
+            .replace(/\s+/g, '-')
+            .toLowerCase(),
+        })
+      }
     } else {
       this.$cookies.remove('chosen_seller')
       this.setupCheckout()
@@ -128,15 +102,14 @@ export default {
       'getProducts',
       'setupCheckout',
       'fetchCheckout',
-      'removeFromCart',
-      'addToCart',
       'updateAddress',
+      'fetchCollections',
+      'updateChosenSeller',
     ]),
     ...mapMutations({
       setShopifyProducts: 'SET_SHOPIFY_PRODUCTS',
       setSellers: 'SET_SELLERS',
       setCheckoutInfo: 'SET_CHECKOUT_INFO',
-      setChosenSellerName: 'SET_CHOSEN_SELLER_NAME',
       setCartStatus: 'SET_CART_STATUS',
       setShippingAddress: 'SET_SHIPPING_ADDRESS',
       setCookiesAccepted: 'SET_COOKIES_ACCEPTED',
